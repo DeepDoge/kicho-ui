@@ -1,14 +1,14 @@
 <script lang="ts">
-    import Box from "./GlowBox.svelte";
+    import GlowBox from "./GlowBox.svelte";
 
     export let placeholder = null;
     export let value: string = null;
     export let required = false;
 </script>
 
-<Box>
+<GlowBox>
     <input on:change {required} type="text" bind:value {placeholder} />
-</Box>
+</GlowBox>
 
 <style>
     input {

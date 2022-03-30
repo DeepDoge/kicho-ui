@@ -1,17 +1,27 @@
-<!-- <script lang="ts">
-    import Box from "./Box.svelte";
+<script lang="ts">
+    import GlowBox from "./GlowBox.svelte";
+
     export let type: "button" | "submit" = "button";
     export let text: string;
-
-    let className: string = null
-    export {className as class}
 </script>
 
-<Box type="tag" bind:class={className}>
-    <input {type} value={text} on:click />
-</Box>
+<div class="button">
+    <GlowBox>
+        <input {type} value={text} on:click />
+    </GlowBox>
+</div>
 
 <style>
+    .button {
+        width: 100%;
+        height: 100%;
+    }
+
+    .button:hover,
+    .button:focus {
+        --g-background: var(--g-border-color) 
+    }
+    
     input {
         appearance: none;
         width: 100%;
@@ -26,4 +36,3 @@
         padding: 0.5em 0.75em;
     }
 </style>
- -->

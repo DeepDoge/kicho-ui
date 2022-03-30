@@ -8,9 +8,10 @@
         height: 100%;
         position: relative;
         border: solid var(--g-border-width) transparent;
-        background: var(--g-background);
         color: var(--g-text);
+        background: var(--g-background);
         background-clip: content-box;
+        border-radius: var(--g-border-radius);
     }
 
     .box::before,
@@ -18,12 +19,13 @@
         content: "";
         inset: calc(-1 * var(--g-border-width));
         position: absolute;
-        background: var(--g-border-background);
+        background: var(--g-border-color);
         border-radius: var(--g-border-radius);
         z-index: -1;
     }
 
     .box::after {
-        filter: blur(.75em) opacity(.75);
+        background: var(--g-glow-color);
+        filter: blur(.75em) opacity(.75em);
     }
 </style>

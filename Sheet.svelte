@@ -8,5 +8,6 @@
         height: 100%;
         position: relative;
         background: var(--g-background);
+        color: var(--g-text)
     }
 </style>
