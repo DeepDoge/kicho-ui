@@ -1,12 +1,17 @@
 <script lang="ts">
+    import Box from "./Box.svelte";
+
     export let placeholder = null;
     export let value: string = null;
     export let required = false;
+
+    let className: string = null;
+    export { className as class };
 </script>
 
-<div class="g-box">
+<Box bind:class={className}>
     <input on:change {required} type="text" bind:value {placeholder} />
-</div>
+</Box>
 
 <style>
     input {

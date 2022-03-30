@@ -1,11 +1,15 @@
 <script lang="ts">
+    import Box from "./Box.svelte";
     export let type: "button" | "submit" = "button";
     export let text: string;
+
+    let className: string = null
+    export {className as class}
 </script>
 
-<div class="g-box">
+<Box type="tag" bind:class={className}>
     <input {type} value={text} on:click />
-</div>
+</Box>
 
 <style>
     input {

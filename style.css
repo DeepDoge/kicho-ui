@@ -14,7 +14,7 @@
             #53b3e0);
 
     --g-border-radius: 0.25rem;
-    --g-transition: linear .1s;
+    --g-transition: linear .2s;
 
     --g-text: var(--g-front-color);
     --g-background: var(--g-back-color);
@@ -33,84 +33,15 @@
     --g-border-background: var(--g-wild-color);
 }
 
+.g-theme-brand {
+    --g-text: var(--g-front-color);
+    --g-background: var(--g-back-color);
+    --g-border-background: var(--g-master-color);
+}
+
 body {
     color: var(--g-text);
     background: var(--g-background);
-}
-
-.g-box {
-    --border-size: .15em;
-    --border-radius: var(--g-border-radius);
-    --background: var(--g-background);
-    --border-background: var(--g-border-background);
-    --color: var(--g-text);
-    position: relative;
-    padding: var(--border-size);
-    color: var(--g-text);
-    background: transparent;
-    transition: var(--g-transition);
-    transition-property: filter;
-}
-
-.g-box:hover {
-    filter: brightness(1.1);
-}
-
-.g-box:active {
-    filter: brightness(1.5);
-}
-
-.g-box::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-
-    background: var(--border-background);
-    border-radius: var(--border-radius);
-    transition: var(--g-transition);
-    transition-property: box-shadow;
-    opacity: .9;
-}
-
-.g-box::after {
-    content: "";
-
-    position: absolute;
-    inset: var(--border-size);
-    z-index: -1;
-
-    background: var(--background);
-    border-radius: var(--border-radius);
-    transition: var(--g-transition);
-    transition-property: opacity, inset;
-    opacity: .95;
-}
-
-.g-box-no-border .g-box,
-.g-box-no-border.g-box {
-    --border-size: 0;
-}
-
-.g-box-border-on-hover .g-box:not(:hover):not(:focus-within):after,
-.g-box-border-on-hover.g-box:not(:hover):not(:focus-within)::after {
-    inset: 0;
-}
-
-.g-box-colored .g-box::after,
-.g-box-colored.g-box::after {
-    opacity: 0;
-}
-
-.g-box-colored .g-box:hover::after,
-.g-box-colored.g-box:hover::after {
-    opacity: 1;
-}
-
-.g-box-neon.g-box:hover::before,
-.g-box-neon .g-box:hover::before {
-    box-shadow: 0 0 1em var(--border-background), inset 0 0 1em var(--border-background);
 }
 
 .neon-text,
