@@ -8,7 +8,7 @@
         height: 100%;
         position: relative;
         border: solid var(--g-border-width) transparent;
-        color: var(--g-text);
+        color: var(--g-text-color);
         background: var(--g-background);
         background-clip: content-box;
         border-radius: var(--g-border-radius);
@@ -24,8 +24,9 @@
         z-index: -1;
     }
 
-    .box::after {
+    .box::before {
+        inset: 0;
         background: var(--g-glow-color);
-        filter: blur(.75em) opacity(.75em);
+        filter: blur(var(--g-glow-blur)) opacity(var(--g-glow-opacity));
     }
 </style>

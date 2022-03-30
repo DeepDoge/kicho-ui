@@ -15,11 +15,16 @@
     .button {
         width: 100%;
         height: 100%;
+        transition: var(--g-transition);
+        transition-property: filter;
     }
 
-    .button:hover,
-    .button:focus {
-        --g-background: var(--g-border-color) 
+    .button:hover {
+        filter: brightness(1.2);
+    }
+
+    .button:active {
+        filter: brightness(1.5);
     }
     
     input {

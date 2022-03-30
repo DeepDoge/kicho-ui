@@ -12,68 +12,73 @@
     --g-color-wild: linear-gradient(120deg,
             var(--g-color-master),
             var(--g-color-slave));
+    --g-color-contrast: var(--g-color-light);
 
     --g-transition: linear .2s;
 
-    --g-text: var(--g-color-light);
+
+    --g-text-color: var(--g-color-light);
     --g-background: var(--g-color-dark);
+    --g-sheet-background: var(--g-color-dark);
 
     --g-border-width: .2em;
     --g-border-radius: 0.25rem;
     --g-border-color: var(--g-color-dark);
 
-    --g-glow-blur: .75em;
-    --g-glow-opacity: .75em;
+    --g-glow-blur: 1em;
+    --g-glow-opacity: .75;
     --g-glow-color: var(--g-color-dark);
 }
 
 .g-theme-mono {
-    --g-text: var(--g-color-dark);
+    --g-text-color: var(--g-color-dark);
     --g-background: var(--g-color-light);
+    --g-sheet-background: var(--g-color-light);
+
     --g-border-color: var(--g-color-light);
+    --g-glow-color: var(--g-color-dark);
 }
 
 .g-theme-wild {
-    --g-text: var(--g-color-light);
+    --g-text-color: var(--g-color-light);
     --g-background: var(--g-color-dark);
+
     --g-border-color: var(--g-color-wild);
     --g-glow-color: var(--g-color-wild);
 }
 
-.g-theme-wild-filled {
-    --g-text: var(--g-color-light);
-    --g-background: var(--g-color-wild);
-    --g-border-color: var(--g-color-wild);
-}
-
-.g-theme-wild-glow {
-    --g-border-width: .001px;
-
-    --g-text: var(--g-color-light);
-    --g-background: var(--g-color-dark);
-    --g-border-color: var(--g-color-wild);
-}
-
 .g-theme-master {
-    --g-text: var(--g-color-light);
-    --g-background: var(--g-color-master);
+    --g-text-color: var(--g-color-light);
+    --g-background: var(--g-color-dark);
+
     --g-border-color: var(--g-color-master);
+    --g-glow-color: var(--g-color-master);
 }
 
 .g-theme-slave {
-    --g-text: var(--g-color-light);
-    --g-background: var(--g-color-slave);
+    --g-text-color: var(--g-color-light);
+    --g-background: var(--g-color-dark);
+
     --g-border-color: var(--g-color-slave);
+    --g-glow-color: var(--g-color-slave);
+}
+
+.g-theme-filled {
+    --g-background: var(--g-border-color)
+}
+
+.g-theme-no-border {
+    --g-border-width: 0;
 }
 
 body {
-    color: var(--g-text);
+    color: var(--g-text-color);
     background: var(--g-background);
 }
 
 /* body, [class^="g-theme-"], [class*="g-theme-"] 
 {
-    color: var(--g-text);
+    color: var(--g-text-color);
 } */
 
 body::before {

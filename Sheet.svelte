@@ -7,7 +7,7 @@
         width: 100%;
         height: 100%;
         position: relative;
-        background: var(--g-background);
-        color: var(--g-text)
+        background: var(--g-sheet-background);
+        color: var(--g-text-color)
     }
 </style>

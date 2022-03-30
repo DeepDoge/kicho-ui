@@ -6,9 +6,11 @@
     export let required = false;
 </script>
 
-<GlowBox>
-    <input on:change {required} type="text" bind:value {placeholder} />
-</GlowBox>
+<div class="text-field">
+    <GlowBox>
+        <input on:change {required} type="text" bind:value {placeholder} />
+    </GlowBox>
+</div>
 
 <style>
     input {
@@ -19,6 +21,10 @@
         background-color: transparent;
         color: inherit;
         font-size: inherit;
+    }
+
+    .text-field:focus-within {
+        --g-background: var(--g-sheet-background);
     }
 
     input::placeholder {
