@@ -5,14 +5,13 @@
 
 
 :root {
-    --g-master-color: #537de0;
+    --g-master-color: #aa28c4;
     --g-back-color: #272a31;
-    --g-front-color: #fafafa;
+    --g-front-color: #d3d6db;
     --g-wild-color: linear-gradient(30deg,
-            #8453e0,
             #53b3e0,
             var(--g-master-color),
-            #8453e0);
+            #53b3e0);
 
     --g-border-radius: 0.25rem;
     --g-transition: linear .1s;
@@ -72,6 +71,7 @@ body {
     border-radius: var(--border-radius);
     transition: var(--g-transition);
     transition-property: box-shadow;
+    opacity: .9;
 }
 
 .g-box::after {
@@ -85,6 +85,7 @@ body {
     border-radius: var(--border-radius);
     transition: var(--g-transition);
     transition-property: opacity, inset;
+    opacity: .95;
 }
 
 .g-box-no-border .g-box,
@@ -114,6 +115,7 @@ body {
 
 .neon-text,
 .neon-text * {
+    letter-spacing: .25em;
     color: #fff;
     text-shadow:
         0 0 7px #fff,
@@ -139,6 +141,7 @@ body {
 
 ::-webkit-scrollbar {
     display: block;
+    width: .25em;
 }
 
 ::-webkit-scrollbar-track {
@@ -147,10 +150,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
     background: var(--g-master-color);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    filter: brightness(1.3);
+    border-radius: 1em;
 }
 
 h1,
