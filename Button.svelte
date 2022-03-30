@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
     import Box from "./Box.svelte";
     export let type: "button" | "submit" = "button";
     export let text: string;
@@ -26,3 +26,4 @@
         padding: 0.5em 0.75em;
     }
 </style>
+ -->

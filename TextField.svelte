@@ -1,15 +1,12 @@
 <script lang="ts">
-    import Box from "./Box.svelte";
+    import Box from "./GlowBox.svelte";
 
     export let placeholder = null;
     export let value: string = null;
     export let required = false;
-
-    let className: string = null;
-    export { className as class };
 </script>
 
-<Box bind:class={className}>
+<Box>
     <input on:change {required} type="text" bind:value {placeholder} />
 </Box>
 
@@ -17,6 +14,7 @@
     input {
         border: none;
         width: 100%;
+        height: 100%;
         padding: 0.75em;
         background-color: transparent;
         color: inherit;
