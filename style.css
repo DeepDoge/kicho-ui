@@ -7,7 +7,7 @@
 :root {
     --g-master-color: #537de0;
     --g-back-color: #272a31;
-    --g-front-color: #ececec;
+    --g-front-color: #fafafa;
     --g-wild-color: linear-gradient(30deg,
             #8453e0,
             #53b3e0,
@@ -19,13 +19,13 @@
 
     --g-text: var(--g-front-color);
     --g-background: var(--g-back-color);
-    --g-border-background: var(--g-master-color);
+    --g-border-background: var(--g-front-color);
 }
 
 .g-theme-inverted {
     --g-text: var(--g-back-color);
     --g-background: var(--g-front-color);
-    --g-border-background: var(--g-master-color);
+    --g-border-background: var(--g-back-color);
 }
 
 .g-theme-wild {
@@ -41,13 +41,12 @@ body {
 
 .g-box {
     --border-size: .15em;
-    --padding: 0;
     --border-radius: var(--g-border-radius);
     --background: var(--g-background);
     --border-background: var(--g-border-background);
     --color: var(--g-text);
     position: relative;
-    padding: calc(var(--padding) + var(--border-size));
+    padding: var(--border-size);
     color: var(--g-text);
     background: transparent;
     transition: var(--g-transition);
@@ -85,7 +84,17 @@ body {
     background: var(--background);
     border-radius: var(--border-radius);
     transition: var(--g-transition);
-    transition-property: opacity;
+    transition-property: opacity, inset;
+}
+
+.g-box-no-border .g-box,
+.g-box-no-border.g-box {
+    --border-size: 0;
+}
+
+.g-box-border-on-hover .g-box:not(:hover):not(:focus-within):after,
+.g-box-border-on-hover.g-box:not(:hover):not(:focus-within)::after {
+    inset: 0;
 }
 
 .g-box-colored .g-box::after,
@@ -103,7 +112,7 @@ body {
     box-shadow: 0 0 1em var(--border-background), inset 0 0 1em var(--border-background);
 }
 
-
+.neon-text,
 .neon-text * {
     color: #fff;
     text-shadow:
