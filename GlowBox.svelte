@@ -44,7 +44,7 @@
 
     .box::before {
         background: var(--g-glow-color);
-        filter: blur(var(--g-glow-blur)) opacity(var(--g-glow-opacity));
+        filter: blur(var(--g-glow-blur)) brightness(calc(var(--g-glow-brightness) * var(--g-glow-brightness-mul)));
         transition: var(--g-transition);
         transition-property: filter;
     }

@@ -16,7 +16,11 @@
 
     --g-transition: linear .2s;
     --g-border-width: .2em;
-    --g-border-radius: 0.25rem;
+    --g-border-radius: 0.25em;
+
+    --g-body-background-color: var(--g-color-dark);
+    --g-body-background: var(--g-color-wild);
+    --g-body-text-color: var(--g-color-light);
 
     --g-foreground: var(--g-color-dark);
     --g-foreground-text-color: var(--g-color-light);
@@ -26,8 +30,9 @@
     --g-background-text-color: var(--g-color-light);
     --g-background-opacity: 1;
 
-    --g-glow-blur: 1em;
-    --g-glow-opacity: .75;
+    --g-glow-blur: 1rem;
+    --g-glow-brightness: .75;
+    --g-glow-brightness-mul: 1;
     --g-glow-color: var(--g-color-wild);
 }
 
@@ -61,34 +66,21 @@
     --g-glow-color: var(--g-color-slave);
 }
 
-.g-theme-no-foreground {
-    --g-foreground-opacity: 0;
-}
-
-.g-theme-no-background {
-    --g-background-opacity: 0;
-}
-
 .g-theme-no-glow {
-    --g-glow-opacity: 0;
-    --g-glow-blur: 0;
+    --g-glow-brightness: 0 !important;
+    --g-glow-blur: 0 !important;
 }
 
 body {
-    color: var(--g-foreground-text-color);
-    background: var(--g-foreground);
+    color: var(--g-body-text-color);
+    background: var(--g-body-background-color);
 }
-
-/* body, [class^="g-theme-"], [class*="g-theme-"] 
-{
-    color: var(--g-foreground-text-color);
-} */
 
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: var(--g-color-wild);
+    background: var(--g-body-background);
     z-index: -1;
     filter: blur(5rem) opacity(0.1);
 }

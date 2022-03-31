@@ -21,7 +21,13 @@
 
     .button:hover {
         --g-foreground-opacity: 0;
-        filter: brightness(1.2);
+        --g-foreground-text-color: var(--g-background-text-color)
+    }
+
+    .button:hover,
+    .button:focus-within {
+        --g-glow-brightness-mul: 1.25;
+        filter: brightness(1.3);
     }
 
     .button:active {
