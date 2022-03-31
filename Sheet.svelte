@@ -1,5 +1,5 @@
 <div class="sheet">
-    <slot></slot>
+    <slot />
 </div>
 
 <style>
@@ -7,7 +7,22 @@
         width: 100%;
         height: 100%;
         position: relative;
-        background: var(--g-sheet-background);
-        color: var(--g-text-color)
+        color: var(--g-foreground-text-color);
+        isolation: isolate;
+
+        transition: var(--g-transition);
+        transition-property: color;
+    }
+
+    .sheet::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--g-foreground);
+        opacity: var(--g-foreground-opacity);
+        z-index: -1;
+
+        transition: var(--g-transition);
+        transition-property: opacity;
     }
 </style>

@@ -15,70 +15,73 @@
     --g-color-contrast: var(--g-color-light);
 
     --g-transition: linear .2s;
-
-
-    --g-text-color: var(--g-color-light);
-    --g-background: var(--g-color-dark);
-    --g-sheet-background: var(--g-color-dark);
-
     --g-border-width: .2em;
     --g-border-radius: 0.25rem;
-    --g-border-color: var(--g-color-dark);
+
+    --g-foreground: var(--g-color-dark);
+    --g-foreground-text-color: var(--g-color-light);
+    --g-foreground-opacity: 1;
+    
+    --g-background: var(--g-color-wild);
+    --g-background-text-color: var(--g-color-light);
+    --g-background-opacity: 1;
 
     --g-glow-blur: 1em;
     --g-glow-opacity: .75;
-    --g-glow-color: var(--g-color-dark);
-}
-
-.g-theme-mono {
-    --g-text-color: var(--g-color-dark);
-    --g-background: var(--g-color-light);
-    --g-sheet-background: var(--g-color-light);
-
-    --g-border-color: var(--g-color-light);
-    --g-glow-color: var(--g-color-dark);
-}
-
-.g-theme-wild {
-    --g-text-color: var(--g-color-light);
-    --g-background: var(--g-color-dark);
-
-    --g-border-color: var(--g-color-wild);
     --g-glow-color: var(--g-color-wild);
 }
 
-.g-theme-master {
-    --g-text-color: var(--g-color-light);
+.g-theme-mono-dark {
     --g-background: var(--g-color-dark);
+    --g-glow-color: var(--g-color-dark);
+}
 
-    --g-border-color: var(--g-color-master);
+.g-theme-mono-light {
+    --g-foreground-text-color: var(--g-color-dark);
+    --g-foreground: var(--g-color-light);
+
+    --g-background: var(--g-color-light);
+    --g-background-text-color: var(--g-color-dark);
+    --g-glow-color: var(--g-color-dark);
+}
+
+.g-theme-master {
+    --g-foreground-text-color: var(--g-color-light);
+    --g-foreground: var(--g-color-dark);
+
+    --g-background: var(--g-color-master);
     --g-glow-color: var(--g-color-master);
 }
 
 .g-theme-slave {
-    --g-text-color: var(--g-color-light);
-    --g-background: var(--g-color-dark);
+    --g-foreground-text-color: var(--g-color-light);
+    --g-foreground: var(--g-color-dark);
 
-    --g-border-color: var(--g-color-slave);
+    --g-background: var(--g-color-slave);
     --g-glow-color: var(--g-color-slave);
 }
 
-.g-theme-filled {
-    --g-background: var(--g-border-color)
+.g-theme-no-foreground {
+    --g-foreground-opacity: 0;
 }
 
-.g-theme-no-border {
-    --g-border-width: 0;
+.g-theme-no-background {
+    --g-background-opacity: 0;
+}
+
+.g-theme-no-glow {
+    --g-glow-opacity: 0;
+    --g-glow-blur: 0;
 }
 
 body {
-    color: var(--g-text-color);
-    background: var(--g-background);
+    color: var(--g-foreground-text-color);
+    background: var(--g-foreground);
 }
 
 /* body, [class^="g-theme-"], [class*="g-theme-"] 
 {
-    color: var(--g-text-color);
+    color: var(--g-foreground-text-color);
 } */
 
 body::before {
@@ -122,7 +125,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--g-background);
+    background: var(--g-foreground);
 }
 
 ::-webkit-scrollbar-thumb {

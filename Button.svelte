@@ -20,6 +20,7 @@
     }
 
     .button:hover {
+        --g-foreground-opacity: 0;
         filter: brightness(1.2);
     }
 

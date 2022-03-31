@@ -23,8 +23,12 @@
         font-size: inherit;
     }
 
+    .text-field {
+        --g-foreground-opacity: 0;
+    }
+
     .text-field:focus-within {
-        --g-background: var(--g-sheet-background);
+        --g-foreground-opacity: 1;
     }
 
     input::placeholder {
