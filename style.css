@@ -7,73 +7,94 @@
 :root {
     --g-color-master: #F97794;
     --g-color-slave: #623AA2;
-    --g-color-dark: #272a31;
-    --g-color-light: #d3d6db;
+    --g-color-dark: rgba(39, 42, 49);
+    --g-color-light: rgb(235, 237, 241);
+    
+    --g-color-mode: var(--g-color-dark);
+    --g-color-mode-inverse: var(--g-color-light);
+
     --g-color-wild: linear-gradient(120deg,
             var(--g-color-master),
             var(--g-color-slave));
-    --g-color-contrast: var(--g-color-light);
 
     --g-transition: linear .2s;
     --g-border-width: .2em;
     --g-border-radius: 0.25em;
 
-    --g-body-background-color: var(--g-color-dark);
+    --g-body-background-color: var(--g-color-mode);
     --g-body-background: var(--g-color-wild);
-    --g-body-text-color: var(--g-color-light);
+    --g-body-text-color: var(--g-color-mode-inverse);
 
-    --g-foreground: var(--g-color-dark);
-    --g-foreground-text-color: var(--g-color-light);
-    --g-foreground-opacity: 1;
+    --g-foreground: var(--g-color-mode);
+    --g-foreground-contrast: var(--g-color-mode-inverse);
+    --g-foreground-opacity: .85;
+
+    --g-filled-foreground: var(--g-color-wild);
+    --g-filled-foreground-contrast: var(--g-color-light);
+    --g-filled-foreground-opacity: .85;
     
     --g-background: var(--g-color-wild);
-    --g-background-text-color: var(--g-color-light);
-    --g-background-opacity: 1;
+    --g-background-contrast: var(--g-color-light);
+    --g-background-opacity: .85;
 
     --g-glow-blur: 1rem;
-    --g-glow-brightness: .75;
-    --g-glow-brightness-mul: 1;
+    --g-glow-opacity: .75;
+    --g-glow-opacity-mul: 1;
     --g-glow-color: var(--g-color-wild);
 }
 
-.g-theme-mono-dark {
-    --g-background: var(--g-color-dark);
-    --g-glow-color: var(--g-color-dark);
-}
-
-.g-theme-mono-light {
-    --g-foreground-text-color: var(--g-color-dark);
-    --g-foreground: var(--g-color-light);
-
-    --g-background: var(--g-color-light);
-    --g-background-text-color: var(--g-color-dark);
-    --g-glow-color: var(--g-color-dark);
+.g-theme-light-mode {
+    --g-color-mode: var(--g-color-light);
+    --g-color-mode-inverse: var(--g-color-dark);
 }
 
 .g-theme-master {
-    --g-foreground-text-color: var(--g-color-light);
-    --g-foreground: var(--g-color-dark);
-
     --g-background: var(--g-color-master);
+    --g-filled-foreground: var(--g-color-master);
     --g-glow-color: var(--g-color-master);
 }
 
 .g-theme-slave {
-    --g-foreground-text-color: var(--g-color-light);
-    --g-foreground: var(--g-color-dark);
-
     --g-background: var(--g-color-slave);
+    --g-filled-foreground: var(--g-color-slave);
     --g-glow-color: var(--g-color-slave);
 }
 
+.g-theme-mono {
+    --g-foreground: var(--g-color-mode-inverse);
+    --g-foreground-contrast: var(--g-color-mode);
+
+    --g-filled-foreground: var(--g-color-mode-inverse);
+    --g-filled-foreground-contrast: var(--g-color-mode);
+
+    --g-border-width: 0;
+    --g-background: transparent;
+    --g-background-contrast: transparent;
+    --g-glow-color: var(--g-color-dark);
+}
+
+.g-theme-mono-inverse {
+    --g-foreground: var(--g-color-mode);
+    --g-foreground-contrast: var(--g-color-mode-inverse);
+
+    --g-filled-foreground: var(--g-color-mode);
+    --g-filled-foreground-contrast: var(--g-color-mode-inverse);
+
+    --g-border-width: 0;
+    --g-background: transparent;
+    --g-background-contrast: transparent;
+    --g-glow-color: var(--g-color-mode);
+}
+
 .g-theme-no-glow {
-    --g-glow-brightness: 0 !important;
-    --g-glow-blur: 0 !important;
+    --g-glow-opacity: 0 !important;
 }
 
 body {
     color: var(--g-body-text-color);
-    background: var(--g-body-background-color);
+    background-color: var(--g-body-background-color);
+    transition: var(--g-transition);
+    transition-property: color, background-color;
 }
 
 body::before {
@@ -82,23 +103,8 @@ body::before {
     inset: 0;
     background: var(--g-body-background);
     z-index: -1;
-    filter: blur(5rem) opacity(0.1);
+    filter: blur(5rem) opacity(0.3);
 }
-
-.neon-text,
-.neon-text * {
-    letter-spacing: .25em;
-    text-shadow:
-        0 0 7px currentColor,
-        0 0 10px currentColor,
-        0 0 21px currentColor,
-        0 0 42px currentColor,
-        0 0 82px currentColor,
-        0 0 92px currentColor,
-        0 0 102px currentColor,
-        0 0 151px currentColor;
-}
-
 
 body {
     padding: 0;

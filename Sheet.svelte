@@ -7,7 +7,7 @@
         width: 100%;
         height: 100%;
         position: relative;
-        color: var(--g-foreground-text-color);
+        color: var(--g-foreground-contrast);
         isolation: isolate;
 
         transition: var(--g-transition);

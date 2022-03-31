@@ -21,6 +21,8 @@
         background-color: transparent;
         color: inherit;
         font-size: inherit;
+        transition: var(--g-transition);
+        transition-property: color;
     }
 
     .text-field {
@@ -30,14 +32,9 @@
     }
 
     .text-field:focus-within {
-/*         --g-foreground-opacity: 1; */
-        --g-glow-brightness-mul: 1.25;
+        --g-glow-opacity-mul: 1.25;
         filter: brightness(1.25);
     }
-
-    /* .text-field:not(:focus-within) {
-        --g-foreground-text-color: var(--g-background-text-color);
-    } */
 
     input::placeholder {
         color: inherit;
