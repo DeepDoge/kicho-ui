@@ -13,7 +13,7 @@
 <style>
     .filled {
         --g-background: var(--g-filled-foreground);
-        --g-background-contrast: var(--g-filled-foreground-contrast);
+        --g-foreground-contrast: var(--g-filled-foreground-contrast);
         --g-foreground-opacity: 0;
     }
 
