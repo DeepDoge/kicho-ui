@@ -24,18 +24,20 @@
     }
 
     .text-field {
-        --g-foreground-opacity: 0;
-        
+        /* --g-foreground-opacity: 0; */
+        transition: var(--g-transition);
+        transition-property: filter;
     }
 
     .text-field:focus-within {
-        --g-foreground-opacity: 1;
+/*         --g-foreground-opacity: 1; */
         --g-glow-brightness-mul: 1.25;
+        filter: brightness(1.25);
     }
 
-    .text-field:not(:focus-within) {
+    /* .text-field:not(:focus-within) {
         --g-foreground-text-color: var(--g-background-text-color);
-    }
+    } */
 
     input::placeholder {
         color: inherit;

@@ -19,7 +19,7 @@
         transition-property: filter;
     }
 
-    .button:hover {
+    .button {
         --g-foreground-opacity: 0;
         --g-foreground-text-color: var(--g-background-text-color)
     }
