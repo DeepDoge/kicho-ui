@@ -66,7 +66,7 @@
         background: var(--border);
     }
 
-    .border.glow::before {
+    .sheet.glow::before {
         content: "";
         position: absolute;
         inset: 0;
