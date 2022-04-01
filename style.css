@@ -3,6 +3,10 @@
     font-size: max(1rem, min(1vw, 2vh));
     font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
 
+    --g-transition: linear .2s;
+    --g-border-width: .2em;
+    --g-border-radius: 0.25em;
+
     --g-color-master: #F97794;
     --g-color-slave: #623AA2;
     --g-color-dark: rgba(39, 42, 49);
@@ -10,86 +14,47 @@
     --g-color-wild: linear-gradient(120deg,
             var(--g-color-master),
             var(--g-color-slave));
-
-    --g-color-mode: var(--g-color-dark);
-    --g-color-mode-contrast: var(--g-color-light);
-}
-
-:root,
-.g-color-mode-dark,
-.g-color-mode-light {
-    --g-transition: linear .2s;
-    --g-border-width: .2em;
-    --g-border-radius: 0.25em;
-
-    --g-body-background-color: var(--g-color-mode);
-    --g-body-background: var(--g-color-wild);
-    --g-body-text-color: var(--g-color-mode-contrast);
-
-    --g-foreground: var(--g-color-mode);
-    --g-foreground-contrast: var(--g-color-mode-contrast);
-    --g-foreground-opacity: 1;
-    
-    --g-background: var(--g-color-wild);
-    --g-background-contrast: var(--g-color-light);
-    --g-background-opacity: 1;
-
-    --g-glow-blur: .4rem;
-    --g-glow-opacity: .75;
-    --g-glow-opacity-mul: 1;
-    --g-glow-color: var(--g-color-wild);
 }
 
 .g-color-mode-light {
     --g-color-mode: var(--g-color-light);
-    --g-color-mode-contrast: var(--g-color-dark);
+    --g-color-mode-inverse: var(--g-color-dark);
 }
 
 .g-color-mode-dark {
     --g-color-mode: var(--g-color-dark);
-    --g-color-mode-contrast: var(--g-color-light);
+    --g-color-mode-inverse: var(--g-color-light);
+}
+
+.g-theme-wild {
+    --g-current-color: var(--g-color-light);
+    --g-current-background: var(--g-color-wild);
+    --g-current-child-color: var(--g-color-wild);
+    --g-current-child-background: var(--g-color-mode);
 }
 
 .g-theme-master {
-    --g-background: var(--g-color-master);
-    --g-glow-color: var(--g-color-master);
+    --g-current-color: var(--g-color-light);
+    --g-current-background: var(--g-color-master);
+    --g-current-child-color: var(--g-color-master);
+    --g-current-child-background: var(--g-color-light);
 }
 
 .g-theme-slave {
-    --g-background: var(--g-color-slave);
-    --g-glow-color: var(--g-color-slave);
+    --g-current-color: var(--g-color-light);
+    --g-current-background: var(--g-color-slave);
+    --g-current-child-color: var(--g-color-slave);
+    --g-current-child-background: var(--g-color-light);
 }
 
 .g-theme-mono {
-    --g-border-width: 0;
-    --g-background: var(--g-color-mode-contrast);
-    --g-background-contrast: var(--g-color-mode);
-    --g-foreground: var(--g-color-mode-contrast);
-    --g-foreground-contrast: var(--g-color-mode);
-    --g-glow-color: var(--g-color-mode);
-}
-
-.g-no-glow {
-    --g-glow-opacity: 0;
+    --g-current-color: var(--g-color-mode-inverse);
+    --g-current-background: var(--g-color-mode);
+    --g-current-child-color: var(--g-color-mode);
+    --g-current-child-background: var(--g-color-mode-inverse);
 }
 
 /* Defaults */
-body {
-    color: var(--g-body-text-color);
-    background-color: var(--g-body-background-color);
-    transition: var(--g-transition);
-    transition-property: color, background-color;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: var(--g-body-background);
-    z-index: -1;
-    filter: blur(5rem) opacity(0.3);
-}
-
 body {
     padding: 0;
     margin: 0;
@@ -99,20 +64,6 @@ body {
     box-sizing: border-box;
     line-height: 1.5;
     letter-spacing: .2ch;
-}
-
-::-webkit-scrollbar {
-    display: block;
-    width: .25em;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--g-foreground);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--g-master);
-    border-radius: 1em;
 }
 
 h1,
