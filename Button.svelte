@@ -7,69 +7,63 @@
     let id = uuid();
 </script>
 
-<div class="button" class:text>
-    <GlowBox filled>
-        <input {id} {type} />
-        <label for={id}>
-            <slot />
-        </label>
-    </GlowBox>
+<div class="button g-box" class:text class:g-box__no-background={text} class:g-box__no-glow={text}>
+    <input {id} {type} aria-hidden />
+    <label for={id}>
+        <slot />
+    </label>
 </div>
 
 <style>
-    .button {
-        transition: var(--g-transition);
-        transition-property: filter;
-    }
-
-    .button:hover,
-    .button:focus-within {
-        --g-glow-opacity-mul: 1.25;
-        filter: brightness(1.3);
-    }
-
-    .button:active {
-        filter: brightness(1.5);
-    }
-
     input {
-        position: absolute;
         pointer-events: none;
+        position: absolute;
         opacity: 0;
     }
 
+    .button {
+        text-align: center;
+        padding: 0.5em 1em;
+    }
+
     label {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-        cursor: pointer;
-        color: inherit;
-        font-weight: bold;
-        font-size: inherit;
-        padding: 0.5em 0.75em;
+        display: block;
+    }
+
+    .button:hover {
+        filter: brightness(1.1);
+    }
+
+    .button:focus-within {
+        filter: brightness(1.2);
+    }
+
+    .button:active {
+        filter: brightness(1.3);
+    }
+
+    .text,
+    .text label {
+        width: fit-content;
+        height: fit-content;
     }
 
     .text {
-        width: fit-content;
-        height: fit-content;
-        --g-foreground-opacity: 0;
-        --g-background-opacity: 0;
-        --g-glow-opacity-mul: .25;
-        --g-border-width: 0;
-    }
-
-    .text:hover,
-    .text:focus-within {
-        --g-glow-opacity-mul: .5;
-    }
-
-    .text label {
-        padding: 0;
         color: transparent;
-        text-transform: capitalize;
         background: var(--g-background);
         background-clip: text;
         -webkit-background-clip: text;
+        padding: 0 0.2em;
+    }
+
+    .text::after {
+        background: var(--g-color-mode-contrast);
+        border-radius: 0;
+        opacity: 0;
+    }
+
+    .text:hover::after,
+    .text:focus-within::after {
+        opacity: 0.1;
     }
 </style>

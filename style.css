@@ -1,95 +1,79 @@
+/* Values */
 :root {
     font-size: max(1rem, min(1vw, 2vh));
     font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
-}
 
-
-:root {
     --g-color-master: #F97794;
     --g-color-slave: #623AA2;
     --g-color-dark: rgba(39, 42, 49);
     --g-color-light: rgb(235, 237, 241);
-    
-    --g-color-mode: var(--g-color-dark);
-    --g-color-mode-inverse: var(--g-color-light);
-
     --g-color-wild: linear-gradient(120deg,
             var(--g-color-master),
             var(--g-color-slave));
 
+    --g-color-mode: var(--g-color-dark);
+    --g-color-mode-contrast: var(--g-color-light);
+}
+
+:root,
+.g-color-mode-dark,
+.g-color-mode-light {
     --g-transition: linear .2s;
     --g-border-width: .2em;
     --g-border-radius: 0.25em;
 
     --g-body-background-color: var(--g-color-mode);
     --g-body-background: var(--g-color-wild);
-    --g-body-text-color: var(--g-color-mode-inverse);
+    --g-body-text-color: var(--g-color-mode-contrast);
 
     --g-foreground: var(--g-color-mode);
-    --g-foreground-contrast: var(--g-color-mode-inverse);
-    --g-foreground-opacity: .85;
-
-    --g-filled-foreground: var(--g-color-wild);
-    --g-filled-foreground-contrast: var(--g-color-light);
-    --g-filled-foreground-opacity: .85;
+    --g-foreground-contrast: var(--g-color-mode-contrast);
+    --g-foreground-opacity: 1;
     
     --g-background: var(--g-color-wild);
     --g-background-contrast: var(--g-color-light);
-    --g-background-opacity: .85;
+    --g-background-opacity: 1;
 
-    --g-glow-blur: 1rem;
+    --g-glow-blur: .4rem;
     --g-glow-opacity: .75;
     --g-glow-opacity-mul: 1;
     --g-glow-color: var(--g-color-wild);
 }
 
-.g-theme-light-mode {
+.g-color-mode-light {
     --g-color-mode: var(--g-color-light);
-    --g-color-mode-inverse: var(--g-color-dark);
+    --g-color-mode-contrast: var(--g-color-dark);
+}
+
+.g-color-mode-dark {
+    --g-color-mode: var(--g-color-dark);
+    --g-color-mode-contrast: var(--g-color-light);
 }
 
 .g-theme-master {
     --g-background: var(--g-color-master);
-    --g-filled-foreground: var(--g-color-master);
     --g-glow-color: var(--g-color-master);
 }
 
 .g-theme-slave {
     --g-background: var(--g-color-slave);
-    --g-filled-foreground: var(--g-color-slave);
     --g-glow-color: var(--g-color-slave);
 }
 
 .g-theme-mono {
-    --g-foreground: var(--g-color-mode-inverse);
+    --g-border-width: 0;
+    --g-background: var(--g-color-mode-contrast);
+    --g-background-contrast: var(--g-color-mode);
+    --g-foreground: var(--g-color-mode-contrast);
     --g-foreground-contrast: var(--g-color-mode);
-
-    --g-filled-foreground: var(--g-color-mode-inverse);
-    --g-filled-foreground-contrast: var(--g-color-mode);
-
-    --g-border-width: 0;
-    --g-background: transparent;
-    --g-background-contrast: transparent;
-    --g-glow-color: var(--g-color-dark);
-}
-
-.g-theme-mono-inverse {
-    --g-foreground: var(--g-color-mode);
-    --g-foreground-contrast: var(--g-color-mode-inverse);
-
-    --g-filled-foreground: var(--g-color-mode);
-    --g-filled-foreground-contrast: var(--g-color-mode-inverse);
-
-    --g-border-width: 0;
-    --g-background: transparent;
-    --g-background-contrast: transparent;
     --g-glow-color: var(--g-color-mode);
 }
 
-.g-theme-no-glow {
-    --g-glow-opacity: 0 !important;
+.g-no-glow {
+    --g-glow-opacity: 0;
 }
 
+/* Defaults */
 body {
     color: var(--g-body-text-color);
     background-color: var(--g-body-background-color);
@@ -133,6 +117,10 @@ body {
 
 h1,
 h2,
+h3,
+h4,
+h5,
+h6,
 p {
     font-weight: 400;
     margin: 0;
@@ -146,4 +134,55 @@ img {
 a {
     text-decoration: underline;
     cursor: pointer;
+}
+
+/* Components */
+
+.g-sheet {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: var(--g-foreground-contrast);
+    isolation: isolate;
+}
+
+.g-sheet::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--g-foreground);
+    opacity: var(--g-foreground-opacity);
+    z-index: -1;
+}
+
+
+.g-box {
+    position: relative;
+    padding: var(--g-border-width);
+    color: var(--g-background-contrast);
+}
+
+.g-box::before,
+.g-box::after,
+.g-box > .g-sheet::before,
+.g-box > .g-sheet::after {
+    border-radius: var(--g-border-radius);
+}
+
+.g-box::before,
+.g-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.g-box:not(.g-box__no-background)::after {
+    background: var(--g-background);
+    opacity: var(--g-background-opacity);
+}
+
+.g-box:not(.g-box__no-glow):before {
+    background: var(--g-glow-color);
+    filter: blur(var(--g-glow-blur)) opacity(calc(var(--g-glow-opacity) * var(--g-glow-opacity-mul)));
 }

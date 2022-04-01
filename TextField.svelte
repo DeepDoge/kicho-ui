@@ -21,14 +21,6 @@
         background-color: transparent;
         color: inherit;
         font-size: inherit;
-        transition: var(--g-transition);
-        transition-property: color;
-    }
-
-    .text-field {
-        /* --g-foreground-opacity: 0; */
-        transition: var(--g-transition);
-        transition-property: filter;
     }
 
     .text-field:focus-within {
