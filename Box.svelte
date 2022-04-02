@@ -6,7 +6,7 @@
     export let glow = false;
     export let rounded = false;
     export let invert = false;
-    export let fit = false
+    export let fit = false;
 
     $: classes = [theme && `g-theme-${theme}`].filter((x) => x).join(" ");
     let className = null;
@@ -23,12 +23,13 @@
     .box,
     .box > .content {
         width: 100%;
+        height: 100%;
     }
 
     .fit.box,
     .fit.box > .content {
         width: auto;
-        width: fit-content
+        width: fit-content;
     }
 
     .box {
@@ -67,7 +68,9 @@
         --g-current-child-glow-color: var(--glow);
     }
 
-    .box, .content, .content > :global(*) {
+    .box,
+    .content,
+    .content > :global(*) {
         position: relative;
     }
 
@@ -83,19 +86,18 @@
         position: absolute;
         inset: 0;
         background: var(--background);
-        opacity: .8;
+        opacity: 0.8;
     }
 
     .border.box {
         padding: var(--g-border-width);
         background: var(--border);
-        opacity: .8;
+        opacity: 0.8;
     }
 
     .rounded.border,
     .rounded:not(.border) > .content::before,
-    .rounded .content
-    {
+    .rounded .content {
         border-radius: var(--g-border-radius);
     }
 

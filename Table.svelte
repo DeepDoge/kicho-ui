@@ -1,17 +1,25 @@
 <script>
-    </script>
+</script>
 
-<table>
-    <slot />
-</table>
+<div>
+    <table>
+        <slot />
+    </table>
+</div>
 
 <style>
+    div {
+        max-width: 100%;
+        overflow-x: auto;
+    }
     table {
         width: 100%;
-        padding: 0.5em 0.75em;
+
+        padding: 0.25em;
         position: relative;
         border-radius: var(--g-border-radius);
         color: var(--g-color-mode-inverse);
+        border-spacing: 1em 0;
         overflow: hidden;
     }
     table::before {

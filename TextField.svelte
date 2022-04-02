@@ -20,8 +20,6 @@
         color: inherit;
         font-size: inherit;
 
-        padding: .5em .75em;
+        padding: 0.5em 0.75em;
     }
-
-    
 </style>

@@ -43,5 +43,4 @@
     .inner:active {
         backdrop-filter: brightness(1.75);
     }
-
 </style>
