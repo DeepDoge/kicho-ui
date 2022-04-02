@@ -5,14 +5,15 @@
     export let border = false;
     export let glow = false;
     export let rounded = false;
-    export let invert = false
+    export let invert = false;
+    export let fit = false
 
     $: classes = [theme && `g-theme-${theme}`].filter((x) => x).join(" ");
     let className = null;
     export { className as class };
 </script>
 
-<div class="box {className ?? ''} {classes}" class:invert class:child class:rounded class:border class:glow>
+<div class="box {className ?? ''} {classes}" class:invert class:child class:rounded class:border class:glow class:fit>
     <div class="content">
         <slot />
     </div>
@@ -20,8 +21,14 @@
 
 <style>
     .box,
-    .content {
+    .box > .content {
         width: 100%;
+    }
+
+    .fit.box,
+    .fit.box > .content {
+        width: auto;
+        width: fit-content
     }
 
     .box {
@@ -82,11 +89,12 @@
     .border.box {
         padding: var(--g-border-width);
         background: var(--border);
+        opacity: .8;
     }
 
     .rounded.border,
     .rounded:not(.border) > .content::before,
-    .content
+    .rounded .content
     {
         border-radius: var(--g-border-radius);
     }

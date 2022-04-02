@@ -69,7 +69,7 @@ body {
     padding: 0;
     margin: 0;
     line-height: 1.5;
-    letter-spacing: .2ch;
+    letter-spacing: .2em;
 }
 
 *, *::after, *::before {
