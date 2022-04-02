@@ -26,7 +26,7 @@
     #g-app-content {
         isolation: isolate;
         background-color: var(--g-color-mode);
-        color: var(--g-current-color);
+        color: var(--g-color-mode-inverse);
     }
 
     #g-app-content::before {

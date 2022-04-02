@@ -11,6 +11,7 @@
         padding: 0.5em 0.75em;
         position: relative;
         border-radius: var(--g-border-radius);
+        color: var(--g-color-mode-inverse);
         overflow: hidden;
     }
     table::before {
