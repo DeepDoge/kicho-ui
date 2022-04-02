@@ -12,20 +12,19 @@
     export { className as class };
 </script>
 
-<div class="sheet {className ?? ''} {classes}" class:invert class:child class:rounded class:border class:glow>
+<div class="box {className ?? ''} {classes}" class:invert class:child class:rounded class:border class:glow>
     <div class="content">
         <slot />
     </div>
 </div>
 
 <style>
-    .sheet,
+    .box,
     .content {
         width: 100%;
-        height: 100%;
     }
 
-    .sheet {
+    .box {
         --background: var(--g-current-background);
         --color: var(--g-current-color);
         --border: var(--g-current-border-color);
@@ -37,7 +36,7 @@
         --child-glow: var(--g-current-child-glow-color);
     }
 
-    .sheet.invert {
+    .box.invert {
         --background: var(--g-current-child-background);
         --color: var(--g-current-child-color);
         --border: var(--g-current-child-border-color);
@@ -61,31 +60,38 @@
         --g-current-child-glow-color: var(--glow);
     }
 
-    .sheet, .content, .content > :global(*) {
+    .box, .content, .content > :global(*) {
         position: relative;
     }
 
     .content {
+        width: 100%;
+        height: 100%;
         color: var(--color);
+
+        overflow: hidden;
     }
     .content::before {
         content: "";
         position: absolute;
         inset: 0;
         background: var(--background);
+        opacity: .8;
     }
 
-    .border.sheet {
+    .border.box {
         padding: var(--g-border-width);
         background: var(--border);
     }
 
     .rounded.border,
-    .rounded:not(.border) > .content::before{
+    .rounded:not(.border) > .content::before,
+    .content
+    {
         border-radius: var(--g-border-radius);
     }
 
-    .glow.sheet::before {
+    .glow.box::before {
         content: "";
         position: absolute;
         inset: 0;
