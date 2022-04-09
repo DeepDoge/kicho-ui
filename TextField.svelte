@@ -1,9 +1,19 @@
 <script lang="ts">
+    import shortid from "shortid";
+
     import Box from "./Box.svelte";
+    export let value: string = null;
+    export let label: string = null;
+    export let name: string = null
+
+    let id = shortid();
 </script>
 
 <Box glow rounded>
-    <input type="text" on:input />
+    {#if label}
+        <label for={id}>{label}</label>
+    {/if}
+    <input type="text" {id} {name} on:input bind:value />
 </Box>
 
 <style>

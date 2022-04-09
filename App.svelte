@@ -34,7 +34,7 @@
         position: fixed;
         inset: 0;
         background: var(--g-current-background);
-        opacity: 0.05;
+        opacity: 0.25;
         z-index: -1;
         filter: blur(5em);
         transform: scale(1.2);
