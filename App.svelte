@@ -41,9 +41,6 @@
     }
 
     :global(#g-app) {
-        font-size: max(1rem, min(1vw, 2vh));
-        font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
-
         --g-transition: linear 0.2s;
         --g-border-width: 0.2em;
         --g-border-radius: 0.25em;
