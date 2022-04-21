@@ -1,0 +1,83 @@
+:root {
+    --root-smallest-font-size: .75em;
+    --root-font-size-relative-to-screen: .75;
+    font-size: calc(max(var(--root-smallest-font-size), calc(min(1vw, 2vh) * var(--root-font-size-relative-to-screen))));
+    font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+}
+
+:root {
+    --h-padding-page: 0 clamp(.5em, 1vw, 1.5em);
+    --h-padding: .5em;
+    --h-transition: linear .25s;
+}
+
+:root {
+    --h-color-master: #cf542c;
+    --h-color-slave: #9d2530;
+    --h-color-error: rgb(245, 81, 69);
+    --h-color-gradient-0: linear-gradient(130deg, var(--h-color-master), var(--h-color-slave));
+    --h-color-gradient-1: linear-gradient(130deg, #ff7a18, #af002d 41.07%, #319197 76.05%);
+    --h-color-dark: #0e1117;
+    --h-color-light: rgb(235, 237, 241);
+    --h-color-mode-inverse: var(--h-color-dark);
+    --h-color-mode: var(--h-color-light);
+}
+
+@media (prefers-color-scheme: dark) {
+     :root {
+        --h-color-mode: var(--h-color-dark);
+        --h-color-mode-inverse: var(--h-color-light);
+    }
+}
+
+html {
+    height: unset
+}
+
+body {
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    letter-spacing: .25ch;
+    line-height: 1.5;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2.25rem;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 2rem;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
