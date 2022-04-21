@@ -6,6 +6,10 @@
 <div class="hako-effect background" />
 
 <style>
+    .glow, .border {
+        animation: var(--h-gradient-animation)
+    }
+
     .glow {
         position: absolute;
         inset: calc(-1 * var(--h-border-width));

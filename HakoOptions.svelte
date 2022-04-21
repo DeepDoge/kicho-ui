@@ -7,13 +7,13 @@
 
     interface GlowOptions {
         blur: string;
-        brightness: string;
+        brightness: number | string;
         background: string;
     }
 
     interface BackgroundOptions {
         background: string;
-        opacity: string;
+        opacity: number | string;
     }
 
     export let borderOptions: Partial<BorderOptions> = null;
@@ -44,7 +44,7 @@
     .hako-custom-options {
         --h-border-radius: 0.5em;
         --h-border-width: 0px;
-        --h-border-background: var(--h-color-gradient-1);
+        --h-border-background: var(--h-color-gradient-0);
     }
 
     .hako-custom-options {

@@ -12,8 +12,8 @@
 }
 
 :root {
-    --h-color-master: #cf542c;
-    --h-color-slave: #9d2530;
+    --h-color-master: #67B26F;
+    --h-color-slave: #4ca2cd;
     --h-color-error: rgb(245, 81, 69);
     --h-color-gradient-0: linear-gradient(130deg, var(--h-color-master), var(--h-color-slave));
     --h-color-gradient-1: linear-gradient(130deg, #ff7a18, #af002d 41.07%, #319197 76.05%);
@@ -21,12 +21,34 @@
     --h-color-light: rgb(235, 237, 241);
     --h-color-mode-inverse: var(--h-color-dark);
     --h-color-mode: var(--h-color-light);
+    --h-gradient-animation: gradient-animation 5s linear infinite alternate;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 250%;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
      :root {
         --h-color-mode: var(--h-color-dark);
         --h-color-mode-inverse: var(--h-color-light);
+    }
+     ::-webkit-scrollbar {
+        display: block
+    }
+     ::-webkit-scrollbar-track {
+        background: #000;
+    }
+     ::-webkit-scrollbar-thumb {
+        background: rgb(30, 37, 41);
+    }
+     ::-webkit-scrollbar-thumb:hover {
+        background: rgb(32, 39, 43);
     }
 }
 
@@ -40,6 +62,7 @@ body {
     margin: 0;
     letter-spacing: .25ch;
     line-height: 1.5;
+    background: var(--h-color-mode);
 }
 
 *,
