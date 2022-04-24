@@ -16,7 +16,6 @@
     --h-color-slave: #319197;
     --h-color-error: rgb(245, 81, 69);
     --h-color-gradient-0: linear-gradient(130deg, var(--h-color-master), var(--h-color-slave));
-    --h-color-gradient-1: linear-gradient(130deg, #ff7a18, #af002d 41.07%, #319197 76.05%);
     --h-color-dark: #0e1117;
     --h-color-light: rgb(235, 237, 241);
     --h-color-mode-inverse: var(--h-color-dark);
@@ -70,6 +69,7 @@ body {
     letter-spacing: .25ch;
     line-height: 1.5;
     background: var(--h-color-mode);
+    color: var(--h-color-mode-inverse)
 }
 
 *,

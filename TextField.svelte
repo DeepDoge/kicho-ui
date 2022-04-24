@@ -27,7 +27,7 @@
         border: none;
 
         font-size: inherit;
-        color: var(--h-color-mode-inverse);
+        color: #fff;
         padding: calc(var(--h-padding) * 0.5);
         z-index: 1;
     }
