@@ -1,7 +1,7 @@
 <script lang="ts">
     import Hako from "./Hako.svelte";
 
-    export let type: "text" | "password" | "email" | "tel" = "text";
+    export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
     export let id: string = null;
     export let name: string = null;
     export let value: string = null;
@@ -12,14 +12,18 @@
 </script>
 
 {#key type}
-    <div class="text-field">
-        <input bind:this={el} bind:value on:input {required} {id} {name} />
+    <div class="text-field" class:empty={!value}>
         <Hako />
+        {#if type === "textarea"}
+            <textarea class="input" bind:value on:input {required} {id} {name} />
+        {:else}
+            <input class="input" bind:this={el} bind:value on:input {required} {id} {name} />
+        {/if}
     </div>
 {/key}
 
 <style>
-    input {
+    .input {
         display: block;
         width: 100%;
         height: 100%;
@@ -27,16 +31,21 @@
         border: none;
 
         font-size: inherit;
-        color: #fff;
+        color: inherit;
         padding: calc(var(--h-padding) * 0.5);
-        z-index: 1;
     }
 
-    input:focus ~ :global(*)
-    {
-        --hako-foreground: var(--h-color-mode);
+    textarea.input {
+        resize: vertical;
+        min-height: 7ch;
+        font-size: smaller;
+        padding: var(--h-padding);
     }
-    input:focus {
+
+    .text-field,
+    .text-field.empty,
+    .text-field:focus-within {
+        --hako-foreground: var(--h-color-mode);
         color: var(--h-color-mode-inverse);
     }
 </style>

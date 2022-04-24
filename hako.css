@@ -6,6 +6,7 @@
 }
 
 :root {
+    --h-page-width: min(35em, 100%);
     --h-padding-page: 0 clamp(.5em, 1vw, 1.5em);
     --h-padding: .5em;
     --h-transition: linear .2s;
@@ -83,7 +84,7 @@ body {
     outline: solid var(--h-color-mode-inverse) .2rem;
     outline-offset: .2em;
     outline-style: dashed;
-    outline-color: var(--h-color-slave);
+    outline-color: var(--h-color-master);
 }
 
 h1,

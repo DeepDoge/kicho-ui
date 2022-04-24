@@ -39,9 +39,6 @@
 
     .hako-custom-options {
         --hako-border-radius: .5em;
-    }
-
-    .hako-custom-options {
         --hako-default-background: var(--h-color-gradient-0)
     }
 
