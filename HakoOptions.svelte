@@ -1,38 +1,34 @@
 <script lang="ts">
-    interface BorderOptions {
-        radius: string;
-        width: string;
-        background: string;
-    }
+    
+    export let borderRadius: string = null
+    
+    export let defaultBackground: string = null
 
-    interface GlowOptions {
-        blur: string;
-        brightness: number | string;
-        background: string;
-    }
+    export let glowBlur: string = null
+    export let glowBrightness: number = null
+    export let glowBackground: string = null
 
-    interface BackgroundOptions {
-        background: string;
-        opacity: number | string;
-    }
+    export let background: string = null
+    export let foreground: string = null
 
-    export let borderOptions: Partial<BorderOptions> = null;
-    export let glowOptions: Partial<GlowOptions> = null;
-    export let backgroundOptions: Partial<BackgroundOptions> = null;
+    export let foregroundOffset: string = null
 
-    function generateStyle(options: object, prefix: string) {
-        return options
-            ? Object.entries(options)
-                  .filter(([key, value]) => value)
-                  .map(([key, value]) => `--h-${prefix}-${key.toLowerCase()}:${value}`)
-                  .join(";")
-            : "";
-    }
-
-    $: style = [generateStyle(borderOptions, "border"), generateStyle(glowOptions, "glow"), generateStyle(backgroundOptions, "background")].join(";");
+    export let backgroundOpacity: number = null
+    export let foregroundOpacity: number = null
 </script>
 
-<div class="hako-custom-options" {style}>
+<div class="hako-custom-options"
+    style:--hako-default-background={defaultBackground}
+    style:--hako-border-radius={borderRadius}
+    style:--hako-glow-blur={glowBlur}
+    style:--hako-glow-brightness={glowBrightness}
+    style:--hako-glow-background={glowBackground}
+    style:--hako-background={background}
+    style:--hako-foreground={foreground}
+    style:--hako-foreground-offset={foregroundOffset}
+    style:--hako-background-opacity={backgroundOpacity}
+    style:--hako-foreground-opacity={foregroundOpacity}
+>
     <slot />
 </div>
 
@@ -42,19 +38,24 @@
     }
 
     .hako-custom-options {
-        --h-border-radius: 0.5em;
-        --h-border-width: 0px;
-        --h-border-background: var(--h-color-gradient-0);
+        --hako-border-radius: .5em;
     }
 
     .hako-custom-options {
-        --h-glow-blur: 0.1em;
-        --h-glow-brightness: 1;
-        --h-glow-background: var(--h-border-background);
+        --hako-default-background: var(--h-color-gradient-0)
     }
 
     .hako-custom-options {
-        --h-background: var(--h-color-mode);
-        --h-background-opacity: 0.95;
+        --hako-glow-blur: .25em;
+        --hako-glow-brightness: .75;
+        --hako-glow-background: var(--hako-default-background)
+    }
+
+    .hako-custom-options {
+        --hako-background: var(--hako-default-background);
+        --hako-foreground: var(--hako-default-background);
+        --hako-foreground-offset: .1em;
+        --hako-background-opacity: 1;
+        --hako-background-foreground: 1;
     }
 </style>

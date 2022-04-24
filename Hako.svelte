@@ -2,34 +2,39 @@
 </script>
 
 <div class="hako-effect glow" />
-<div class="hako-effect border" />
 <div class="hako-effect background" />
+<div class="hako-effect foreground" />
 
 <style>
-    .glow, .border {
-        animation: var(--h-gradient-animation)
+    .glow,
+    .background,
+    .foreground {
+        animation: var(--h-gradient-animation);
+        transition: var(--h-transition);
+        transition-property: filter, border-radius, background-image, background-color, inset;
     }
 
     .glow {
         position: absolute;
-        inset: calc(-1 * var(--h-border-width));
-        background: var(--h-glow-background);
-        filter: blur(var(--h-glow-blur)) brightness(var(--h-glow-brightness));
-        border-radius: calc(var(--h-border-radius) / 1.25);
-    }
-
-    .border {
-        position: absolute;
-        inset: calc(-1 * var(--h-border-width));
-        background: var(--h-border-background);
-        border-radius: var(--h-border-radius);
+        inset: calc(-1 * var(--hako-foreground-offset));
+        background: var(--hako-glow-background);
+        filter: blur(var(--hako-glow-blur)) brightness(var(--hako-glow-brightness));
+        border-radius: var(--hako-border-radius);
     }
 
     .background {
         position: absolute;
+        inset: calc(-1 * var(--hako-foreground-offset));
+        border-radius: var(--hako-border-radius);
+        background: var(--hako-background);
+        filter: opacity(var(--hako-background-opacity));
+    }
+
+    .foreground {
+        position: absolute;
         inset: 0;
-        background: var(--h-background);
-        border-radius: calc(var(--h-border-radius) / 1.25);
-        filter: opacity(var(--h-background-opacity));
+        background: var(--hako-foreground);
+        border-radius: var(--hako-border-radius);
+        filter: opacity(var(--hako-foreground-opacity));
     }
 </style>
