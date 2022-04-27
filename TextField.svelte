@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Hako from "./Hako.svelte";
+    import HakoEffects from "./HakoEffects.svelte";
 
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
     export let id: string = null;
@@ -13,7 +13,7 @@
 
 {#key type}
     <div class="text-field" class:empty={!value}>
-        <Hako />
+        <HakoEffects />
         {#if type === "textarea"}
             <textarea class="input" bind:value on:input {required} {id} {name} />
         {:else}
@@ -45,6 +45,7 @@
     .text-field,
     .text-field.empty,
     .text-field:focus-within {
+        --hako-foreground-opacity: .9;
         --hako-foreground: var(--h-color-mode);
         color: var(--h-color-mode-inverse);
     }

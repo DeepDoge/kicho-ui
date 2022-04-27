@@ -1,10 +1,10 @@
 <script lang="ts">
-    import Hako from "./Hako.svelte";
-    export let type: "text" | "outlined" | "filled" = "filled";
+    import HakoEffects from "./HakoEffects.svelte";
+    import HakoRoot from "./HakoRoot.svelte";
 </script>
 
-<button on:click class:text={type === "text"} class:outlined={type === "outlined"} class:filled={type === "filled"}>
-    <Hako />
+<button on:click>
+    <HakoEffects />
     <span>
         <slot />
     </span>
@@ -19,29 +19,12 @@
         padding: 0.35em;
         cursor: pointer;
         text-transform: capitalize;
-    }
-
-    button.filled {
-        --hako-foreground: var(--h-color-mode);
-        --hako-foreground-opacity: 0;
-        color: #fff;
-    }
-    button.filled:hover,
-    button.filled:focus {
-        --hako-foreground-opacity: 0.95;
-        color: var(--h-color-mode-inverse);
-    }
-
-    button.text {
         color: inherit;
-        --hako-foreground: currentColor;
-        --hako-foreground-opacity: 0;
-        --hako-background-opacity: 0;
-        --hako-glow-opacity: 0;
         --h-transition: none;
     }
-    button.text:hover,
-    button.text:focus {
-        --hako-foreground-opacity: .1;
+
+    button:hover,
+    button:focus {
+        --hako-foreground-opacity: 0.2;
     }
 </style>

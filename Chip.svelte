@@ -1,9 +1,9 @@
 <script lang="ts">
-    import Hako from "./Hako.svelte";
+    import HakoEffects from "./HakoEffects.svelte";
 </script>
 
 <span class="chip">
-    <Hako />
+    <HakoEffects />
     <span>
         <slot />
     </span>

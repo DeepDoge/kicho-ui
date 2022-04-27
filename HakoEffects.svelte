@@ -6,9 +6,7 @@
 <div class="hako-effect foreground" />
 
 <style>
-    .glow,
-    .background,
-    .foreground {
+    .hako-effect {
         animation: var(--h-gradient-animation);
         transition: var(--h-transition);
         transition-property: filter, border-radius, background-image, background-color, inset;
@@ -34,7 +32,7 @@
         position: absolute;
         inset: var(--hako-foreground-offset);
         background: var(--hako-foreground);
-        border-radius: var(--hako-border-radius);
+        border-radius: calc(var(--hako-border-radius) * .75);
         filter: opacity(var(--hako-foreground-opacity));
     }
 </style>
