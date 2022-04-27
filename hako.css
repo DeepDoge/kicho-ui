@@ -6,7 +6,7 @@
 }
 
 :root {
-    --h-page-width: min(35em, 100%);
+    --h-page-width: min(40em, 100%);
     --h-padding-page: 0 clamp(.5em, 1vw, 1.5em);
     --h-padding: .5em;
     --h-transition: linear .2s;
@@ -118,4 +118,16 @@ img {
 a {
     color: inherit;
     text-decoration: inherit;
+}
+
+hr {
+    margin: unset;
+    border: unset;
+
+    padding: .5em 0;
+    height: .01em;
+    box-sizing: content-box;
+
+    background-color: currentColor;
+    background-clip: content-box;
 }

@@ -18,7 +18,7 @@
         position: absolute;
         inset: 0;
         background: var(--hako-glow-background);
-        filter: blur(var(--hako-glow-blur)) brightness(var(--hako-glow-brightness));
+        filter: blur(var(--hako-glow-blur)) brightness(var(--hako-glow-brightness)) opacity(var(--hako-glow-opacity));
         border-radius: var(--hako-border-radius);
     }
 

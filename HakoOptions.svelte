@@ -1,23 +1,24 @@
 <script lang="ts">
-    
-    export let borderRadius: string = null
-    
-    export let defaultBackground: string = null
+    export let borderRadius: string = null;
 
-    export let glowBlur: string = null
-    export let glowBrightness: number = null
-    export let glowBackground: string = null
+    export let defaultBackground: string = null;
 
-    export let background: string = null
-    export let foreground: string = null
+    export let glowBlur: string = null;
+    export let glowBrightness: number = null;
+    export let glowBackground: string = null;
 
-    export let foregroundOffset: string = null
+    export let background: string = null;
+    export let foreground: string = null;
 
-    export let backgroundOpacity: number = null
-    export let foregroundOpacity: number = null
+    export let foregroundOffset: string = null;
+
+    export let backgroundOpacity: number = null;
+    export let foregroundOpacity: number = null;
+    export let glowOpacity: number = null
 </script>
 
-<div class="hako-custom-options"
+<div
+    class="hako-custom-options"
     style:--hako-default-background={defaultBackground}
     style:--hako-border-radius={borderRadius}
     style:--hako-glow-blur={glowBlur}
@@ -28,6 +29,7 @@
     style:--hako-foreground-offset={foregroundOffset}
     style:--hako-background-opacity={backgroundOpacity}
     style:--hako-foreground-opacity={foregroundOpacity}
+    style:--hako-glow-opacity={glowOpacity}
 >
     <slot />
 </div>
@@ -38,21 +40,25 @@
     }
 
     .hako-custom-options {
-        --hako-border-radius: .5em;
-        --hako-default-background: var(--h-color-gradient-0)
+        --hako-border-radius: 0.5em;
+        --hako-default-background: var(--h-color-gradient-0);
     }
 
     .hako-custom-options {
-        --hako-glow-blur: .25em;
-        --hako-glow-brightness: .75;
-        --hako-glow-background: var(--hako-default-background)
+        --hako-glow-blur: 0.25em;
+        --hako-glow-brightness: 1;
+        --hako-glow-background: var(--hako-default-background);
     }
 
     .hako-custom-options {
         --hako-background: var(--hako-default-background);
         --hako-foreground: var(--hako-default-background);
-        --hako-foreground-offset: .1em;
+        --hako-foreground-offset: 0.1em;
+    }
+
+    .hako-custom-options {
         --hako-background-opacity: 1;
-        --hako-background-foreground: 1;
+        --hako-foreground-opacity: 1;
+        --hako-glow-opacity: .5;
     }
 </style>
