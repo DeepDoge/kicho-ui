@@ -37,7 +37,7 @@
     }
 
     /* content */
-    :global(.kicho-effect ~ :not(.kicho-effect)) {
+    :global(.kicho-effect ~ *:not(.kicho-effect)) {
         --border: solid transparent var(--k-box-foreground-offset);
         border-left: var(--border);
         border-right: var(--border);

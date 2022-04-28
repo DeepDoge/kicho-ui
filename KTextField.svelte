@@ -1,9 +1,9 @@
 <script lang="ts">
     import KBoxEffects from "./effects/KBoxEffects.svelte";
-    import KBoxRoot from "./effects/KBoxRoot.svelte";
-    import type { KBoxTemplate } from "./effects/KBoxRoot.svelte";
+    import KBoxOptions from "./effects/KBoxOptions.svelte";
+    import type { KBoxTemplate } from "./effects/KBoxOptions.svelte";
 
-    export let template: KBoxTemplate = 'outlined';
+    export let template: KBoxTemplate = "outlined";
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
     export let id: string = null;
     export let name: string = null;
@@ -15,16 +15,15 @@
 </script>
 
 {#key type}
-    <KBoxRoot {template}>
-        <div class="text-field" class:empty={!value}>
-            <KBoxEffects />
-            {#if type === "textarea"}
-                <textarea class="input" bind:value on:input {required} {id} {name} />
-            {:else}
-                <input class="input" bind:this={el} bind:value on:input {required} {id} {name} />
-            {/if}
-        </div>
-    </KBoxRoot>
+    <div class="text-field" class:empty={!value}>
+        <KBoxOptions {template} />
+        <KBoxEffects />
+        {#if type === "textarea"}
+            <textarea class="input" bind:value on:input {required} {id} {name} />
+        {:else}
+            <input class="input" bind:this={el} bind:value on:input {required} {id} {name} />
+        {/if}
+    </div>
 {/key}
 
 <style>

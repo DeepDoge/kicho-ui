@@ -1,21 +1,20 @@
 <script lang="ts">
     import KBoxEffects from "./effects/KBoxEffects.svelte";
-    import KBoxRoot from "./effects/KBoxRoot.svelte";
-    import type { KBoxTemplate } from "./effects/KBoxRoot.svelte";
+    import KBoxOptions from "./effects/KBoxOptions.svelte";
+    import type { KBoxTemplate } from "./effects/KBoxOptions.svelte";
     import KRippleEffect from "./effects/KRippleEffect.svelte";
 
     export let template: KBoxTemplate = "filled";
 </script>
 
-<KBoxRoot {template}>
-    <button on:click>
-        <KBoxEffects />
-        <KRippleEffect />
-        <div>
-            <slot />
-        </div>
-    </button>
-</KBoxRoot>
+<button on:click>
+    <KBoxOptions {template} />
+    <KBoxEffects />
+    <KRippleEffect />
+    <div>
+        <slot />
+    </div>
+</button>
 
 <style>
     button {
@@ -34,8 +33,8 @@
         filter: brightness(1.15);
     }
 
-    :global(.kicho-box-root.text) > button:hover {
+    button:hover > :global(.kicho-box-options.text ~ *) {
         --k-box-foreground: rgba(255, 255, 255);
-        --k-box-foreground-opacity: .1;
-    } 
+        --k-box-foreground-opacity: 0.1;
+    }
 </style>
