@@ -75,6 +75,7 @@
         inset: 0;
         pointer-events: none;
         overflow: hidden;
+        border-radius: var(--k-box-border-radius);
     }
 
     .ripple {
@@ -84,7 +85,7 @@
         width: calc(1px * var(--size));
         aspect-ratio: 1/1;
         background: currentColor;
-        border-radius: 50%;
+        border-radius: 10000vw;
         opacity: 0;
         transition: opacity ease-in-out calc(var(--duration) * 1);
     }

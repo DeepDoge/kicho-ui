@@ -33,4 +33,9 @@
     button:hover {
         filter: brightness(1.15);
     }
+
+    :global(.kicho-box-root.text) > button:hover {
+        --k-box-foreground: rgba(255, 255, 255);
+        --k-box-foreground-opacity: .1;
+    } 
 </style>

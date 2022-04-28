@@ -35,15 +35,18 @@
     }
 
     .kicho-box-root {
-        --k-box-background-opacity: 1;
-        --k-box-foreground-opacity: 1;
+        --k-box-background-opacity: .95;
+        --k-box-foreground-opacity: .95;
         --k-box-glow-opacity: 0.5;
+    }
+
+    .kicho-box-root.filled {
+        --k-box-foreground-opacity: 0;
     }
 
     .kicho-box-root.outlined {
         --k-box-foreground: var(--k-color-mode);
-        --k-box-foreground-opacity: 1;
-        --k-box-text-color: var(--k-color--inverse);
+        --k-box-text-color: var(--k-color-mode-inverse);
     }
 
     .kicho-box-root.text-filled {
@@ -60,8 +63,8 @@
     .kicho-box-root.glow-only {
         --k-box-background: var(--k-color-mode);
         --k-box-foreground-opacity: 0;
-        --k-box-foreground-offset: 0;
-        --k-box-text-color: var(--k-color--inverse);
+        --k-box-foreground-offset: 0em;
+        --k-box-text-color: var(--k-color-mode-inverse);
     }
 
     .kicho-box-root.text {
@@ -69,6 +72,6 @@
         --k-box-background-opacity: 0;
         --k-box-foreground-opacity: 0;
         --k-box-glow-opacity: 0;
-        --k-box-foreground-offset: 0;
+        --k-box-foreground-offset: 0em;
     }
 </style>

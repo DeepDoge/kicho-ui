@@ -37,16 +37,16 @@
     }
 
     /* content */
-    .kicho-effect ~ :global(:not(.kicho-effect)) {
+    :global(.kicho-effect ~ :not(.kicho-effect)) {
         --border: solid transparent var(--k-box-foreground-offset);
         border-left: var(--border);
         border-right: var(--border);
         color: var(--k-box-text-color);
     }
-    .kicho-effect + :global(*:not(.kicho-effect)) {
+    :global(.kicho-effect + *:not(.kicho-effect)) {
         border-top: var(--border);
     }
-    .kicho-effect ~ :global(*:not(.kicho-effect):last-child) {
+    :global(.kicho-effect ~ *:not(.kicho-effect):last-child) {
         border-bottom: var(--border);
     }
 </style>

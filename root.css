@@ -13,18 +13,18 @@
 }
 
 :root {
-    --k-color-master: #ff7a18;
+    --k-color-master: #f46b45;
     --k-color-master-contrast: #fff;
-    --k-color-slave: #319197;
+    --k-color-slave: #eea849;
     --k-color-slave-contrast: #fff;
     --k-color-error: rgb(245, 81, 69);
     --k-color-error-contrast: #fff;
-    --k-color-gradient: linear-gradient(130deg, var(--k-color-master), var(--k-color-slave));
+    --k-color-gradient: linear-gradient(to bottom right, var(--k-color-master), var(--k-color-slave));
     --k-color-gradient-contrast: #fff;
     --k-color-dark: #0e1117;
     --k-color-light: rgb(235, 237, 241);
     --k-color-mode: var(--k-color-light);
-    --k-color--inverse: var(--k-color-dark);
+    --k-color-mode-inverse: var(--k-color-dark);
     --k-gradient-animation: gradient-animation 10s ease-in-out infinite alternate;
 }
 
@@ -43,7 +43,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --k-color-mode: var(--k-color-dark);
-        --k-color--inverse: var(--k-color-light);
+        --k-color-mode-inverse: var(--k-color-light);
     }
 
     ::-webkit-scrollbar {
@@ -74,7 +74,7 @@ body {
     letter-spacing: .25ch;
     line-height: 1.5;
     background: var(--k-color-mode);
-    color: var(--k-color--inverse)
+    color: var(--k-color-mode-inverse)
 }
 
 *,
@@ -85,7 +85,7 @@ body {
 }
 
 *:focus-visible {
-    outline: solid var(--k-color--inverse) .2rem;
+    outline: solid var(--k-color-mode-inverse) .2rem;
     outline-offset: .2em;
     outline-style: dashed;
     outline-color: var(--k-color-master);
