@@ -1,9 +1,9 @@
 <script lang="ts">
-    import HakoEffects from "./HakoEffects.svelte";
+    import KBoxEffects from "./effects/KBoxEffects.svelte";
 </script>
 
 <span class="chip">
-    <HakoEffects />
+    <KBoxEffects />
     <span>
         <slot />
     </span>
@@ -12,6 +12,6 @@
 <style>
     .chip {
         display: inline-block;
-        padding: calc(var(--h-padding) * .25) calc(var(--h-padding) * .5);
+        padding: calc(var(--k-padding) * .25) calc(var(--k-padding) * .5);
     }
 </style>

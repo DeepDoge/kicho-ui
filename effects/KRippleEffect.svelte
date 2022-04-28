@@ -26,48 +26,51 @@
     });
 
     let holding = false;
-    let animatingVisibility = false;
-    $: visible = animatingVisibility || holding;
-    
     let animate = false;
+    let animating = false;
+    $: visible = animating || holding;
     let mousePoint = "translate(0px, 0px)";
-    let size = "0px";
-    
+    let size = 0;
+
     const onMouseUp = () => (holding = false);
     const onMouseDown = (event: MouseEvent | TouchEvent) => {
         holding = true;
+
+        // Trigger animation
         animate = false;
         setTimeout(() => (animate = true));
+
         const bound = (event.currentTarget as HTMLElement).getBoundingClientRect();
         const clientX = event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
         const clientY = event instanceof MouseEvent ? event.clientY : event.touches[0].clientY;
-        size = `${Math.max(bound.width, bound.height) * 2}px`;
-        mousePoint =
-            clientX === 0 && clientY === 0
-                ? `translate(${bound.width / 2}px, ${bound.height / 2}px)`
-                : `translate(${clientX - bound.left}px, ${clientY - bound.top}px)`;
+        const x = clientX === 0 ? bound.left / 2 : clientX - bound.left;
+        const y = clientY === 0 ? bound.top / 2 : clientY - bound.top;
+
+        size =
+            bound.width > bound.height
+                ? bound.width + bound.width * (Math.abs(x - bound.width / 2) / (bound.width / 2))
+                : bound.height + bound.height * (Math.abs(y - bound.height / 2) / (bound.height / 2))
+
+        mousePoint = `translate(${x}px, ${y}px)`;
     };
 </script>
 
 <div
     bind:this={containerElement}
-    class="ripple-container kicho-effect"
+    class="kicho-effect ripple-container"
     class:disabled
     style:--mouse-point={mousePoint}
     style:--size={size}
     class:animate
     class:visible
-    on:animationstart={() => (animatingVisibility = true)}
-    on:animationend={() => (animatingVisibility = false)}
 >
-    <div class="ripple" />
+    <div class="ripple" on:animationstart={() => (animating = true)} on:animationend={() => (animating = false)} />
 </div>
 
 <style>
     .ripple-container {
-        --opacity: .25;
-        transition: ease-in-out 0.2s;
-        transition-property: opacity;
+        --opacity: 0.2;
+        --duration: 0.25s;
         position: absolute;
         inset: 0;
         pointer-events: none;
@@ -75,31 +78,23 @@
     }
 
     .ripple {
-        width: var(--size);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(1px * var(--size));
         aspect-ratio: 1/1;
         background: currentColor;
         border-radius: 50%;
+        opacity: 0;
+        transition: opacity ease-in-out calc(var(--duration) * 1);
     }
 
-    .ripple-container.visible {
-        animation: appear forwards ease-in-out 0.5s;
+    .visible .ripple {
         opacity: var(--opacity);
-    }
-    .ripple-container:not(.visible) {
-        opacity: 0;
     }
 
     .animate > .ripple {
-        animation: grow forwards ease-in-out 0.5s;
-    }
-
-    @keyframes appear {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: var(--opacity);
-        }
+        animation: grow forwards ease-in-out var(--duration);
     }
 
     @keyframes grow {

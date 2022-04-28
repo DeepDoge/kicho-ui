@@ -6,22 +6,26 @@
 }
 
 :root {
-    --h-page-width: min(40em, 100%);
-    --h-padding-page: 0 clamp(.5em, 1vw, 1.5em);
-    --h-padding: .5em;
-    --h-transition: linear .2s;
+    --k-page-width: min(40em, 100%);
+    --k-padding-page: 0 clamp(.5em, 1vw, 1.5em);
+    --k-padding: .5em;
+    --k-transition: linear .2s;
 }
 
 :root {
-    --h-color-master: #ff7a18;
-    --h-color-slave: #319197;
-    --h-color-error: rgb(245, 81, 69);
-    --h-color-gradient-0: linear-gradient(130deg, var(--h-color-master), var(--h-color-slave));
-    --h-color-dark: #0e1117;
-    --h-color-light: rgb(235, 237, 241);
-    --h-color-mode-inverse: var(--h-color-dark);
-    --h-color-mode: var(--h-color-light);
-    --h-gradient-animation: gradient-animation 10s ease-in-out infinite alternate;
+    --k-color-master: #ff7a18;
+    --k-color-master-inverse: #fff;
+    --k-color-slave: #319197;
+    --k-color-slave-inverse: #fff;
+    --k-color-error: rgb(245, 81, 69);
+    --k-color-error-inverse: #fff;
+    --k-color-gradient: linear-gradient(130deg, var(--k-color-master), var(--k-color-slave));
+    --k-color-gradient-inverse: #fff;
+    --k-color-dark: #0e1117;
+    --k-color-light: rgb(235, 237, 241);
+    --k-color-mode: var(--k-color-light);
+    --k-color-mode-inverse: var(--k-color-dark);
+    --k-gradient-animation: gradient-animation 10s ease-in-out infinite alternate;
 }
 
 @keyframes gradient-animation {
@@ -38,8 +42,8 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --h-color-mode: var(--h-color-dark);
-        --h-color-mode-inverse: var(--h-color-light);
+        --k-color-mode: var(--k-color-dark);
+        --k-color-mode-inverse: var(--k-color-light);
     }
 
     ::-webkit-scrollbar {
@@ -69,8 +73,8 @@ body {
     margin: 0;
     letter-spacing: .25ch;
     line-height: 1.5;
-    background: var(--h-color-mode);
-    color: var(--h-color-mode-inverse)
+    background: var(--k-color-mode);
+    color: var(--k-color-mode-inverse)
 }
 
 *,
@@ -81,10 +85,10 @@ body {
 }
 
 *:focus-visible {
-    outline: solid var(--h-color-mode-inverse) .2rem;
+    outline: solid var(--k-color-mode-inverse) .2rem;
     outline-offset: .2em;
     outline-style: dashed;
-    outline-color: var(--h-color-master);
+    outline-color: var(--k-color-master);
 }
 
 h1,
