@@ -10,11 +10,11 @@ If you are using VSCode DevContainer you can also add this inside
 devcontainer.json
 ```json
 {
-    You other settings...
+    Your other settings...
 
     "postCreateCommand": "npm install && git submodule init ; git submodule update ; git submodule foreach --recursive git checkout master",
 
-    You other settings...
+    Your other settings...
 }
 ```
 ## Manually
