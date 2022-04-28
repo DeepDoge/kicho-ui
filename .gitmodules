@@ -1,0 +1,3 @@
+[submodule "row"]
+	path = row
+	url = https://github.com/DeepDoge/svelte-responsive-row
