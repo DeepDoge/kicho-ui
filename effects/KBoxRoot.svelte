@@ -19,7 +19,7 @@
     .kicho-box-root {
         --k-box-border-radius: 0.5em;
         --k-box-default-background: var(--k-color-gradient);
-        --k-box-text-color: var(--k-color-gradient-inverse);
+        --k-box-text-color: var(--k-color-gradient-contrast);
     }
 
     .kicho-box-root {
@@ -43,7 +43,7 @@
     .kicho-box-root.outlined {
         --k-box-foreground: var(--k-color-mode);
         --k-box-foreground-opacity: 1;
-        --k-box-text-color: var(--k-color-mode-inverse);
+        --k-box-text-color: var(--k-color--inverse);
     }
 
     .kicho-box-root.text-filled {
@@ -61,7 +61,7 @@
         --k-box-background: var(--k-color-mode);
         --k-box-foreground-opacity: 0;
         --k-box-foreground-offset: 0;
-        --k-box-text-color: var(--k-color-mode-inverse);
+        --k-box-text-color: var(--k-color--inverse);
     }
 
     .kicho-box-root.text {

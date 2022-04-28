@@ -52,6 +52,6 @@
     .text-field:focus-within {
         --k-box-foreground-opacity: 0.9;
         --k-box-foreground: var(--k-color-mode);
-        color: var(--k-color-mode-inverse);
+        color: var(--k-color--inverse);
     }
 </style>
