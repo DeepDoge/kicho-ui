@@ -1,6 +1,4 @@
-<div class="kicho-effect glow">
-    
-</div>
+<div class="kicho-effect glow" />
 <div class="kicho-effect background" />
 <div class="kicho-effect border" />
 
