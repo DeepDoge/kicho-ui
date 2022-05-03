@@ -1,4 +1,6 @@
-<div class="kicho-effect glow" />
+<div class="kicho-effect glow">
+    
+</div>
 <div class="kicho-effect background" />
 <div class="kicho-effect border" />
 
@@ -8,7 +10,7 @@
     }
 
     .kicho-effect,
-    .glow::before {
+    .kicho-effect::before {
         position: absolute;
         box-sizing: content-box;
         width: 100%;
@@ -23,33 +25,24 @@
     }
 
     .glow {
-        background-image: inherit;
-        background-color: inherit;
-        filter: blur(.25em)
+        filter: blur(0.25em);
     }
-
     .glow::before {
         content: "";
-        background-image: var(--border-color);
-        background-color: var(--border-color);
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
     }
 
-    .border {
+    .border,
+    .glow::before {
         background-image: var(--border-color);
         background-color: var(--border-color);
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
+        transform: translate(-50%, -50%) scale(1.01);
     }
 
     .background {
         background: inherit;
-        background-origin: padding-box;
-        transform: translate(-50%, -50%) scale(.988);
     }
 </style>
