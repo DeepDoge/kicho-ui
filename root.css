@@ -7,8 +7,9 @@
 
 :root {
     --k-page-width: min(40em, 100%);
-    --k-padding-page: 0 clamp(.5em, 1vw, 1.5em);
+    --k-page-padding: 0 clamp(.5em, 1vw, 1.5em);
     --k-padding: .5em;
+    --k-border-radius: 0.5em;
     --k-transition: linear .2s;
 }
 
