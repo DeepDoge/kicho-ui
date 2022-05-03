@@ -64,7 +64,7 @@
     class:animate
     class:visible
 >
-    <div class="ripple" on:animationstart={() => (animating = true)} on:animationend={() => (animating = false)} />
+    <div class="ripple" on:animationstart={() => (animating = true)} on:animationend={() => (animate = animating = false)} />
 </div>
 
 <style>

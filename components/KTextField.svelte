@@ -1,27 +1,32 @@
 <script lang="ts">
     import KBoxEffects from "./effects/KBoxEffects.svelte";
-    import KBoxOptions from "./effects/KBoxOptions.svelte";
-    import type { KBoxTemplate } from "./effects/KBoxOptions.svelte";
+    import KOptions from "../KOptions.svelte";
+    import type { KBoxTemplate } from "../KOptions.svelte";
 
     export let template: KBoxTemplate = "outlined";
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
-    export let id: string = null;
+    export let id: string = crypto.randomUUID();
     export let name: string = null;
     export let value: string = null;
+    export let label: string = null;
     export let required = false;
+    export let disabled = false;
 
     let el: HTMLInputElement;
     $: el && (el.type = type);
 </script>
 
 {#key type}
+    {#if label}
+        <label for={id}>{label}</label>
+    {/if}
     <div class="text-field" class:empty={!value}>
-        <KBoxOptions {template} />
+        <KOptions {template} />
         <KBoxEffects />
         {#if type === "textarea"}
-            <textarea class="input" bind:value on:input {required} {id} {name} />
+            <textarea class="input" bind:value on:input {required} {disabled} {id} {name} />
         {:else}
-            <input class="input" bind:this={el} bind:value on:input {required} {id} {name} />
+            <input class="input" bind:this={el} bind:value on:input {required} {disabled} {id} {name} />
         {/if}
     </div>
 {/key}
@@ -34,9 +39,14 @@
         background: transparent;
         border: none;
 
-        font-size: inherit;
+        font: inherit;
         color: inherit;
         padding: calc(var(--k-padding) * 0.5);
+    }
+
+    .input:disabled {
+        filter: saturate(0) !important;
+        cursor: not-allowed !important;
     }
 
     textarea.input {

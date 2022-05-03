@@ -1,14 +1,15 @@
 <script lang="ts">
     import KBoxEffects from "./effects/KBoxEffects.svelte";
-    import KBoxOptions from "./effects/KBoxOptions.svelte";
-    import type { KBoxTemplate } from "./effects/KBoxOptions.svelte";
+    import KOptions from "../KOptions.svelte";
+    import type { KBoxTemplate } from "../KOptions.svelte";
     import KRippleEffect from "./effects/KRippleEffect.svelte";
 
     export let template: KBoxTemplate = "filled";
+    export let disabled = false
 </script>
 
-<button on:click>
-    <KBoxOptions {template} />
+<button on:click {disabled}>
+    <KOptions {template} />
     <KBoxEffects />
     <KRippleEffect />
     <div>
@@ -21,10 +22,11 @@
         appearance: unset;
         background: unset;
         border: none;
-        font-size: inherit;
         padding: 0.35em;
         cursor: pointer;
         text-transform: capitalize;
+
+        font: inherit;
         color: inherit;
     }
 
@@ -36,5 +38,10 @@
     button:hover > :global(.kicho-box-options.text ~ *) {
         --k-box-foreground: rgba(255, 255, 255);
         --k-box-foreground-opacity: 0.1;
+    }
+
+    button:disabled {
+        filter: saturate(0) !important;
+        cursor: not-allowed !important;
     }
 </style>
