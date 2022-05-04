@@ -1,6 +1,4 @@
 <script lang="ts">
-import { onMount } from "svelte";
-
     import KBoxEffects from "./effects/KBoxEffects.svelte";
 
     export let active = false;

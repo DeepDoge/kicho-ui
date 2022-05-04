@@ -1,15 +1,11 @@
 <script lang="ts">
     import KBoxEffects from "./effects/KBoxEffects.svelte";
-    import KOptions from "../KOptions.svelte";
-    import type { KBoxTemplate } from "../KOptions.svelte";
     import KRippleEffect from "./effects/KRippleEffect.svelte";
 
-    export let template: KBoxTemplate = "filled";
     export let disabled = false
 </script>
 
 <button on:click {disabled}>
-    <KOptions {template} />
     <KBoxEffects />
     <KRippleEffect />
     <div>

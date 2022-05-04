@@ -1,9 +1,6 @@
 <script lang="ts">
     import KBoxEffects from "./effects/KBoxEffects.svelte";
-    import KOptions from "../KOptions.svelte";
-    import type { KBoxTemplate } from "../KOptions.svelte";
 
-    export let template: KBoxTemplate = "outlined";
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
     export let id: string = crypto.randomUUID();
     export let name: string = null;
@@ -21,7 +18,6 @@
         <label for={id}>{label}</label>
     {/if}
     <div class="text-field" class:empty={!value}>
-        <KOptions {template} />
         <KBoxEffects />
         {#if type === "textarea"}
             <textarea class="input" bind:value on:input {required} {disabled} {id} {name} />

@@ -26,19 +26,6 @@
     --k-color-light: rgb(235, 237, 241);
     --k-color-mode: var(--k-color-light);
     --k-color-mode-inverse: var(--k-color-dark);
-    --k-gradient-animation: gradient-animation 10s ease-in-out infinite alternate;
-}
-
-@keyframes gradient-animation {
-    0% {
-        background-position: center;
-        background-size: 100%;
-    }
-
-    100% {
-        background-position: center;
-        background-size: 150%;
-    }
 }
 
 @media (prefers-color-scheme: dark) {
