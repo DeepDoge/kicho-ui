@@ -1,4 +1,8 @@
 <script lang="ts">
+import KBackgroundEffect from "./effects/KBackgroundEffect.svelte";
+import KBorderEffect from "./effects/KBorderEffect.svelte";
+import KGlowEffect from "./effects/KGlowEffect.svelte";
+
 
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
     export let id: string = crypto.randomUUID();
@@ -17,6 +21,9 @@
         <label for={id}>{label}</label>
     {/if}
     <div class="text-field" class:empty={!value}>
+        <KBorderEffect>
+            <KBackgroundEffect></KBackgroundEffect>
+        </KBorderEffect>
         {#if type === "textarea"}
             <textarea class="input" bind:value on:input {required} {disabled} {id} {name} />
         {:else}
@@ -26,6 +33,14 @@
 {/key}
 
 <style>
+    .text-field {
+        --border-radius: var(--k-border-radius);
+        --border-width: 0;
+        --border-color: unset;
+        --background: var(--k-color-mode-inverse);
+        color: var(--k-color-mode);
+    }
+    
     .input {
         display: block;
         width: 100%;

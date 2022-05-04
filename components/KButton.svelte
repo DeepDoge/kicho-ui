@@ -1,12 +1,18 @@
 <script lang="ts">
+    import KBackgroundEffect from "./effects/KBackgroundEffect.svelte";
+    import KBorderEffect from "./effects/KBorderEffect.svelte";
+    import KGlowEffect from "./effects/KGlowEffect.svelte";
     import KRippleEffect from "./effects/KRippleEffect.svelte";
 
-    export let disabled = false
+    export let disabled = false;
 </script>
 
 <button on:click {disabled}>
-
-    <KRippleEffect />
+    <KGlowEffect />
+    <KBorderEffect>
+        <KBackgroundEffect />
+        <KRippleEffect />
+    </KBorderEffect>
     <div>
         <slot />
     </div>
@@ -17,12 +23,17 @@
         appearance: unset;
         background: unset;
         border: none;
-        padding: 0.35em;
+        padding: 0.2em 0.5em;
         cursor: pointer;
         text-transform: capitalize;
 
         font: inherit;
-        color: inherit;
+        color: var(--k-color-gradient-contrast);
+
+        --border-width: 0;
+        --border-color: unset;
+        --background: var(--k-color-gradient);
+        --glow-color: var(--background);
     }
 
     button:focus,
