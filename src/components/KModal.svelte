@@ -37,7 +37,7 @@
     on:close
     on:close={() => (active = false)}
 >
-    <KGlowEffect border />
+    <KGlowEffect />
     <KBorderEffect>
         <KBackgroundEffect />
     </KBorderEffect>
@@ -52,7 +52,7 @@
         overflow: visible;
         --border-radius: var(--k-border-radius);
         --background: var(--k-color-mode);
-        --backkground-opacity: .95;
+        --background-opacity: .95;
         --border-width: var(--k-border-width);
         --border-color: unset;
         --glow-color: var(--k-color-gradient);
