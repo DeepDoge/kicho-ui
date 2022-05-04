@@ -60,7 +60,7 @@
     class="kicho-effect ripple-container"
     class:disabled
     style:--mouse-point={mousePoint}
-    style:--size={size}
+    style:--size={size * 1.01}
     class:animate
     class:visible
 >
@@ -70,12 +70,14 @@
 <style>
     .ripple-container {
         --opacity: 0.2;
-        --duration: 0.25s;
+        --duration: .5s;
+        --grow-start: translate(-50%, -50%) var(--mouse-point) scale(0);
+        --grow-end: translate(-50%, -50%) var(--mouse-point) scale(1);
         position: absolute;
         inset: 0;
         pointer-events: none;
         overflow: hidden;
-        border-radius: var(--k-box-border-radius);
+        border-radius: inherit
     }
 
     .ripple {
@@ -84,30 +86,31 @@
         left: 0;
         width: calc(1px * var(--size));
         aspect-ratio: 1/1;
-        background: currentColor;
+        background-color: currentColor;
         border-radius: 10000vw;
         opacity: 0;
         transition: opacity ease-in-out calc(var(--duration) * 1);
+        transform: var(--grow-end)
     }
 
     .visible .ripple {
         opacity: var(--opacity);
     }
 
-    .animate > .ripple {
+    .animate .ripple {
         animation: grow forwards ease-in-out var(--duration);
     }
 
     @keyframes grow {
         0% {
-            transform: translate(-50%, -50%) var(--mouse-point) scale(0);
+            transform: var(--grow-start)
         }
         100% {
-            transform: translate(-50%, -50%) var(--mouse-point) scale(1);
+            transform: var(--grow-end)
         }
     }
 
-    .disabled > .ripple {
+    .disabled .ripple {
         display: none;
     }
 </style>

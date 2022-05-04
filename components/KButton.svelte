@@ -1,12 +1,11 @@
 <script lang="ts">
-    import KBoxEffects from "./effects/KBoxEffects.svelte";
     import KRippleEffect from "./effects/KRippleEffect.svelte";
 
     export let disabled = false
 </script>
 
 <button on:click {disabled}>
-    <KBoxEffects />
+
     <KRippleEffect />
     <div>
         <slot />

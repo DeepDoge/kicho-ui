@@ -1,9 +1,7 @@
 <script lang="ts">
-    import KBoxEffects from "./effects/KBoxEffects.svelte";
-</script>
+    </script>
 
 <span class="chip">
-    <KBoxEffects />
     <span>
         <slot />
     </span>

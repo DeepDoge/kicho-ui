@@ -1,6 +1,5 @@
 <script lang="ts">
-    import KBoxEffects from "./effects/KBoxEffects.svelte";
-
+    
     export let active = false;
 
     interface HTMLDialogElement extends HTMLElement {
@@ -21,7 +20,6 @@
 </script>
 
 <dialog bind:this={_dialogElement} on:close={() => (active = false)} on:close>
-    <KBoxEffects />
     <slot />
 </dialog>
 

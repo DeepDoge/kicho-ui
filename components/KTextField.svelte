@@ -1,5 +1,4 @@
 <script lang="ts">
-    import KBoxEffects from "./effects/KBoxEffects.svelte";
 
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
     export let id: string = crypto.randomUUID();
@@ -18,7 +17,6 @@
         <label for={id}>{label}</label>
     {/if}
     <div class="text-field" class:empty={!value}>
-        <KBoxEffects />
         {#if type === "textarea"}
             <textarea class="input" bind:value on:input {required} {disabled} {id} {name} />
         {:else}
@@ -50,13 +48,5 @@
         min-height: 7ch;
         font-size: smaller;
         padding: var(--k-padding);
-    }
-
-    .text-field,
-    .text-field.empty,
-    .text-field:focus-within {
-        --k-box-foreground-opacity: 0.9;
-        --k-box-foreground: var(--k-color-mode);
-        color: var(--k-color-mode-inverse);
     }
 </style>
