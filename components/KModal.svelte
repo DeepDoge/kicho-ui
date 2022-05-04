@@ -58,4 +58,8 @@
         --glow-color: var(--k-color-gradient);
         color: var(--k-color-mode-inverse);
     }
+
+    dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 </style>
