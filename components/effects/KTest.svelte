@@ -1,17 +1,26 @@
 <script lang="ts">
     import KRippleEffect from "./KRippleEffect.svelte";
 
-    export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = "gradient";
-    export let size: "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
-    export let glow: "fill" | "border" | "none" = "none";
-    export let radius: "rounded" | "tile" | "normal" = "normal";
     export let blur = false;
     export let border = false;
     export let ripple = false;
     export let background = true;
+
+    export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = border ? "gradient" : "mode";
+    export let size: "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
+    export let glow: "fill" | "border" | "none" = "none";
+    export let radius: "rounded" | "tile" | "normal" = "normal";
+
+    $: textColor = border ? "var(--k-color-mode-contrast)" : `var(--k-color-${color}-contrast)`;
 </script>
 
-<div class="box glow-{glow} radius-{radius}" class:no-border={!border} style:--color="var(--k-color-{color})" style:font-size="var(--k-font-{size})">
+<div
+    class="box glow-{glow} radius-{radius}"
+    class:no-border={!border}
+    style:--color="var(--k-color-{color})"
+    style:color={textColor}
+    style:font-size="var(--k-font-{size})"
+>
     {#if glow}
         <div class="glow effect" />
     {/if}

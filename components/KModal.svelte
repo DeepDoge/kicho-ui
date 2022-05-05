@@ -1,8 +1,6 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
-    import KBackgroundEffect from "./effects/KBackgroundEffect.svelte";
-    import KBorderEffect from "./effects/KBorderEffect.svelte";
-    import KBoxEffect from "./effects/KBoxEffect.svelte";
+    import KTest from "./effects/KTest.svelte";
 
     export let active = false;
     export let preveventClose = false;
@@ -38,11 +36,11 @@
     on:close={() => onActiveChange()}
 >
     {#if active}
-        <KBoxEffect type="normal" blur radius="rounded">
+        <KTest blur radius="rounded">
             <div class="dialog-content">
                 <slot />
             </div>
-        </KBoxEffect>
+        </KTest>
     {/if}
 </dialog>
 
