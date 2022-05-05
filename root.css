@@ -18,8 +18,8 @@
     --k-page-width: min(40em, 100%);
     --k-page-padding: 0 clamp(.5em, 1vw, 1.5em);
     --k-padding: clamp(.25em, 2.5%,.6em);
-    --k-border-radius: 0.25em;
-    --k-border-radius-rounded: .5em;
+    --k-border-radius: 0.5em;
+    --k-border-radius-rounded: 1em;
     --k-border-width: .5em;
     --k-transition: linear .2s;
     --k-box-shadow: rgba(0, 0, 0, 0.01) 0 0 .1em, rgba(0, 0, 0, 0.04) 0 .4em .8em, rgba(0, 0, 0, 0.04) 0 1.6em 2.4em, rgba(0, 0, 0, 0.01) 0 2.4em, 3.2em;
