@@ -2,28 +2,29 @@
     import { onDestroy, onMount } from "svelte";
 
     export let disabled: boolean = false;
+    export let element: HTMLElement = null
     let containerElement: HTMLDivElement;
+    $: parent = element ?? containerElement?.parentElement
 
-    onMount(() => {
-        containerElement.parentElement.addEventListener("mousedown", onMouseDown);
-        containerElement.parentElement.addEventListener("touchstart", onMouseDown);
+    $: parent && parentChange()
+    function parentChange()
+    {
+        parent.removeEventListener("mousedown", onMouseDown);
+        parent.removeEventListener("touchstart", onMouseDown);
 
-        containerElement.parentElement.addEventListener("mouseup", onMouseUp);
-        containerElement.parentElement.addEventListener("mouseleave", onMouseUp);
-        containerElement.parentElement.addEventListener("touchend", onMouseUp);
-        containerElement.parentElement.addEventListener("blur", onMouseUp);
-    });
+        parent.removeEventListener("mouseup", onMouseUp);
+        parent.removeEventListener("mouseleave", onMouseUp);
+        parent.removeEventListener("touchend", onMouseUp);
+        parent.removeEventListener("blur", onMouseUp);
 
-    onDestroy(() => {
-        if (!containerElement) return;
-        containerElement.parentElement.removeEventListener("mousedown", onMouseDown);
-        containerElement.parentElement.removeEventListener("touchstart", onMouseDown);
+        parent.addEventListener("mousedown", onMouseDown);
+        parent.addEventListener("touchstart", onMouseDown);
 
-        containerElement.parentElement.removeEventListener("mouseup", onMouseUp);
-        containerElement.parentElement.removeEventListener("mouseleave", onMouseUp);
-        containerElement.parentElement.removeEventListener("touchend", onMouseUp);
-        containerElement.parentElement.removeEventListener("blur", onMouseUp);
-    });
+        parent.addEventListener("mouseup", onMouseUp);
+        parent.addEventListener("mouseleave", onMouseUp);
+        parent.addEventListener("touchend", onMouseUp);
+        parent.addEventListener("blur", onMouseUp);
+    }
 
     let holding = false;
     let animate = false;
@@ -60,7 +61,7 @@
     class="kicho-effect ripple-container"
     class:disabled
     style:--mouse-point={mousePoint}
-    style:--size={size * 1.01}
+    style:--size={size * 1.5}
     class:animate
     class:visible
 >

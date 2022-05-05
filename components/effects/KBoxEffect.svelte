@@ -13,9 +13,11 @@
 
     $: fontSize = size === "larger" ? "1.5em" : size === "x-larger" ? "2em" : null;
     $: borderRadius = radius === "normal" ? "var(--k-border-radius)" : radius === "rounded" ? "var(--k-border-radius-rounded)" : "0";
+
+    let element: HTMLDivElement = null
 </script>
 
-<div class="kicho-effect box-effect {type}" style:font-size={fontSize}>
+<div bind:this={element} class="kicho-effect box-effect {type}" style:font-size={fontSize}>
     {#if type === "outlined"}
         <div
             style:--border-width={"var(--k-border-width)"}
@@ -25,7 +27,7 @@
         >
             <KGlowEffect border />
             <KBorderEffect>
-                <KRippleEffect disabled={!ripple} />
+                <KRippleEffect element={element?.parentElement} disabled={!ripple} />
             </KBorderEffect>
         </div>
         <div class="content">
@@ -42,14 +44,14 @@
             <KGlowEffect />
             <KBorderEffect>
                 <KBackgroundEffect />
-                <KRippleEffect disabled={!ripple} />
+                <KRippleEffect element={element?.parentElement} disabled={!ripple} />
             </KBorderEffect>
         </div>
         <div class="content" style:color="var(--k-color-{color}-contrast)">
             <slot />
         </div>
     {:else if type === "text"}
-        <KRippleEffect disabled={!ripple} />
+        <KRippleEffect element={element?.parentElement} disabled={!ripple} />
         <div class="content">
             <slot />
         </div>
@@ -64,7 +66,7 @@
             <KGlowEffect />
             <KBorderEffect>
                 <KBackgroundEffect />
-                <KRippleEffect disabled={!ripple} />
+                <KRippleEffect element={element?.parentElement} disabled={!ripple} />
             </KBorderEffect>
         </div>
         <div class="content" style:color="var(--k-color-mode-contrast)">

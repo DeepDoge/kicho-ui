@@ -27,13 +27,13 @@
 {#if href}
     <a {href} {title} on:click {disabled} class="button" class:text={type === "text"}>
         <KBoxEffect {...$$props} {type} {color} {glow} ripple>
-            <slot />
+            <span><slot /></span>
         </KBoxEffect>
     </a>
 {:else}
     <button {title} on:click {disabled} class="button" class:text={type === "text"}>
         <KBoxEffect {...$$props} {type} {color} {glow} ripple>
-            <slot />
+            <span><slot /></span>
         </KBoxEffect>
     </button>
 {/if}
@@ -43,20 +43,25 @@
         appearance: unset;
         background: unset;
         border: none;
-        padding: 0.2em 0.5em;
-        cursor: pointer;
-        text-transform: capitalize;
-
         font: inherit;
         color: inherit;
 
         --glow-opacity: 0;
     }
 
+    .button {
+        padding: 0.2em 0.5em;
+        cursor: pointer;
+    }
+
     .button:focus,
     .button:hover {
         filter: brightness(1.15);
         --glow-opacity: 1;
+    }
+
+    .button.text {
+        padding: 0;
     }
 
     .button.text::before {
