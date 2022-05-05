@@ -8,6 +8,7 @@
     export let blur= false
     export let border = false;
     export let ripple = false;
+    export let background = true
 </script>
 
 <div
@@ -23,7 +24,7 @@
         {#if blur}
             <div class="blur effect" />
         {/if}
-        {#if true}
+        {#if background}
             <div class="background effect" />
         {/if}
     </div>
@@ -119,7 +120,7 @@
         mask-composite: unset;
         -webkit-mask-composite: unset;
     }
-    .no-border > *:not(.glow-border) {
+    .no-border > *:not(.glow) {
         --border-width: 0em
     }
 
