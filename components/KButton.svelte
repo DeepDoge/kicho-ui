@@ -6,29 +6,38 @@
 
     type BoxEffectProps = Omit<KTest["$$prop_def"], "ripple">;
     interface $$Props extends BoxEffectProps {
+        text?: boolean;
         href?: string;
         disabled?: boolean;
         title?: string;
     }
 
-    export let color: $$Props["color"] = "gradient";
-    export let radius: $$Props["radius"] = "rounded";
-
     export let disabled: $$Props["disabled"] = false;
     export let href: $$Props["href"] = null;
     export let title: $$Props["title"] = null;
+    export let text: $$Props["text"] = false;
+
+    export let color: $$Props["color"] = "gradient";
+    export let radius: $$Props["radius"] = text ? "tile" : "rounded";
+    export let background: $$Props["background"] = !text;
 </script>
 
 {#if href}
-    <a {href} {title} on:click {disabled} class="button">
-        <KTest {...$$props} {color} {radius} ripple>
+    <a {href} {title} on:click {disabled} class="button" class:text>
+        <KTest {...$$props} {color} {radius} {background} ripple>
             <span><slot /></span>
+            <svelte:fragment slot="overlay-effects">
+                <div class="hover-glass" />
+            </svelte:fragment>
         </KTest>
     </a>
 {:else}
-    <button {title} on:click {disabled} class="button">
-        <KTest {...$$props} {color} {radius} ripple>
+    <button {title} on:click {disabled} class="button" class:text>
+        <KTest {...$$props} {color} {radius} {background} ripple>
             <span><slot /></span>
+            <svelte:fragment slot="overlay-effects">
+                <div class="hover-glass" />
+            </svelte:fragment>
         </KTest>
     </button>
 {/if}
@@ -40,39 +49,36 @@
         border: none;
         font: inherit;
         color: inherit;
-
-        --glow-opacity: 0;
-    }
-
-    .button {
-        padding: 0.2em;
-        cursor: pointer;
-    }
-
-    .button:focus,
-    .button:hover {
-        filter: brightness(1.15);
-        --glow-opacity: 1;
-    }
-
-/*     .button.text {
         padding: 0;
     }
 
-    .button.text::before {
-        content: "";
+    .button {
+        cursor: pointer;
+    }
+    .button {
+        padding: 0.2em;
+    }
+    .button.text {
+        padding: 0;
+    }
+    .button div {
+        margin: auto;
+        width: 100%;
+        height: 100%;
+    }
+    .hover-glass {
         position: absolute;
         inset: 0;
         background-color: currentColor;
-        filter: opacity(0.2);
+        filter: opacity(0.3);
 
         transition: var(--k-transition);
         transition-property: opacity;
         opacity: 0;
     }
-    .button.text:hover::before {
+    .button:hover .hover-glass {
         opacity: 1;
-    } */
+    }
 
     .button:disabled {
         filter: saturate(0) !important;

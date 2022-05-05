@@ -3,30 +3,27 @@
 
     export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = "gradient";
     export let size: "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
-    export let glow: "fill" | "border" | "none" = "none"
+    export let glow: "fill" | "border" | "none" = "none";
     export let radius: "rounded" | "tile" | "normal" = "normal";
-    export let blur= false
+    export let blur = false;
     export let border = false;
     export let ripple = false;
-    export let background = true
+    export let background = true;
 </script>
 
-<div
-    class="box glow-{glow} radius-{radius}"
-    class:no-border={!border}
-    style:--color="var(--k-color-{color})"
-    style:font-size="var(--k-font-{size})"
->
+<div class="box glow-{glow} radius-{radius}" class:no-border={!border} style:--color="var(--k-color-{color})" style:font-size="var(--k-font-{size})">
     {#if glow}
         <div class="glow effect" />
     {/if}
-    <div class="border-box effect">
+    <slot name="under-effects" />
+    <div class="border-effects effect">
         {#if blur}
             <div class="blur effect" />
         {/if}
         {#if background}
             <div class="background effect" />
         {/if}
+        <slot name="border-effects" />
     </div>
     {#if border}
         <div class="border effect" />
@@ -34,11 +31,13 @@
     <div class="content">
         <slot />
     </div>
-    {#if ripple}
-        <div class="ripple effect">
+
+    <div class="overlay-effects effect">
+        {#if ripple}
             <KRippleEffect />
-        </div>
-    {/if}
+        {/if}
+        <slot name="overlay-effects" />
+    </div>
 </div>
 
 <style>
@@ -52,6 +51,7 @@
     .box > .effect {
         border-radius: inherit;
         overflow: hidden;
+        pointer-events: none;
     }
 
     .effect {
@@ -63,7 +63,7 @@
         border-radius: var(--k-border-radius);
     }
     .radius-tile {
-        border-radius: 0em
+        border-radius: 0em;
     }
     .radius-rounded {
         border-radius: var(--k-border-radius-rounded);
@@ -83,7 +83,7 @@
         backdrop-filter: blur(0.3em);
     }
 
-    .border-box {
+    .border-effects {
         border: solid 0 transparent;
         border-width: calc(var(--border-width) - 0.2px);
     }
@@ -121,12 +121,28 @@
         -webkit-mask-composite: unset;
     }
     .no-border > *:not(.glow) {
-        --border-width: 0em
+        --border-width: 0em;
     }
 
     .content {
+        display: contents;
+    }
+
+    .content > :global(*:only-of-type) {
         border: solid var(--border-width) transparent;
         border-radius: inherit;
         overflow: hidden;
+    }
+
+    .content > :global(*:not(:only-of-type)) {
+        all: unset !important;
+        display: block !important;
+        position: fixed !important;
+        inset: 0 !important;
+        background-color: red !important;
+        color: white !important;
+    }
+    .content > :global(*:not(:only-of-type))::before {
+        content: "Invalid";
     }
 </style>
