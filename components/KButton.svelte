@@ -2,9 +2,9 @@
 </script>
 
 <script lang="ts">
-    import KTest from "./effects/KTest.svelte";
+    import KBoxEffect from "./effects/KBoxEffect.svelte";
 
-    type BoxEffectProps = Omit<KTest["$$prop_def"], "ripple">;
+    type BoxEffectProps = Omit<KBoxEffect["$$prop_def"], "ripple">;
     interface $$Props extends BoxEffectProps {
         text?: boolean;
         href?: string;
@@ -24,21 +24,21 @@
 
 {#if href}
     <a {href} {title} on:click {disabled} class="button" class:text>
-        <KTest {...$$props} {color} {radius} {background} ripple>
+        <KBoxEffect {...$$props} {color} {radius} {background} ripple>
             <span><slot /></span>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
             </svelte:fragment>
-        </KTest>
+        </KBoxEffect>
     </a>
 {:else}
     <button {title} on:click {disabled} class="button" class:text>
-        <KTest {...$$props} {color} {radius} {background} ripple>
+        <KBoxEffect {...$$props} {color} {radius} {background} ripple>
             <span><slot /></span>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
             </svelte:fragment>
-        </KTest>
+        </KBoxEffect>
     </button>
 {/if}
 
