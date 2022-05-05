@@ -31,35 +31,36 @@
     on:keydown={(e) => {
         if (e.key.toLowerCase() === "escape") {
             dispatch("closeattempt");
-            if (preveventClose) e.preventDefault();
+            if (preveventClose) return e.preventDefault();
+            active = false
         }
     }}
-    on:close
-    on:close={() => (active = false)}
+    on:close={() => onActiveChange()}
 >
-    <KGlowEffect />
     <KBorderEffect>
-        <KBackgroundEffect />
+        <KBackgroundEffect blur />
     </KBorderEffect>
     <slot />
 </dialog>
 
 <style>
     dialog {
+        position: fixed;
         font: inherit;
         border: none;
         background-color: transparent;
         overflow: visible;
         --border-radius: var(--k-border-radius);
         --background: var(--k-color-mode);
-        --background-opacity: .95;
-        --border-width: var(--k-border-width);
-        --border-color: unset;
+        --background-opacity: .99;
+        --border-width: 0;
+        --border-color: transparent;
         --glow-color: var(--k-color-gradient);
-        color: var(--k-color-mode-inverse);
+        color: var(--k-color-mode-contrast);
     }
 
     dialog::backdrop {
-        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        inset: 0;
     }
 </style>

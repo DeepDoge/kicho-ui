@@ -1,8 +1,6 @@
 <script lang="ts">
-import KBackgroundEffect from "./effects/KBackgroundEffect.svelte";
-import KBorderEffect from "./effects/KBorderEffect.svelte";
-import KGlowEffect from "./effects/KGlowEffect.svelte";
-
+    import KBackgroundEffect from "./effects/KBackgroundEffect.svelte";
+    import KBorderEffect from "./effects/KBorderEffect.svelte";
 
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
     export let id: string = crypto.randomUUID();
@@ -22,25 +20,24 @@ import KGlowEffect from "./effects/KGlowEffect.svelte";
     {/if}
     <div class="text-field" class:empty={!value}>
         <KBorderEffect>
-            <KBackgroundEffect></KBackgroundEffect>
+            <KBackgroundEffect blur />
         </KBorderEffect>
         {#if type === "textarea"}
-            <textarea class="input" bind:value on:input {required} {disabled} {id} {name} />
+            <textarea class="input" placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
         {:else}
-            <input class="input" bind:this={el} bind:value on:input {required} {disabled} {id} {name} />
+            <input class="input" bind:this={el} placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
         {/if}
     </div>
 {/key}
 
 <style>
-    .text-field {
-        --border-radius: var(--k-border-radius);
-        --border-width: 0;
-        --border-color: unset;
-        --background: var(--k-color-mode-inverse);
-        color: var(--k-color-mode);
+    .text-field::after {
+        content: "";
+        display: block;
+        height: 0.05em;
+        background-image: var(--k-color-gradient);
     }
-    
+
     .input {
         display: block;
         width: 100%;
@@ -51,6 +48,13 @@ import KGlowEffect from "./effects/KGlowEffect.svelte";
         font: inherit;
         color: inherit;
         padding: calc(var(--k-padding) * 0.5);
+    }
+    .text-field {
+        --background: var(--k-color-mode-contrast);
+        --background-opacity: .05;
+    }
+    .text-field:focus-within {
+        --background-opacity: .1;
     }
 
     .input:disabled {

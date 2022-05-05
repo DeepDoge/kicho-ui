@@ -6,9 +6,7 @@
 
     export let disabled = false;
 </script>
-
 <button on:click {disabled}>
-    <KGlowEffect />
     <KBorderEffect>
         <KBackgroundEffect />
         <KRippleEffect />
@@ -31,19 +29,16 @@
         color: var(--k-color-gradient-contrast);
 
         --border-width: 0;
-        --border-color: unset;
+        --border-color: transparent;
         --background: var(--k-color-gradient);
         --glow-color: var(--background);
+        --glow-opacity: 0;
     }
 
     button:focus,
     button:hover {
         filter: brightness(1.15);
-    }
-
-    button:hover > :global(.kicho-box-options.text ~ *) {
-        --k-box-foreground: rgba(255, 255, 255);
-        --k-box-foreground-opacity: 0.1;
+        --glow-opacity: 1;
     }
 
     button:disabled {

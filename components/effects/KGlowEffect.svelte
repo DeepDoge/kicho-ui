@@ -1,14 +1,20 @@
 <script lang="ts">
+    export let glow = 1;
     export let border = false
 </script>
 
-<div class="kicho-effect kicho-glow" class:around-border={border} />
+<div class="kicho-effect kicho-glow" class:around-border={border} style:--glow={glow} />
 
 <style>
     .kicho-glow {
         position: absolute;
         inset: 0;
-        filter: blur(0.25rem);
+        filter: blur(calc(var(--glow) * .75rem)) opacity(.75);
+        transform: scale(.95);
+        opacity: var(--glow-opacity);
+
+        transition: var(--k-transition);
+        transition-property: color, opacity, filter, transform;
     }
     .kicho-glow::before {
         content: "";

@@ -9,7 +9,8 @@
     --k-page-width: min(40em, 100%);
     --k-page-padding: 0 clamp(.5em, 1vw, 1.5em);
     --k-padding: .5em;
-    --k-border-radius: 0.5em;
+    --k-border-radius: 0.25em;
+    --k-border-radius-rounded: .5em;
     --k-border-width: .25em;
     --k-transition: linear .2s;
 }
@@ -26,13 +27,13 @@
     --k-color-dark: #0e1117;
     --k-color-light: rgb(235, 237, 241);
     --k-color-mode: var(--k-color-light);
-    --k-color-mode-inverse: var(--k-color-dark);
+    --k-color-mode-contrast: var(--k-color-dark);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --k-color-mode: var(--k-color-dark);
-        --k-color-mode-inverse: var(--k-color-light);
+        --k-color-mode-contrast: var(--k-color-light);
     }
 
     ::-webkit-scrollbar {
@@ -47,8 +48,9 @@
         background: rgb(30, 37, 41);
     }
 
+    ::-webkit-scrollbar-corner,
     ::-webkit-scrollbar-thumb:hover {
-        background: rgb(32, 39, 43);
+        background: rgb(35, 43, 48);
     }
 }
 
@@ -63,7 +65,7 @@ body {
     letter-spacing: .25ch;
     line-height: 1.5;
     background: var(--k-color-mode);
-    color: var(--k-color-mode-inverse)
+    color: var(--k-color-mode-contrast)
 }
 
 *,
@@ -74,10 +76,7 @@ body {
 }
 
 *:focus-visible {
-    outline: solid var(--k-color-mode-inverse) .2rem;
-    outline-offset: .2em;
-    outline-style: dashed;
-    outline-color: var(--k-color-master);
+    outline: none;
 }
 
 h1,

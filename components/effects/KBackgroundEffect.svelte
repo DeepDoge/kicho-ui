@@ -1,8 +1,11 @@
 <script lang="ts">
-    export let blur = false
+    export let blur = false;
 </script>
 
 <div class="kicho-effect kicho-background" class:blur />
+{#if blur}
+    <div class="kicho-effect blur-color" class:blur />
+{/if}
 
 <style>
     .kicho-background {
@@ -14,14 +17,14 @@
     }
 
     .blur {
-        background: unset;
-        backdrop-filter: blur(.25rem);
+        background: transparent;
+        backdrop-filter: blur(0.3rem);
     }
-    .blur::before {
-        content: "";
+    .blur-color {
         position: absolute;
         inset: 0;
         background: var(--background);
-        filter: opacity(.4);
+        opacity: var(--background-opacity);
+        filter: opacity(0.85)
     }
 </style>
