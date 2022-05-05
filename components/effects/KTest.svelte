@@ -16,14 +16,14 @@
         <div class="glow effect" />
     {/if}
     <slot name="under-effects" />
-    <div class="border-effects effect">
+    <div class="background-effects effect">
         {#if blur}
             <div class="blur effect" />
         {/if}
         {#if background}
             <div class="background effect" />
         {/if}
-        <slot name="border-effects" />
+        <slot name="background-effects" />
     </div>
     {#if border}
         <div class="border effect" />
@@ -83,7 +83,7 @@
         backdrop-filter: blur(0.3em);
     }
 
-    .border-effects {
+    .background-effects {
         border: solid 0 transparent;
         border-width: calc(var(--border-width) - 0.2px);
     }
