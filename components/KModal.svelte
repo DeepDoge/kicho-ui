@@ -2,7 +2,6 @@
     import { createEventDispatcher } from "svelte";
     import KBackgroundEffect from "./effects/KBackgroundEffect.svelte";
     import KBorderEffect from "./effects/KBorderEffect.svelte";
-    import KGlowEffect from "./effects/KGlowEffect.svelte";
 
     export let active = false;
     export let preveventClose = false;

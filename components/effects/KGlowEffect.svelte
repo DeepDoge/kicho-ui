@@ -1,9 +1,8 @@
 <script lang="ts">
-    export let glow = 1;
     export let border = false
 </script>
 
-<div class="kicho-effect kicho-glow" class:around-border={border} style:--glow={glow} />
+<div class="kicho-effect kicho-glow" class:around-border={border} />
 
 <style>
     .kicho-glow {
