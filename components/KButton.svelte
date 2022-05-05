@@ -1,25 +1,18 @@
 <script context="module" lang="ts">
-    type BoxEffectProps = Omit<KBoxEffect["$$prop_def"], "ripple">;
-    export const kButtonDefaults: BoxEffectProps = {
-        type: "filled",
-        color: "gradient",
-        glow: 0.5,
-        radius: 'rounded'
-    };
 </script>
 
 <script lang="ts">
-    import KBoxEffect from "./effects/KBoxEffect.svelte";
+    import KTest from "./effects/KTest.svelte";
 
+    type BoxEffectProps = Omit<KTest["$$prop_def"], "ripple">;
     interface $$Props extends BoxEffectProps {
         href?: string;
         disabled?: boolean;
         title?: string;
     }
-    export let type = kButtonDefaults.type;
-    export let color = kButtonDefaults.color;
-    export let glow = kButtonDefaults.glow;
-    export let radius = kButtonDefaults.radius;
+
+    export let color: $$Props["color"] = "gradient";
+    export let radius: $$Props["radius"] = "rounded";
 
     export let disabled: $$Props["disabled"] = false;
     export let href: $$Props["href"] = null;
@@ -27,16 +20,16 @@
 </script>
 
 {#if href}
-    <a {href} {title} on:click {disabled} class="button" class:text={type === "text"}>
-        <KBoxEffect {...$$props} {type} {color} {glow} {radius} ripple>
+    <a {href} {title} on:click {disabled} class="button">
+        <KTest {...$$props} {color} {radius} ripple>
             <span><slot /></span>
-        </KBoxEffect>
+        </KTest>
     </a>
 {:else}
-    <button {title} on:click {disabled} class="button" class:text={type === "text"}>
-        <KBoxEffect {...$$props} {type} {color} {glow} {radius} ripple>
+    <button {title} on:click {disabled} class="button">
+        <KTest {...$$props} {color} {radius} ripple>
             <span><slot /></span>
-        </KBoxEffect>
+        </KTest>
     </button>
 {/if}
 
@@ -62,7 +55,7 @@
         --glow-opacity: 1;
     }
 
-    .button.text {
+/*     .button.text {
         padding: 0;
     }
 
@@ -79,7 +72,7 @@
     }
     .button.text:hover::before {
         opacity: 1;
-    }
+    } */
 
     .button:disabled {
         filter: saturate(0) !important;

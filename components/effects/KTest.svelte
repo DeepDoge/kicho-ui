@@ -1,38 +1,20 @@
 <script lang="ts">
     import KRippleEffect from "./KRippleEffect.svelte";
 
-    /* export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light";
-    export let border: "glow" | "solid";
+    export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = "gradient";
     export let size: "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
-    export let blur: boolean
-    export let drop: "glow" | "shadow"
+    export let glow: "fill" | "border" | "none" = "none"
     export let radius: "rounded" | "tile" | "normal" = "normal";
+    export let blur= false
+    export let border = false;
     export let ripple = false;
- */
-    export let type: "outlined" | "filled" | "text" | "normal" = "normal";
-    export let blur = false;
-    export let size: "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
-    export let glow: number | boolean = false;
-    export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" =
-        type === "normal" || type === "outlined" ? "gradient" : "mode";
-    export let radius: "rounded" | "tile" | "normal" = "normal";
-    export let ripple = false;
-
-    $: borderRadius = radius === "normal" ? "var(--k-border-radius)" : radius === "rounded" ? "var(--k-border-radius-rounded)" : "0";
-    $: glowValue = glow === true ? 1 : glow || 0;
-
-    $: noBorder = type === "filled";
-    $: noBackground = type === "outlined";
 </script>
 
 <div
-    class="box type-{type}"
-    class:noBorder
-    class:noBackground
+    class="box glow-{glow} radius-{radius}"
+    class:no-border={!border}
     style:--color="var(--k-color-{color})"
     style:font-size="var(--k-font-{size})"
-    style:--glow={glowValue}
-    style:border-radius={borderRadius}
 >
     {#if glow}
         <div class="glow effect" />
@@ -41,11 +23,11 @@
         {#if blur}
             <div class="blur effect" />
         {/if}
-        {#if !noBackground}
+        {#if true}
             <div class="background effect" />
         {/if}
     </div>
-    {#if !noBorder}
+    {#if border}
         <div class="border effect" />
     {/if}
     <div class="content">
@@ -76,13 +58,37 @@
         inset: 0;
     }
 
+    .radius-normal {
+        border-radius: var(--k-border-radius);
+    }
+    .radius-tile {
+        border-radius: 0em
+    }
+    .radius-rounded {
+        border-radius: var(--k-border-radius-rounded);
+    }
+    .no-border {
+        --background: var(--color);
+    }
+
+    .background.effect {
+        background-color: var(--background);
+        background-image: var(--background);
+    }
+    .blur.effect + .background.effect {
+        filter: opacity(0.85);
+    }
+    .blur.effect {
+        backdrop-filter: blur(0.3em);
+    }
+
     .border-box {
         border: solid 0 transparent;
         border-width: calc(var(--border-width) - 0.2px);
     }
 
-    .glow::before,
-    .border {
+    .glow.effect::before,
+    .border.effect {
         position: absolute;
         inset: 0;
         background-color: var(--border-color);
@@ -95,35 +101,31 @@
         mask-composite: exclude;
         -webkit-mask-composite: xor;
     }
-    .glow {
-        filter: blur(calc(0.25rem * var(--glow)));
+
+    .glow.effect {
+        filter: blur(calc(0.25rem * 1));
     }
-    .glow::before {
+    .glow.effect::before {
         content: "";
         background-color: var(--glow-color);
         background-image: var(--glow-color);
     }
-    .noBorder > *:not(.glow) {
-        --border-width: 0em;
+    .glow-none .glow.effect {
+        opacity: 0;
     }
-    .noBorder {
-        --glow-color: var(--k-color-gradient)
+    .glow-fill .glow.effect::before {
+        mask: unset;
+        -webkit-mask: unset;
+        mask-composite: unset;
+        -webkit-mask-composite: unset;
+    }
+    .no-border > *:not(.glow-border) {
+        --border-width: 0em
     }
 
     .content {
         border: solid var(--border-width) transparent;
         border-radius: inherit;
         overflow: hidden;
-    }
-
-    .background {
-        background-color: var(--background);
-        background-image: var(--background);
-    }
-    .blur + .background {
-        filter: opacity(0.85);
-    }
-    .blur {
-        backdrop-filter: blur(0.3em);
     }
 </style>
