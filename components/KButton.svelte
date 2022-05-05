@@ -4,6 +4,7 @@
         type: "filled",
         color: "gradient",
         glow: 0.5,
+        radius: 'rounded'
     };
 </script>
 
@@ -18,6 +19,7 @@
     export let type = kButtonDefaults.type;
     export let color = kButtonDefaults.color;
     export let glow = kButtonDefaults.glow;
+    export let radius = kButtonDefaults.radius;
 
     export let disabled: $$Props["disabled"] = false;
     export let href: $$Props["href"] = null;
@@ -26,13 +28,13 @@
 
 {#if href}
     <a {href} {title} on:click {disabled} class="button" class:text={type === "text"}>
-        <KBoxEffect {...$$props} {type} {color} {glow} ripple>
+        <KBoxEffect {...$$props} {type} {color} {glow} {radius} ripple>
             <span><slot /></span>
         </KBoxEffect>
     </a>
 {:else}
     <button {title} on:click {disabled} class="button" class:text={type === "text"}>
-        <KBoxEffect {...$$props} {type} {color} {glow} ripple>
+        <KBoxEffect {...$$props} {type} {color} {glow} {radius} ripple>
             <span><slot /></span>
         </KBoxEffect>
     </button>
@@ -50,7 +52,7 @@
     }
 
     .button {
-        padding: 0.2em 0.5em;
+        padding: 0.2em;
         cursor: pointer;
     }
 

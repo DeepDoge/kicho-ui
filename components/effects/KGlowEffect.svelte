@@ -8,8 +8,8 @@
     .kicho-glow {
         position: absolute;
         inset: 0;
-        filter: blur(calc(var(--glow) * .75rem)) opacity(.75);
-        transform: scale(.95);
+        filter: blur(calc(var(--glow) * .25rem)) opacity(.75);
+        /* transform: scale(.95); */
         opacity: var(--glow-opacity);
 
         transition: var(--k-transition);
@@ -24,6 +24,7 @@
         background-color: var(--glow-color);
         background-image: var(--glow-color);
         border-radius: var(--border-radius);
+        box-shadow: var(--k-box-shadow);
     }
 
     .kicho-glow.around-border::before {

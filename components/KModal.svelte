@@ -2,6 +2,7 @@
     import { createEventDispatcher } from "svelte";
     import KBackgroundEffect from "./effects/KBackgroundEffect.svelte";
     import KBorderEffect from "./effects/KBorderEffect.svelte";
+    import KBoxEffect from "./effects/KBoxEffect.svelte";
 
     export let active = false;
     export let preveventClose = false;
@@ -31,15 +32,18 @@
         if (e.key.toLowerCase() === "escape") {
             dispatch("closeattempt");
             if (preveventClose) return e.preventDefault();
-            active = false
+            active = false;
         }
     }}
     on:close={() => onActiveChange()}
 >
-    <KBorderEffect>
-        <KBackgroundEffect blur />
-    </KBorderEffect>
-    <slot />
+    {#if active}
+        <KBoxEffect type="normal" blur radius="rounded">
+            <div class="dialog-content">
+                <slot />
+            </div>
+        </KBoxEffect>
+    {/if}
 </dialog>
 
 <style>
@@ -48,14 +52,21 @@
         font: inherit;
         border: none;
         background-color: transparent;
-        overflow: visible;
-        --border-radius: var(--k-border-radius);
-        --background: var(--k-color-mode);
-        --background-opacity: .99;
-        --border-width: 0;
-        --border-color: transparent;
-        --glow-color: var(--k-color-gradient);
-        color: var(--k-color-mode-contrast);
+        box-shadow: var(--k-box-shadow);
+        overflow: hidden;
+
+        max-height: 95vh;
+
+        display: flex;
+    }
+
+    dialog:not([open]) {
+        display: none;
+    }
+
+    .dialog-content {
+        overflow: auto;
+        padding: calc(var(--k-padding) * 2);
     }
 
     dialog::backdrop {

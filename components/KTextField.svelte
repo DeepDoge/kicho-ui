@@ -14,7 +14,7 @@
     $: el && (el.type = type);
 </script>
 
-{#key type}
+<div class="field-group">
     {#if label}
         <label for={id}>{label}</label>
     {/if}
@@ -28,16 +28,9 @@
             <input class="input" bind:this={el} placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
         {/if}
     </div>
-{/key}
+</div>
 
 <style>
-    .text-field::after {
-        content: "";
-        display: block;
-        height: 0.05em;
-        background-image: var(--k-color-gradient);
-    }
-
     .input {
         display: block;
         width: 100%;
@@ -47,14 +40,15 @@
 
         font: inherit;
         color: inherit;
-        padding: calc(var(--k-padding) * 0.5);
+        padding: calc(var(--k-padding));
     }
     .text-field {
         --background: var(--k-color-mode-contrast);
-        --background-opacity: .05;
+        --background-opacity: 0.05;
+        --border-radius: var(--k-border-radius-rounded);
     }
     .text-field:focus-within {
-        --background-opacity: .1;
+        --background-opacity: 0.1;
     }
 
     .input:disabled {
@@ -67,5 +61,9 @@
         min-height: 7ch;
         font-size: smaller;
         padding: var(--k-padding);
+    }
+
+    label {
+        font-size: var(--k-font-smaller);
     }
 </style>

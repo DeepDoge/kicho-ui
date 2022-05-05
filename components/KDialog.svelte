@@ -105,3 +105,19 @@
         </div>
     </form>
 </KModal>
+
+<style>
+    form {
+        max-width: 30em;
+        display: grid;
+        gap: var(--k-padding);
+    }
+
+    pre {
+        white-space: pre-wrap;
+    }
+    .actions {
+        display: grid;
+        grid-auto-flow: row;
+    }
+</style>

@@ -18,13 +18,13 @@
 
     .blur {
         background: transparent;
-        backdrop-filter: blur(0.3rem);
+        backdrop-filter: blur(0.05rem);
     }
     .blur-color {
         position: absolute;
         inset: 0;
         background: var(--background);
         opacity: var(--background-opacity);
-        filter: opacity(0.85)
+        filter: opacity(.95)
     }
 </style>

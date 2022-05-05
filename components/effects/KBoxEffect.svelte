@@ -5,32 +5,35 @@
     import KRippleEffect from "./KRippleEffect.svelte";
 
     export let type: "outlined" | "filled" | "text" | "normal" = "normal";
-    export let size: "normal" | "larger" | "x-larger" = "normal";
-    export let glow: number = 1;
-    export let color: "master" | "slave" | "error" | "mode" | "gradient" = "mode";
+    export let blur = false;
+    export let size: "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
+    export let glow: number | boolean = false;
+    export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = type === "normal" ? "gradient" : "mode";
     export let radius: "rounded" | "tile" | "normal" = "normal";
     export let ripple = false;
 
-    $: fontSize = size === "larger" ? "1.5em" : size === "x-larger" ? "2em" : null;
     $: borderRadius = radius === "normal" ? "var(--k-border-radius)" : radius === "rounded" ? "var(--k-border-radius-rounded)" : "0";
+    $: glowValue = glow === true ? 1 : glow || 0;
 
-    let element: HTMLDivElement = null
+    let element: HTMLDivElement = null;
 </script>
 
-<div bind:this={element} class="kicho-effect box-effect {type}" style:font-size={fontSize}>
+<div bind:this={element} class="kicho-effect box-effect {type}" style:font-size="var(--k-font-{size})">
     {#if type === "outlined"}
         <div
             style:--border-width={"var(--k-border-width)"}
             style:--border-color={`var(--k-color-${color})`}
             style:--border-radius={borderRadius}
-            style:--glow={glow}
+            style:--glow-color={glow ? "var(--border-color)" : "transparent"}
+            style:--glow-opacity="1"
+            style:--glow={glowValue}
         >
             <KGlowEffect border />
             <KBorderEffect>
                 <KRippleEffect element={element?.parentElement} disabled={!ripple} />
             </KBorderEffect>
         </div>
-        <div class="content">
+        <div class="content" style:border-radius={borderRadius}>
             <slot />
         </div>
     {:else if type === "filled"}
@@ -39,20 +42,22 @@
             style:--border-width={"0"}
             style:--border-color={`transparent`}
             style:--border-radius={borderRadius}
-            style:--glow={glow}
+            style:--glow-color={glow ? "var(--k-color-gradient)" : "transparent"}
+            style:--glow-opacity="1"
+            style:--glow={glowValue}
         >
             <KGlowEffect />
             <KBorderEffect>
-                <KBackgroundEffect />
+                <KBackgroundEffect {blur} />
                 <KRippleEffect element={element?.parentElement} disabled={!ripple} />
             </KBorderEffect>
         </div>
-        <div class="content" style:color="var(--k-color-{color}-contrast)">
+        <div class="content" style:border-radius={borderRadius} style:color="var(--k-color-{color}-contrast)">
             <slot />
         </div>
     {:else if type === "text"}
         <KRippleEffect element={element?.parentElement} disabled={!ripple} />
-        <div class="content">
+        <div class="content" style:border-radius={borderRadius}>
             <slot />
         </div>
     {:else if type === "normal"}
@@ -61,15 +66,17 @@
             style:--border-width={"var(--k-border-width)"}
             style:--border-color={`var(--k-color-${color})`}
             style:--border-radius={borderRadius}
-            style:--glow={glow}
+            style:--glow-color={glow ? "var(--border-color)" : "transparent"}
+            style:--glow-opacity="1"
+            style:--glow={glowValue}
         >
             <KGlowEffect />
             <KBorderEffect>
-                <KBackgroundEffect />
+                <KBackgroundEffect {blur} />
                 <KRippleEffect element={element?.parentElement} disabled={!ripple} />
             </KBorderEffect>
         </div>
-        <div class="content" style:color="var(--k-color-mode-contrast)">
+        <div class="content" style:border-radius={borderRadius} style:color="var(--k-color-mode-contrast)">
             <slot />
         </div>
     {/if}
@@ -80,5 +87,15 @@
     .box-effect > *,
     .content {
         display: contents;
+    }
+
+    .content {
+        border: solid var(--border-width) transparent;
+    }
+
+    .content > :global(*) {
+        border: inherit;
+        border-radius: inherit;
+        overflow: hidden;
     }
 </style>

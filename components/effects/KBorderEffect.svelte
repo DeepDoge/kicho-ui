@@ -14,7 +14,7 @@
         position: absolute;
         inset: 0;
         border-radius: var(--border-radius);
-        border: solid calc(var(--border-width) - .1px) transparent;
+        border: solid min(calc(var(--border-width) - .5px), 0em) transparent;
         overflow: hidden;
     }
 
@@ -31,5 +31,6 @@
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
+        box-shadow: var(--k-box-shadow);
     }
 </style>
