@@ -6,6 +6,9 @@
     export let preveventClose = false;
 
     const dispatch = createEventDispatcher();
+    export let size = "30em";
+    export let align: 'center' | 'end' | 'start' | 'stretch' = 'center'
+    export let justify: typeof align = 'center'
 
     interface HTMLDialogElement extends HTMLElement {
         open: boolean;
@@ -26,6 +29,9 @@
 
 <dialog
     bind:this={_dialogElement}
+    style:--ideal-size={size}
+    style:justify-content={justify}
+    style:align-content={align}
     on:keydown={(e) => {
         if (e.key.toLowerCase() === "escape") {
             dispatch("closeattempt");
@@ -36,39 +42,47 @@
     on:close={() => onActiveChange()}
 >
     {#if active}
-        <KBoxEffect background border blur radius="normal">
-            <div class="dialog-content">
-                <slot />
-            </div>
+    <div class="modal">
+        <KBoxEffect background border blur glow radius="normal">
+            <slot />
         </KBoxEffect>
+    </div>
     {/if}
 </dialog>
 
 <style>
     dialog {
+        all: unset;
         position: fixed;
-        font: inherit;
-        border: none;
-        background-color: transparent;
-        box-shadow: var(--k-box-shadow);
-        overflow: hidden;
+        inset: 0;
 
-        max-height: 95vh;
+        display: grid;
+        place-items: stretch;
+        grid-template-columns: min(var(--ideal-size), 100%);
 
-        display: flex;
+        padding: 6px;
     }
 
     dialog:not([open]) {
         display: none;
     }
 
-    .dialog-content {
-        overflow: auto;
-        padding: calc(var(--k-padding) * 2);
+    .modal {
+        padding: calc(var(--k-padding) * 4);
+    }
+
+    dialog::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-color: var(--k-color-mode);
+        background-image: var(--k-color-gradient);
+        background-blend-mode: multiply;
+        opacity: 0.25;
+        backdrop-filter: blur(0.05rem);
     }
 
     dialog::backdrop {
-        position: fixed;
-        inset: 0;
+        display: none;
     }
 </style>

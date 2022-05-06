@@ -6,6 +6,7 @@
     export let name: string = null;
     export let value: string = null;
     export let label: string = null;
+    export let placeholder: string = null
     export let required = false;
     export let disabled = false;
 
@@ -18,11 +19,11 @@
         <label for={id}>{label}</label>
     {/if}
     <div class="text-field" class:empty={!value}>
-        <KBoxEffect glow="gradient" background color="mode" radius="rounded">
+        <KBoxEffect border background color="gradient" radius="normal">
             {#if type === "textarea"}
-                <textarea class="input" placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
+                <textarea class="input" {placeholder} bind:value on:input {required} {disabled} {id} {name} />
             {:else}
-                <input class="input" bind:this={el} placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
+                <input class="input" bind:this={el} {placeholder} bind:value on:input {required} {disabled} {id} {name} />
             {/if}
         </KBoxEffect>
     </div>
@@ -48,6 +49,7 @@
 
     textarea.input {
         resize: vertical;
+        width: 100%;
         min-height: 7ch;
         font-size: smaller;
         padding: var(--k-padding);

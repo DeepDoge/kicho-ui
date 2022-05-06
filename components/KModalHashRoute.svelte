@@ -7,10 +7,16 @@
 <script lang="ts">
     import KModal from "./KModal.svelte";
 
-    export let hash: string;
+    type KModalProps = KModal['$$prop_def']
+    interface $$Props extends KModalProps 
+    {
+        hash: string
+    } 
+
+    export let hash: $$Props['hash'];
     $: active = hash === $pageHash
 </script>
 
-<KModal {active} preveventClose on:closeattempt={() => history.back()}>
+<KModal {...$$props} {active} preveventClose on:closeattempt={() => history.back()}>
     <slot />
 </KModal>

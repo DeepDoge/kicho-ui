@@ -173,7 +173,7 @@
         backdrop-filter: blur(0.3em);
     }
     .use-blur > * > .background.effect {
-        filter: opacity(0.5);
+        filter: opacity(0.7);
     }
 
     /* 

@@ -87,7 +87,7 @@
     }
 </script>
 
-<KModal active={!!currentDialog} on:close={() => currentDialog?.resolve(null)}>
+<KModal align="end" active={!!currentDialog} on:close={() => currentDialog?.resolve(null)}>
     <form method="dialog" on:submit|preventDefault={onSubmit}>
         <div class="fields">
             <pre>{currentDialog?.message}</pre>
@@ -108,7 +108,6 @@
 
 <style>
     form {
-        max-width: 30em;
         display: grid;
         gap: var(--k-padding);
     }

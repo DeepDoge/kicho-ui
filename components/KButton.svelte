@@ -20,7 +20,7 @@
     export let color: $$Props["color"] = "gradient";
     export let radius: $$Props["radius"] = text ? "tile" : "rounded";
     export let background: $$Props["background"] = !text;
-    export let glow: $$Props['glow'] = !text
+    export let glow: $$Props['glow'] = false
 </script>
 
 {#if href}
