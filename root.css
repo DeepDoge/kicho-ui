@@ -22,15 +22,14 @@
     --k-border-radius-rounded: 1em;
     --k-border-width: .1em;
     --k-transition: linear .2s;
-    --k-box-shadow: rgba(0, 0, 0, 0.01) 0 0 .1em, rgba(0, 0, 0, 0.04) 0 .4em .8em, rgba(0, 0, 0, 0.04) 0 1.6em 2.4em, rgba(0, 0, 0, 0.01) 0 2.4em, 3.2em;
 }
 
 :root {
-    --k-color-master: #fc00ff;
+    --k-color-master: slateblue;
     --k-color-master-contrast: #fff;
-    --k-color-slave: #00dbde;
+    --k-color-slave: coral;
     --k-color-slave-contrast: #fff;
-    --k-color-error: rgb(245, 81, 69);
+    --k-color-error: orangered;
     --k-color-error-contrast: #fff;
     --k-color-gradient: linear-gradient(to right, var(--k-color-master), var(--k-color-slave));
     --k-color-gradient-contrast: #fff;

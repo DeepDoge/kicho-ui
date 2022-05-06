@@ -10,16 +10,16 @@
 
     export let contentBorderDirection: "vertical" | "horizontal" | "manual" = "vertical";
 
-    export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = border ? "gradient" : "mode";
+    export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = "gradient";
     export let size: "smaller" | "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
     export let radius: "rounded" | "tile" | "normal" = "normal";
 
-    function getColor(value: typeof color, of: "text" | "box") {
-        return (of === "text") === contrast ? `var(--k-color-${value})` : `var(--k-color-${value}-contrast)`;
+    function getColor(value: typeof color, isContrast: boolean) {
+        return isContrast === contrast ? `var(--k-color-${value})` : `var(--k-color-${value}-contrast)`;
     }
 
-    $: boxColor = getColor(color, "box");
-    $: textColor = border ? getColor("mode", "text") : getColor(color, "text");
+    $: boxColor = getColor(color, false);
+    $: boxColorContrast = getColor(color, true);
     $: glowColor = typeof glow === "string" ? `var(--k-color-${glow})` : null;
 
     let element: HTMLDivElement = null;
@@ -35,8 +35,8 @@
     class:use-border={border}
     class:use-contrast={contrast}
     style:font-size="var(--k-font-{size})"
-    style:color={textColor}
-    style:--box-color={boxColor}
+    style:--color-contrast={boxColorContrast}
+    style:--color={boxColor}
     style:--glow-color={glowColor}
 >
     {#if glow}
@@ -76,12 +76,14 @@
     Color Settings
     ==================================== 
     */
-    .box {
-        --background: var(--box-color);
+    .box.use-background {
+        --background: var(--color);
+        color: var(--color-contrast)
     }
     .box.use-border {
-        --border-color: var(--box-color);
+        --border-color: var(--color);
         --background: var(--k-color-mode);
+        color: var(--k-color-mode-contrast)
     }
     .box:not(.use-custom-glow).use-glow {
         --glow-color: var(--background);
@@ -208,34 +210,41 @@
     .content {
         display: contents;
         border-radius: inherit;
+        --border: solid var(--border-width) transparent;
     }
 
 
     .direction-vertical .content > :global(*:first-child) {
-        margin-top: var(--border-width);
+        border-top: var(--border);
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
     }
 
     .direction-vertical .content > :global(*) {
-        margin-left: var(--border-width);
-        margin-right: var(--border-width);
+        border-left: var(--border);
+        border-right: var(--border);
     }
 
     .direction-vertical .content > :global(*:last-child) {
-        margin-bottom: var(--border-width);
+        border-bottom: var(--border);
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
     }
 
 
     .direction-horizontal .content > :global(*:first-child) {
-        margin-left: var(--border-width);
+        border-left: var(--border);
+        border-top-left-radius: inherit;
+        border-bottom-left-radius: inherit;
     }
 
     .direction-horizontal .content > :global(*) {
-        margin-top: var(--border-width);
-        border-bottom: var(--border-width);
+        border-top: var(--border);
+        border-bottom: var(--border);
     }
 
     .direction-horizontal .content > :global(*:last-child) {
-        margin-right: var(--border-width);
+        border-right: var(--border);
         border-top-right-radius: inherit;
         border-bottom-right-radius: inherit;
     }
