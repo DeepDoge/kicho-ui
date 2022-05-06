@@ -121,6 +121,7 @@
     Initial Styles
     ==================================== 
     */
+    
     .box {
         display: contents;
     }
@@ -145,7 +146,6 @@
     .background-effects {
         border: solid 0 transparent;
         border-width: calc(var(--border-width) - 0.2px);
-        
     }
 
     .overlay-effects {
@@ -191,14 +191,18 @@
     }
 
     .border.effect,
+    .glow.effect::before {
+        border: solid var(--border-width) transparent;
+        border-radius: inherit;
+        background-origin: border-box;
+    }
+
+    .border.effect,
     .use-border .glow.effect::before {
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask-composite: exclude;
         -webkit-mask-composite: xor;
-        background-origin: border-box;
-        border: solid var(--border-width) transparent;
-        border-radius: inherit;
     }
 
     /* 
