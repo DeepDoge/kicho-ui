@@ -7,8 +7,8 @@
 
     const dispatch = createEventDispatcher();
     export let size = "30em";
-    export let align: 'center' | 'end' | 'start' | 'stretch' = 'center'
-    export let justify: typeof align = 'center'
+    export let align: "center" | "end" | "start" | "stretch" = "center";
+    export let justify: typeof align = "center";
 
     interface HTMLDialogElement extends HTMLElement {
         open: boolean;
@@ -19,11 +19,16 @@
     let _dialogElement: HTMLElement;
     $: dialogElement = _dialogElement as HTMLDialogElement;
 
-    $: dialogElement && onActiveChange() && active;
-    function onActiveChange() {
-        if (active && !dialogElement.open) dialogElement.showModal();
-        if (!active && dialogElement.open) dialogElement.close();
+    $: dialogElement && onActiveChange(active);
+    function onActiveChange(value: typeof active) {
+        if (value && !dialogElement.open) dialogElement.showModal();
+        if (!value && dialogElement.open) dialogElement.close();
         return true;
+    }
+    function attemptClose(event: Event) {
+        dispatch("closeattempt");
+        if (preveventClose) return event.preventDefault();
+        active = false;
     }
 </script>
 
@@ -32,21 +37,17 @@
     style:--ideal-size={size}
     style:justify-content={justify}
     style:align-content={align}
-    on:keydown={(e) => {
-        if (e.key.toLowerCase() === "escape") {
-            dispatch("closeattempt");
-            if (preveventClose) return e.preventDefault();
-            active = false;
-        }
-    }}
-    on:close={() => onActiveChange()}
+    on:click={(e) => e.target === dialogElement && attemptClose(e)}
+    on:keydown={(e) => e.key.toLowerCase() === "escape" && attemptClose(e)}
+    on:close={() => onActiveChange(active)}
+    on:close
 >
     {#if active}
-    <div class="modal">
-        <KBoxEffect background border blur glow radius="normal">
-            <slot />
-        </KBoxEffect>
-    </div>
+        <div class="modal">
+            <KBoxEffect background border blur glow radius="normal">
+                <slot />
+            </KBoxEffect>
+        </div>
     {/if}
 </dialog>
 
