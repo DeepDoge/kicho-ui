@@ -1,7 +1,7 @@
 <script lang="ts">
     import KRippleEffect from "./KRippleEffect.svelte";
 
-    export let glow: typeof color | boolean = false;
+    export let glow: typeof color | 'mode-contrast' | boolean = false;
     export let background = false;
     export let blur = false;
     export let border = false;
@@ -85,11 +85,17 @@
         --background: var(--k-color-mode);
         color: var(--k-color-mode-contrast)
     }
-    .box:not(.use-custom-glow).use-glow {
+    .box.use-glow:not(.use-custom-glow) {
+        --glow-color: var(--color)
+    }
+    .box:not(.use-custom-glow).use-background.use-glow {
         --glow-color: var(--background);
     }
-    .box:not(.use-custom-glow).use-glow.use-border {
+    .box:not(.use-custom-glow).use-border.use-glow {
         --glow-color: var(--border-color);
+    }
+    .box.use-blur {
+        color: var(--k-color-mode-contrast)
     }
 
     /* 
@@ -121,7 +127,7 @@
     Initial Styles
     ==================================== 
     */
-    
+
     .box {
         display: contents;
     }
@@ -166,8 +172,8 @@
     .blur.effect {
         backdrop-filter: blur(0.3em);
     }
-    .use-blur .background.effect {
-        filter: opacity(0.85);
+    .use-blur > * > .background.effect {
+        filter: opacity(0.5);
     }
 
     /* 
@@ -198,7 +204,8 @@
     }
 
     .border.effect,
-    .use-border .glow.effect::before {
+    .use-border > .glow.effect::before/* ,
+    .box:not(.use-background) > .glow.effect::before */ {
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask-composite: exclude;

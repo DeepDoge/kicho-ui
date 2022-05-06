@@ -18,7 +18,7 @@
         <label for={id}>{label}</label>
     {/if}
     <div class="text-field" class:empty={!value}>
-        <KBoxEffect contrast blur background radius="rounded">
+        <KBoxEffect glow="gradient" background color="mode" radius="rounded">
             {#if type === "textarea"}
                 <textarea class="input" placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
             {:else}
