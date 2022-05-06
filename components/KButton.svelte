@@ -20,11 +20,12 @@
     export let color: $$Props["color"] = "gradient";
     export let radius: $$Props["radius"] = text ? "tile" : "rounded";
     export let background: $$Props["background"] = !text;
+    export let glow: $$Props['glow'] = !text
 </script>
 
 {#if href}
     <a {href} {title} on:click {disabled} class="button" class:text>
-        <KBoxEffect {...$$props} {color} {radius} {background} ripple>
+        <KBoxEffect {...$$props} {color} {radius} {glow} {background} ripple>
             <span><slot /></span>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
@@ -33,7 +34,7 @@
     </a>
 {:else}
     <button {title} on:click {disabled} class="button" class:text>
-        <KBoxEffect {...$$props} {color} {radius} {background} ripple>
+        <KBoxEffect {...$$props} {color} {radius} {glow} {background} ripple>
             <span><slot /></span>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />

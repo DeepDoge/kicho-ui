@@ -1,30 +1,49 @@
 <script lang="ts">
     import KRippleEffect from "./KRippleEffect.svelte";
 
+    export let glow: typeof color | boolean = false;
+    export let background = false;
     export let blur = false;
     export let border = false;
     export let ripple = false;
-    export let background = false;
+    export let contrast = false;
+
+    export let contentBorderDirection: "vertical" | "horizontal" | "manual" = "vertical";
 
     export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = border ? "gradient" : "mode";
-    export let size: "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
-    export let glow: "fill" | "border" | "none" = "none";
+    export let size: "smaller" | "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
     export let radius: "rounded" | "tile" | "normal" = "normal";
 
-    $: textColor = border ? "var(--k-color-mode-contrast)" : `var(--k-color-${color}-contrast)`;
+    function getColor(value: typeof color, of: "text" | "box") {
+        return (of === "text") === contrast ? `var(--k-color-${value})` : `var(--k-color-${value}-contrast)`;
+    }
+
+    $: boxColor = getColor(color, "box");
+    $: textColor = border ? getColor("mode", "text") : getColor(color, "text");
+    $: glowColor = typeof glow === "string" ? `var(--k-color-${glow})` : null;
+
+    let element: HTMLDivElement = null;
 </script>
 
 <div
-    class="box glow-{glow} radius-{radius}"
-    class:no-border={!border}
-    style:--color="var(--k-color-{color})"
-    style:color={textColor}
+    bind:this={element}
+    class="box radius-{radius} direction-{contentBorderDirection}"
+    class:use-glow={glow}
+    class:use-custom-glow={glowColor}
+    class:use-background={background}
+    class:use-blur={blur}
+    class:use-border={border}
+    class:use-contrast={contrast}
     style:font-size="var(--k-font-{size})"
+    style:color={textColor}
+    style:--box-color={boxColor}
+    style:--glow-color={glowColor}
 >
     {#if glow}
         <div class="glow effect" />
     {/if}
     <slot name="under-effects" />
+
     <div class="background-effects effect">
         {#if blur}
             <div class="blur effect" />
@@ -34,82 +53,130 @@
         {/if}
         <slot name="background-effects" />
     </div>
+
     {#if border}
         <div class="border effect" />
     {/if}
+
     <div class="content">
         <slot />
     </div>
 
     <div class="overlay-effects effect">
         {#if ripple}
-            <KRippleEffect />
+            <KRippleEffect element={element?.parentElement} />
         {/if}
         <slot name="overlay-effects" />
     </div>
 </div>
 
 <style>
+    /* 
+    ====================================
+    Color Settings
+    ==================================== 
+    */
     .box {
-        display: contents;
-        --border-color: var(--color);
-        --glow-color: var(--border-color);
-        --background: var(--k-color-mode);
-        --border-width: var(--k-border-width);
+        --background: var(--box-color);
     }
-    .box > .effect {
-        border-radius: inherit;
-        overflow: hidden;
-        pointer-events: none;
+    .box.use-border {
+        --border-color: var(--box-color);
+        --background: var(--k-color-mode);
+    }
+    .box:not(.use-custom-glow).use-glow {
+        --glow-color: var(--background);
+    }
+    .box:not(.use-custom-glow).use-glow.use-border {
+        --glow-color: var(--border-color);
     }
 
-    .effect {
-        position: absolute;
-        inset: 0;
+    /* 
+    ====================================
+    Layout Settings
+    ==================================== 
+    */
+
+    .box {
+        --border-width: 0em;
+    }
+    .box.use-border > :global(*),
+    .box.use-glow > .glow {
+        --border-width: var(--k-border-width);
     }
 
     .radius-normal {
         border-radius: var(--k-border-radius);
     }
-    .radius-tile {
-        border-radius: 0em;
-    }
     .radius-rounded {
         border-radius: var(--k-border-radius-rounded);
     }
-    .no-border {
-        --background: var(--color);
+    .radius-tile {
+        border-radius: 0em;
     }
 
-    .background.effect {
-        background-color: var(--background);
-        background-image: var(--background);
+    /* 
+    ====================================
+    Initial Styles
+    ==================================== 
+    */
+    .box {
+        display: contents;
     }
-    .blur.effect + .background.effect {
-        filter: opacity(0.85);
+    .effect,
+    .effect::before,
+    .effect::after {
+        position: absolute;
+        inset: 0;
     }
-    .blur.effect {
-        backdrop-filter: blur(0.3em);
+
+    /* 
+    ====================================
+    Effect Areas & Top Level Effects
+    ==================================== 
+    */
+
+    .box > .effect {
+        border-radius: inherit;
+        overflow: hidden;
     }
 
     .background-effects {
         border: solid 0 transparent;
         border-width: calc(var(--border-width) - 0.2px);
+        
     }
 
-    .glow.effect::before,
+    .overlay-effects {
+        pointer-events: none;
+    }
+
+    /* 
+    ====================================
+    Background Effects
+    ==================================== 
+    */
+
+    .background.effect {
+        background-color: var(--background);
+        background-image: var(--background);
+    }
+
+    .blur.effect {
+        backdrop-filter: blur(0.3em);
+    }
+    .use-blur .background.effect {
+        filter: opacity(0.85);
+    }
+
+    /* 
+    ====================================
+    Border & Glow Effects
+    ==================================== 
+    */
+
     .border.effect {
-        position: absolute;
-        inset: 0;
         background-color: var(--border-color);
         background-image: var(--border-color);
-        background-origin: border-box;
-        border: solid var(--border-width) transparent;
-
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        -webkit-mask-composite: xor;
     }
 
     .glow.effect {
@@ -120,39 +187,56 @@
         background-color: var(--glow-color);
         background-image: var(--glow-color);
     }
-    .glow-none .glow.effect {
-        opacity: 0;
+
+    .border.effect,
+    .use-border .glow.effect::before {
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        -webkit-mask-composite: xor;
+        background-origin: border-box;
+        border: solid var(--border-width) transparent;
+        border-radius: inherit;
     }
-    .glow-fill .glow.effect::before {
-        mask: unset;
-        -webkit-mask: unset;
-        mask-composite: unset;
-        -webkit-mask-composite: unset;
-    }
-    .no-border > *:not(.glow) {
-        --border-width: 0em;
-    }
+
+    /* 
+    ====================================
+    Content
+    ==================================== 
+    */
 
     .content {
         display: contents;
-    }
-
-    .content > :global(*:only-of-type) {
-        border: solid var(--border-width) transparent;
         border-radius: inherit;
-        overflow: hidden;
     }
 
-    .content > :global(*:not(:only-of-type)) {
-        all: initial !important;
-        font-size: inherit !important;
-        position: absolute !important;
-        inset: 0 !important;
-        background-color: red !important;
-        color: transparent !important;
+
+    .direction-vertical .content > :global(*:first-child) {
+        margin-top: var(--border-width);
     }
-    .content > :global(*:not(:only-of-type))::before {
-        content: "Invalid";
-        color: white !important;
+
+    .direction-vertical .content > :global(*) {
+        margin-left: var(--border-width);
+        margin-right: var(--border-width);
+    }
+
+    .direction-vertical .content > :global(*:last-child) {
+        margin-bottom: var(--border-width);
+    }
+
+
+    .direction-horizontal .content > :global(*:first-child) {
+        margin-left: var(--border-width);
+    }
+
+    .direction-horizontal .content > :global(*) {
+        margin-top: var(--border-width);
+        border-bottom: var(--border-width);
+    }
+
+    .direction-horizontal .content > :global(*:last-child) {
+        margin-right: var(--border-width);
+        border-top-right-radius: inherit;
+        border-bottom-right-radius: inherit;
     }
 </style>

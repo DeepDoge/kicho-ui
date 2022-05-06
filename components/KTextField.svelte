@@ -1,6 +1,5 @@
 <script lang="ts">
-    import KBackgroundEffect from "./effects/KBackgroundEffect.svelte";
-    import KBorderEffect from "./effects/KBorderEffect.svelte";
+    import KBoxEffect from "./effects/KBoxEffect.svelte";
 
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
     export let id: string = crypto.randomUUID();
@@ -19,14 +18,13 @@
         <label for={id}>{label}</label>
     {/if}
     <div class="text-field" class:empty={!value}>
-        <KBorderEffect>
-            <KBackgroundEffect blur />
-        </KBorderEffect>
-        {#if type === "textarea"}
-            <textarea class="input" placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
-        {:else}
-            <input class="input" bind:this={el} placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
-        {/if}
+        <KBoxEffect contrast blur background radius="rounded">
+            {#if type === "textarea"}
+                <textarea class="input" placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
+            {:else}
+                <input class="input" bind:this={el} placeholder="..." bind:value on:input {required} {disabled} {id} {name} />
+            {/if}
+        </KBoxEffect>
     </div>
 </div>
 
@@ -41,14 +39,6 @@
         font: inherit;
         color: inherit;
         padding: calc(var(--k-padding));
-    }
-    .text-field {
-        --background: var(--k-color-mode-contrast);
-        --background-opacity: 0.05;
-        --border-radius: var(--k-border-radius-rounded);
-    }
-    .text-field:focus-within {
-        --background-opacity: 0.1;
     }
 
     .input:disabled {

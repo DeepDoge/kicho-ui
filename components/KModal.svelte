@@ -36,7 +36,7 @@
     on:close={() => onActiveChange()}
 >
     {#if active}
-        <KBoxEffect background blur radius="rounded">
+        <KBoxEffect background border blur radius="rounded">
             <div class="dialog-content">
                 <slot />
             </div>
