@@ -1,7 +1,7 @@
 <script lang="ts">
     import KRippleEffect from "./KRippleEffect.svelte";
 
-    export let glow: typeof color | 'mode-contrast' | boolean = false;
+    export let glow: typeof color | "mode-contrast" | boolean = false;
     export let background = false;
     export let blur = false;
     export let border = false;
@@ -78,15 +78,15 @@
     */
     .box.use-background {
         --background: var(--color);
-        color: var(--color-contrast)
+        color: var(--color-contrast);
     }
     .box.use-border {
         --border-color: var(--color);
         --background: var(--k-color-mode);
-        color: var(--k-color-mode-contrast)
+        color: var(--k-color-mode-contrast);
     }
     .box.use-glow:not(.use-custom-glow) {
-        --glow-color: var(--color)
+        --glow-color: var(--color);
     }
     .box:not(.use-custom-glow).use-background.use-glow {
         --glow-color: var(--background);
@@ -95,7 +95,7 @@
         --glow-color: var(--border-color);
     }
     .box.use-blur {
-        color: var(--k-color-mode-contrast)
+        color: var(--k-color-mode-contrast);
     }
 
     /* 
@@ -224,7 +224,6 @@
         --border: solid var(--border-width) transparent;
     }
 
-
     .direction-vertical .content > :global(*:first-child) {
         border-top: var(--border);
         border-top-left-radius: inherit;
@@ -241,7 +240,6 @@
         border-bottom-left-radius: inherit;
         border-bottom-right-radius: inherit;
     }
-
 
     .direction-horizontal .content > :global(*:first-child) {
         border-left: var(--border);

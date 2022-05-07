@@ -7,6 +7,6 @@
 
 <style>
     img {
-        color: transparent
+        color: transparent;
     }
 </style>

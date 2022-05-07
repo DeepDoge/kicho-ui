@@ -1,14 +1,11 @@
 <script lang="ts">
-    import { onDestroy, onMount } from "svelte";
-
     export let disabled: boolean = false;
-    export let element: HTMLElement = null
+    export let element: HTMLElement = null;
     let containerElement: HTMLDivElement;
-    $: parent = element ?? containerElement?.parentElement
+    $: parent = element ?? containerElement?.parentElement;
 
-    $: parent && parentChange()
-    function parentChange()
-    {
+    $: parent && parentChange();
+    function parentChange() {
         parent.removeEventListener("mousedown", onMouseDown);
         parent.removeEventListener("touchstart", onMouseDown);
 
@@ -50,7 +47,7 @@
         size =
             bound.width > bound.height
                 ? bound.width + bound.width * (Math.abs(x - bound.width / 2) / (bound.width / 2))
-                : bound.height + bound.height * (Math.abs(y - bound.height / 2) / (bound.height / 2))
+                : bound.height + bound.height * (Math.abs(y - bound.height / 2) / (bound.height / 2));
 
         mousePoint = `translate(${x}px, ${y}px)`;
     };
@@ -71,7 +68,7 @@
 <style>
     .ripple-container {
         --opacity: 0.2;
-        --duration: .5s;
+        --duration: 0.5s;
         --grow-start: translate(-50%, -50%) var(--mouse-point) scale(0);
         --grow-end: translate(-50%, -50%) var(--mouse-point) scale(1);
         position: absolute;
@@ -90,7 +87,7 @@
         border-radius: 10000vw;
         opacity: 0;
         transition: opacity ease-in-out calc(var(--duration) * 1);
-        transform: var(--grow-end)
+        transform: var(--grow-end);
     }
 
     .visible .ripple {
@@ -103,10 +100,10 @@
 
     @keyframes grow {
         0% {
-            transform: var(--grow-start)
+            transform: var(--grow-start);
         }
         100% {
-            transform: var(--grow-end)
+            transform: var(--grow-end);
         }
     }
 

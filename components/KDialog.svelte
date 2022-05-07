@@ -1,6 +1,9 @@
 <script context="module" lang="ts">
-    import { writable } from "svelte/store";
     import type { Writable } from "svelte/store";
+    import { writable } from "svelte/store";
+    import KButton from "./KButton.svelte";
+    import KModal from "./KModal.svelte";
+    import KTextField from "./KTextField.svelte";
     type Message = string;
     type Dialog = { type: "alert" | "prompt" | "confirm"; message: Message; resolve: (data: string | boolean | null) => void };
     type DialogManager = ReturnType<typeof createDialogManager>;
@@ -14,7 +17,7 @@
         function remove(id: string) {
             dialogs.update((data) => {
                 delete data[id];
-                return {...data};
+                return { ...data };
             });
         }
 
@@ -64,10 +67,6 @@
 </script>
 
 <script lang="ts">
-    import KButton from "./KButton.svelte";
-    import KModal from "./KModal.svelte";
-    import KTextField from "./KTextField.svelte";
-
     export let dialogManager: DialogManager;
     $: dialogs = dialogManager.dialogs;
     $: currentDialog = Object.values($dialogs)?.[0] ?? null;

@@ -1,5 +1,5 @@
 <script lang="ts">
-    </script>
+</script>
 
 <span class="chip">
     <span>
@@ -10,6 +10,6 @@
 <style>
     .chip {
         display: inline-block;
-        padding: calc(var(--k-padding) * .25) calc(var(--k-padding) * .5);
+        padding: calc(var(--k-padding) * 0.25) calc(var(--k-padding) * 0.5);
     }
 </style>

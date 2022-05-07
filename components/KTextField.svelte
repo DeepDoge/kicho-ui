@@ -6,7 +6,7 @@
     export let name: string = null;
     export let value: string = null;
     export let label: string = null;
-    export let placeholder: string = null
+    export let placeholder: string = null;
     export let required = false;
     export let disabled = false;
 

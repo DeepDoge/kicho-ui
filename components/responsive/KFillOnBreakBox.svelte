@@ -1,17 +1,17 @@
 <script lang="ts">
-    export let minimumEmptySpace: string = '20rem';
-    export let gap: string = 'var(--k-padding)';
+    export let minimumEmptySpace: string = "20rem";
+    export let gap: string = "var(--k-padding)";
 </script>
 
 <div class="fill-on-break" style:--break-at={minimumEmptySpace} style:--gap={gap}>
-    <slot></slot>
+    <slot />
 </div>
 
 <style>
     .fill-on-break {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--gap)
+        gap: var(--gap);
     }
 
     .fill-on-break > :global(*),
