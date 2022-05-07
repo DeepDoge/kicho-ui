@@ -138,3 +138,20 @@ hr {
     background-color: currentColor;
     background-clip: content-box;
 }
+
+.text-inline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-multiline {
+    word-break: break-all;
+    hyphens: auto;
+}
+
+.text-background-clip {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}

@@ -7,11 +7,12 @@
     export let border = false;
     export let ripple = false;
     export let contrast = false;
+    export let fixed = false
 
     export let contentBorderDirection: "vertical" | "horizontal" | "manual" = "vertical";
 
     export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = "gradient";
-    export let size: "smaller" | "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
+    export let size: "xx-smaller" | "x-smaller" | "smaller" | "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
     export let radius: "rounded" | "tile" | "normal" = "normal";
 
     function getColor(value: typeof color, isContrast: boolean) {
@@ -34,6 +35,7 @@
     class:use-blur={blur}
     class:use-border={border}
     class:use-contrast={contrast}
+    class:use-fixed={fixed}
     style:font-size="var(--k-font-{size})"
     style:--color-contrast={boxColorContrast}
     style:--color={boxColor}
@@ -135,7 +137,7 @@
     .effect::before,
     .effect::after {
         position: absolute;
-        inset: 0;
+        inset: -.1px;
     }
 
     /* 
@@ -170,10 +172,13 @@
     }
 
     .blur.effect {
-        backdrop-filter: blur(0.3em);
+        backdrop-filter: blur(0.15rem);
     }
     .use-blur > * > .background.effect {
         filter: opacity(0.7);
+    }
+    .use-fixed > * > .background.effect {
+        background-attachment: fixed;
     }
 
     /* 
@@ -185,6 +190,8 @@
     .border.effect {
         background-color: var(--border-color);
         background-image: var(--border-color);
+        text-rendering: geometricPrecision;
+        shape-rendering: geometricPrecision;
     }
 
     .glow.effect {
@@ -206,10 +213,18 @@
     .border.effect,
     .use-border > .glow.effect::before/* ,
     .box:not(.use-background) > .glow.effect::before */ {
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
         mask-composite: exclude;
         -webkit-mask-composite: xor;
+    }
+
+    .use-fixed > .border.effect {
+        background-attachment: fixed;
+    }
+
+    .use-fixed > .glow.effect {
+        background-attachment: fixed;
     }
 
     /* 

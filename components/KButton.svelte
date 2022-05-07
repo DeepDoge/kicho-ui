@@ -24,18 +24,18 @@
 </script>
 
 {#if href}
-    <a {href} {title} on:click {disabled} class="button" class:text>
+    <a {href} {title} aria-label={title} on:click {disabled} class="button" class:text>
         <KBoxEffect {...$$props} {color} {radius} {glow} {background} ripple>
-            <span><slot /></span>
+            <div class="content text-inline"><slot /></div>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
             </svelte:fragment>
         </KBoxEffect>
     </a>
 {:else}
-    <button {title} on:click {disabled} class="button" class:text>
+    <button {title} aria-label={title} on:click {disabled} class="button" class:text>
         <KBoxEffect {...$$props} {color} {radius} {glow} {background} ripple>
-            <span><slot /></span>
+            <div class="content text-inline"><slot /></div>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
             </svelte:fragment>

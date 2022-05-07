@@ -3,6 +3,8 @@
     import KBoxEffect from "./effects/KBoxEffect.svelte";
 
     export let active = false;
+    let _delayedActiveTimeout = -1;
+    let delayedActive = active
     export let preveventClose = false;
 
     const dispatch = createEventDispatcher();
@@ -21,6 +23,10 @@
 
     $: dialogElement && onActiveChange(active);
     function onActiveChange(value: typeof active) {
+        if (_delayedActiveTimeout > 0) clearTimeout(_delayedActiveTimeout)
+        if (!value) setTimeout(() => delayedActive = active, 1000)
+        else delayedActive = value
+
         if (value && !dialogElement.open) dialogElement.showModal();
         if (!value && dialogElement.open) dialogElement.close();
         return true;
@@ -42,7 +48,10 @@
     on:close={() => onActiveChange(active)}
     on:close
 >
-    {#if active}
+    {#if delayedActive}
+        <div class="blur"></div>
+        <div class="background"></div>
+        <div class="background-dim"></div>
         <div class="modal">
             <KBoxEffect background border blur glow radius="normal">
                 <slot />
@@ -62,25 +71,42 @@
         grid-template-columns: min(var(--ideal-size), 100%);
 
         padding: 6px;
+        opacity: 1;
+
+        transition: var(--k-transition);
+        transition-property: opacity;
     }
 
     dialog:not([open]) {
-        display: none;
+        opacity: 0;
+        pointer-events: none;
     }
 
     .modal {
         padding: calc(var(--k-padding) * 4);
     }
 
-    dialog::before {
-        content: "";
-        position: fixed;
+    dialog > *:not(.modal) {
+        pointer-events: none;
+    }
+
+    .blur {
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(.025rem);
+    }
+
+    .background {
+        position: absolute;
+        inset: 0;
+        background-image: var(--k-color-gradient);
+        opacity: .1;
+    }
+    .background-dim {
+        position: absolute;
         inset: 0;
         background-color: var(--k-color-mode);
-        background-image: var(--k-color-gradient);
-        background-blend-mode: multiply;
-        opacity: 0.25;
-        backdrop-filter: blur(0.05rem);
+        opacity: .3;
     }
 
     dialog::backdrop {
