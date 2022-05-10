@@ -4,7 +4,7 @@
 
     export let active = false;
     let _delayedActiveTimeout = -1;
-    let delayedActive = active
+    let delayedActive = active;
     export let preveventClose = false;
 
     const dispatch = createEventDispatcher();
@@ -23,9 +23,9 @@
 
     $: dialogElement && onActiveChange(active);
     function onActiveChange(value: typeof active) {
-        if (_delayedActiveTimeout > 0) clearTimeout(_delayedActiveTimeout)
-        if (!value) setTimeout(() => delayedActive = active, 1000)
-        else delayedActive = value
+        if (_delayedActiveTimeout > 0) clearTimeout(_delayedActiveTimeout);
+        if (!value) setTimeout(() => (delayedActive = active), 1000);
+        else delayedActive = value;
 
         if (value && !dialogElement.open) dialogElement.showModal();
         if (!value && dialogElement.open) dialogElement.close();
@@ -49,12 +49,14 @@
     on:close
 >
     {#if delayedActive}
-        <div class="blur"></div>
-        <div class="background"></div>
-        <div class="background-dim"></div>
+        <div class="blur" />
+        <div class="background" />
+        <div class="background-dim" />
         <div class="modal">
             <KBoxEffect background border blur glow radius="normal">
-                <slot />
+                <div class="content">
+                    <slot />
+                </div>
             </KBoxEffect>
         </div>
     {/if}
@@ -83,7 +85,17 @@
     }
 
     .modal {
+        display: flex;
+        max-height: 100%;
+        overflow: hidden;
+    }
+
+    .content {
+        width: 100%;
         padding: calc(var(--k-padding) * 4);
+
+        max-height: inherit;
+        overflow-y: auto;
     }
 
     dialog > *:not(.modal) {
@@ -93,20 +105,20 @@
     .blur {
         position: absolute;
         inset: 0;
-        backdrop-filter: blur(.025rem);
+        backdrop-filter: blur(0.025rem);
     }
 
     .background {
         position: absolute;
         inset: 0;
         background-image: var(--k-color-gradient);
-        opacity: .1;
+        opacity: 0.1;
     }
     .background-dim {
         position: absolute;
         inset: 0;
         background-color: var(--k-color-mode);
-        opacity: .3;
+        opacity: 0.3;
     }
 
     dialog::backdrop {

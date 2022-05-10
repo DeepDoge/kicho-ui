@@ -89,7 +89,7 @@
 <KModal align="end" active={!!currentDialog} on:close={() => currentDialog?.resolve(null)}>
     <form method="dialog" on:submit|preventDefault={onSubmit}>
         <div class="fields">
-            <pre>{currentDialog?.message}</pre>
+            <pre class="text-multiline">{currentDialog?.message}</pre>
             {#if currentDialog?.type === "prompt"}
                 <KTextField type="text" bind:value />
             {/if}
@@ -117,5 +117,7 @@
     .actions {
         display: grid;
         grid-auto-flow: row;
+        position: sticky;
+        bottom: 0;
     }
 </style>

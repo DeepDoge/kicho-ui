@@ -62,10 +62,9 @@
     .button.text {
         padding: 0;
     }
-    .button div {
-        margin: auto;
-        width: 100%;
-        height: 100%;
+    .button .content {
+        display: grid;
+        place-items: center;
     }
     .hover-glass {
         position: absolute;
