@@ -1,4 +1,3 @@
-<div class="loading-blur kicho-effect" />
 <div class="loading kicho-effect" />
 
 <style>
@@ -25,12 +24,5 @@
         to {
             transform: translateX(100%);
         }
-    }
-
-    .loading-blur {
-        display: none;
-        position: absolute;
-        inset: 0;
-        backdrop-filter: blur(.25rem);
     }
 </style>

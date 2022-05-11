@@ -1,4 +1,5 @@
 <script lang="ts">
+    import KLoadingEffect from "./KLoadingEffect.svelte";
     import KRippleEffect from "./KRippleEffect.svelte";
 
     export let glow: typeof color | "mode-contrast" | boolean = false;
@@ -7,7 +8,8 @@
     export let border = false;
     export let ripple = false;
     export let contrast = false;
-    export let fixed = false
+    export let fixed = false;
+    export let loading = false;
 
     export let contentBorderDirection: "vertical" | "horizontal" | "manual" = "vertical";
 
@@ -29,6 +31,7 @@
 <div
     bind:this={element}
     class="box radius-{radius} direction-{contentBorderDirection}"
+    class:loading
     class:use-glow={glow}
     class:use-custom-glow={glowColor}
     class:use-background={background}
@@ -67,6 +70,9 @@
     <div class="overlay-effects effect">
         {#if ripple}
             <KRippleEffect element={element?.parentElement} />
+        {/if}
+        {#if loading}
+            <KLoadingEffect />
         {/if}
         <slot name="overlay-effects" />
     </div>
@@ -137,7 +143,7 @@
     .effect::before,
     .effect::after {
         position: absolute;
-        inset: -.1px;
+        inset: -0.1px;
     }
 
     /* 
@@ -237,6 +243,10 @@
         display: contents;
         border-radius: inherit;
         --border: solid var(--border-width) transparent;
+    }
+
+    .loading > .content {
+        visibility: hidden;
     }
 
     .direction-vertical .content > :global(*:first-child) {
