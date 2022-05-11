@@ -13,6 +13,7 @@
     }
 
     export let disabled: $$Props["disabled"] = false;
+    export let loading: $$Props['loading'] = false;
     export let href: $$Props["href"] = null;
     export let title: $$Props["title"] = null;
     export let text: $$Props["text"] = false;
@@ -25,7 +26,7 @@
 
 {#if href}
     <a {href} {title} aria-label={title} on:click {disabled} class="button" class:text>
-        <KBoxEffect {...$$props} {color} {radius} {glow} {background} ripple>
+        <KBoxEffect {...$$props} {color} {radius} {glow} {background} {loading} ripple>
             <div class="content text-inline"><slot /></div>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
@@ -33,8 +34,8 @@
         </KBoxEffect>
     </a>
 {:else}
-    <button {title} aria-label={title} on:click {disabled} class="button" class:text>
-        <KBoxEffect {...$$props} {color} {radius} {glow} {background} ripple>
+    <button {title} aria-label={title} on:click disabled={disabled || loading} class:disabled class:loading class="button" class:text>
+        <KBoxEffect {...$$props} {color} {radius} {glow} {background} {loading} ripple>
             <div class="content text-inline"><slot /></div>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
@@ -76,12 +77,16 @@
         transition-property: opacity;
         opacity: 0;
     }
-    .button:hover .hover-glass {
+    .button:not(.loading):hover .hover-glass {
         opacity: 1;
     }
 
-    .button:disabled {
+    .button.disabled {
         filter: saturate(0) !important;
         cursor: not-allowed !important;
+    }
+
+    .button.loading {
+        cursor: wait;
     }
 </style>

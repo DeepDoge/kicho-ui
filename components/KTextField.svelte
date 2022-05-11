@@ -19,7 +19,7 @@
         <label for={id}>{label}</label>
     {/if}
     <div class="text-field" class:empty={!value}>
-        <KBoxEffect border background color="gradient" radius="normal">
+        <KBoxEffect border background color="gradient" radius="tile">
             {#if type === "textarea"}
                 <textarea class="input" {placeholder} bind:value on:input {required} {disabled} {id} {name} />
             {:else}

@@ -10,7 +10,7 @@
     export let contrast = false;
     export let fixed = false;
     export let loading = false;
-
+    export let hideContent = false
     export let contentBorderDirection: "vertical" | "horizontal" | "manual" = "vertical";
 
     export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = "gradient";
@@ -32,6 +32,7 @@
     bind:this={element}
     class="box radius-{radius} direction-{contentBorderDirection}"
     class:loading
+    class:hide-content={hideContent}
     class:use-glow={glow}
     class:use-custom-glow={glowColor}
     class:use-background={background}
@@ -245,7 +246,7 @@
         --border: solid var(--border-width) transparent;
     }
 
-    .loading > .content {
+    .hide-content > .content {
         visibility: hidden;
     }
 
