@@ -146,7 +146,7 @@ hr {
 }
 
 .text-multiline {
-    word-break: break-all;
+    word-break: k--break-word;
     hyphens: auto;
 }
 
