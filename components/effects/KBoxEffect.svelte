@@ -28,7 +28,7 @@
     let element: HTMLDivElement = null;
 </script>
 
-<div
+<k--
     bind:this={element}
     class="box radius-{radius} direction-{contentBorderDirection}"
     class:loading
@@ -46,29 +46,29 @@
     style:--glow-color={glowColor}
 >
     {#if glow}
-        <div class="glow effect" />
+        <k-- class="glow effect" />
     {/if}
     <slot name="under-effects" />
 
-    <div class="background-effects effect">
+    <k-- class="background-effects effect">
         {#if blur}
-            <div class="blur effect" />
+            <k-- class="blur effect" />
         {/if}
         {#if background}
-            <div class="background effect" />
+            <k-- class="background effect" />
         {/if}
         <slot name="background-effects" />
-    </div>
+    </k-->
 
     {#if border}
-        <div class="border effect" />
+        <k-- class="border effect" />
     {/if}
 
-    <div class="content">
+    <k-- class="content">
         <slot />
-    </div>
+    </k-->
 
-    <div class="overlay-effects effect">
+    <k-- class="overlay-effects effect">
         {#if ripple}
             <KRippleEffect element={element?.parentElement} />
         {/if}
@@ -76,8 +76,8 @@
             <KLoadingEffect />
         {/if}
         <slot name="overlay-effects" />
-    </div>
-</div>
+    </k-->
+</k-->
 
 <style>
     /* 

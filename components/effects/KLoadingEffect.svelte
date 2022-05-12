@@ -1,4 +1,4 @@
-<div class="loading kicho-effect" />
+<k-- class="loading" />
 
 <style>
     .loading {

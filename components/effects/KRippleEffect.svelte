@@ -53,17 +53,17 @@
     };
 </script>
 
-<div
+<k--
     bind:this={containerElement}
-    class="kicho-effect ripple-container"
+    class="ripple-container"
     class:disabled
     style:--mouse-point={mousePoint}
     style:--size={size * 1.5}
     class:animate
     class:visible
 >
-    <div class="ripple" on:animationstart={() => (animating = true)} on:animationend={() => (animate = animating = false)} />
-</div>
+    <k-- class="ripple" on:animationstart={() => (animating = true)} on:animationend={() => (animate = animating = false)} />
+</k-->
 
 <style>
     .ripple-container {
