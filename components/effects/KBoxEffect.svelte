@@ -144,7 +144,7 @@
     .effect::before,
     .effect::after {
         position: absolute;
-        inset: -0.1px;
+        inset: 0;
     }
 
     /* 
