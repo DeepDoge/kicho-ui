@@ -5,16 +5,13 @@
 
     interface $$Props extends BoxEffectProps {}
 
-    export let background: $$Props["background"] = false;
-    export let border: $$Props["border"] = true;
+    export let background: $$Props["background"] = true;
     export let glow: $$Props["glow"] = true;
-    export let fixed: $$Props['fixed'] = true;
-    export let size: $$Props['size'] = 'x-smaller'
-    export let radius: $$Props['radius'] ='tile'
+    export let size: $$Props['size'] = 'smaller'
 </script>
 
 <span class="chip">
-    <KBoxEffect {...$$props} {background} {fixed} {radius} {border} {glow} {size}>
+    <KBoxEffect {...$$props} {background} {glow} {size}>
         <div class="chip-inner">
             <slot />
         </div>

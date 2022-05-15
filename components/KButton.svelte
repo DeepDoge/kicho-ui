@@ -58,7 +58,7 @@
         cursor: pointer;
     }
     .button {
-        padding: 0.2em;
+        padding: 0.2em .5em;
     }
     .button.text {
         padding: 0;
