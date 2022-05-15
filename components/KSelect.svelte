@@ -17,7 +17,7 @@
 
 <div class="select" tabindex="-1">
     <KBoxEffect background border>
-        <span class="current">{value}</span>
+        <span class="current" tabindex="-1">{value}</span>
     </KBoxEffect>
     <div class="options">
         <KBoxEffect border background>
@@ -82,5 +82,8 @@
 
     .select:not(:focus) .options {
         display: none;
+    }
+    .select:focus .current {
+        pointer-events: all;
     }
 </style>
