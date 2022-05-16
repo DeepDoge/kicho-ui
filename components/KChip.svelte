@@ -7,7 +7,7 @@
 
     export let background: $$Props["background"] = true;
     export let glow: $$Props["glow"] = true;
-    export let size: $$Props['size'] = 'smaller'
+    export let size: $$Props["size"] = "smaller";
 </script>
 
 <span class="chip">

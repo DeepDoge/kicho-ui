@@ -10,7 +10,7 @@
     export let contrast = false;
     export let fixed = false;
     export let loading = false;
-    export let hideContent = false
+    export let hideContent = false;
     export let contentBorderDirection: "vertical" | "horizontal" | "manual" = "vertical";
 
     export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = "gradient";

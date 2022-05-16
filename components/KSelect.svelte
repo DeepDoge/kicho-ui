@@ -6,10 +6,9 @@
     export let options: OptionsType;
     export let value: keyof typeof options = Object.keys(options)[0];
 
-    $: options && onOptionsChange()
-    function onOptionsChange()
-    {
-        value = Object.keys(options)[0]
+    $: options && onOptionsChange();
+    function onOptionsChange() {
+        value = Object.keys(options)[0];
     }
 
     let id = (typeof window !== "undefined" ? window.crypto : crypto).randomUUID();

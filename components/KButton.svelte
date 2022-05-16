@@ -13,7 +13,7 @@
     }
 
     export let disabled: $$Props["disabled"] = false;
-    export let loading: $$Props['loading'] = false;
+    export let loading: $$Props["loading"] = false;
     export let href: $$Props["href"] = null;
     export let title: $$Props["title"] = null;
     export let text: $$Props["text"] = false;
@@ -21,7 +21,7 @@
     export let color: $$Props["color"] = "gradient";
     export let radius: $$Props["radius"] = text ? "tile" : "rounded";
     export let background: $$Props["background"] = !text;
-    export let glow: $$Props['glow'] = false
+    export let glow: $$Props["glow"] = false;
 </script>
 
 {#if href}
@@ -58,7 +58,7 @@
         cursor: pointer;
     }
     .button {
-        padding: 0.2em .5em;
+        padding: 0.2em 0.5em;
     }
     .button.text {
         padding: 0;

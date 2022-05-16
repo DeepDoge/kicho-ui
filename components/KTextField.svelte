@@ -1,9 +1,9 @@
 <script lang="ts">
+    import crypto from "crypto";
     import KBoxEffect from "./effects/KBoxEffect.svelte";
-    import crypto from 'crypto'
 
     export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
-    export let id: string = (typeof window !== 'undefined' ? window.crypto : crypto).randomUUID();
+    export let id: string = (typeof window !== "undefined" ? window.crypto : crypto).randomUUID();
     export let name: string = null;
     export let value: string = null;
     export let label: string = null;
