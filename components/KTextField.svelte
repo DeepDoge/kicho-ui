@@ -2,14 +2,29 @@
     import crypto from "crypto";
     import KBoxEffect from "./effects/KBoxEffect.svelte";
 
-    export let type: "text" | "password" | "email" | "tel" | "textarea" = "text";
-    export let id: string = (typeof window !== "undefined" ? window.crypto : crypto).randomUUID();
-    export let name: string = null;
-    export let value: string = null;
-    export let label: string = null;
-    export let placeholder: string = null;
-    export let required = false;
-    export let disabled = false;
+    type BoxEffectProps = KBoxEffect["$$prop_def"];
+    interface $$Props extends BoxEffectProps {
+        type?: "text" | "password" | "email" | "tel" | "textarea";
+        id?: string;
+        name?: string;
+        value?: string;
+        label?: string;
+        placeholder?: string;
+        required?: boolean;
+        disabled?: boolean;
+    }
+
+    export let type: $$Props["type"] = "text";
+    export let id: $$Props["id"] = (typeof window !== "undefined" ? window.crypto : crypto).randomUUID();
+    export let name: $$Props["name"] = null;
+    export let value: $$Props["value"] = null;
+    export let label: $$Props["label"] = null;
+    export let placeholder: $$Props["placeholder"] = null;
+    export let required: $$Props["required"] = false;
+    export let disabled: $$Props["disabled"] = false;
+
+    export let color: $$Props["color"] = "mode-contrast";
+    export let background: $$Props["background"] = true;
 
     let el: HTMLInputElement;
     $: el && (el.type = type);
@@ -20,7 +35,7 @@
         <label for={id}>{label}</label>
     {/if}
     <div class="text-field" class:empty={!value}>
-        <KBoxEffect border background color="gradient">
+        <KBoxEffect {background} {color}>
             {#if type === "textarea"}
                 <textarea class="input" {placeholder} bind:value on:input {required} {disabled} {id} {name} />
             {:else}

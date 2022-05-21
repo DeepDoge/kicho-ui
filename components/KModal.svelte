@@ -5,7 +5,7 @@
     export let active = false;
     let _delayedActiveTimeout = -1;
     let delayedActive = active;
-    export let preveventClose = false;
+    export let preventClose = false;
 
     const dispatch = createEventDispatcher();
     export let size = "30em";
@@ -33,7 +33,7 @@
     }
     function attemptClose(event: Event) {
         dispatch("closeattempt");
-        if (preveventClose) return event.preventDefault();
+        if (preventClose) return event.preventDefault();
         active = false;
     }
 </script>

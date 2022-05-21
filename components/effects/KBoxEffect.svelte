@@ -1,25 +1,33 @@
 <script lang="ts">
+    import type { Colors } from "$lib/kicho-ui/styleTypes";
+
     import KLoadingEffect from "./KLoadingEffect.svelte";
     import KRippleEffect from "./KRippleEffect.svelte";
 
-    export let glow: typeof color | "mode-contrast" | boolean = false;
+    export let glow: Colors | "mode-contrast" | boolean = false;
     export let background = false;
     export let blur = false;
     export let border = false;
     export let ripple = false;
-    export let contrast = false;
     export let fixed = false;
     export let loading = false;
     export let hideContent = false;
     export let contentBorderDirection: "vertical" | "horizontal" | "manual" = "vertical";
 
-    export let color: "master" | "slave" | "error" | "mode" | "gradient" | "dark" | "light" = "gradient";
+    export let color: Colors = "mode";
     export let size: "xx-smaller" | "x-smaller" | "smaller" | "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
     export let radius: "rounded" | "tile" | "normal" = "normal";
 
     function getColor(value: typeof color, isContrast: boolean) {
-        return isContrast === contrast ? `var(--k-color-${value})` : `var(--k-color-${value}-contrast)`;
+        if (contrast) {
+            return `var(--k-color-${isContrast ? value.substring(0, value.length - contrastSuffix.length) : value})`;
+        } else {
+            return `var(--k-color-${isContrast ? `${value}${contrastSuffix}` : value})`;
+        }
     }
+
+    const contrastSuffix = "-contrast";
+    $: contrast = color.endsWith(contrastSuffix);
 
     $: boxColor = getColor(color, false);
     $: boxColorContrast = getColor(color, true);

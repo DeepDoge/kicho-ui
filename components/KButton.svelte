@@ -18,15 +18,22 @@
     export let title: $$Props["title"] = null;
     export let text: $$Props["text"] = false;
 
-    export let color: $$Props["color"] = "gradient";
-    export let radius: $$Props["radius"] = text ? "tile" : "rounded";
+    export let color: $$Props["color"] = "mode-contrast";
+    export let radius: $$Props["radius"] = text ? "tile" : "normal";
     export let background: $$Props["background"] = !text;
-    export let glow: $$Props["glow"] = false;
 </script>
 
 {#if href}
-    <a {href} {title} aria-label={title} on:click {disabled} class="button" class:text>
-        <KBoxEffect {...$$props} {color} {radius} {glow} {background} {loading} ripple>
+    <a
+        {href}
+        {title}
+        aria-label={title}
+        on:click
+        {disabled}
+        class="button"
+        class:text
+    >
+        <KBoxEffect {...$$props} {color} {radius} {background} {loading} ripple>
             <div class="content text-inline"><slot /></div>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
@@ -34,8 +41,17 @@
         </KBoxEffect>
     </a>
 {:else}
-    <button {title} aria-label={title} on:click disabled={disabled || loading} class:disabled class:loading class="button" class:text>
-        <KBoxEffect {...$$props} {color} {radius} {glow} {background} {loading} ripple>
+    <button
+        {title}
+        aria-label={title}
+        on:click
+        disabled={disabled || loading}
+        class:disabled
+        class:loading
+        class="button"
+        class:text
+    >
+        <KBoxEffect {...$$props} {color} {radius} {background} {loading} ripple>
             <div class="content text-inline"><slot /></div>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
