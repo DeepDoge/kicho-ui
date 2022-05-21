@@ -15,7 +15,7 @@
     }
 
     export let type: $$Props["type"] = "text";
-    export let id: $$Props["id"] = (typeof window !== "undefined" ? window.crypto : crypto).randomUUID();
+    export let id: $$Props["id"] = (typeof window !== "undefined" ? window.crypto : (crypto as any)).randomUUID();
     export let name: $$Props["name"] = null;
     export let value: $$Props["value"] = null;
     export let label: $$Props["label"] = null;

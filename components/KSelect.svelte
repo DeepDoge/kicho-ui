@@ -11,7 +11,7 @@
         value = Object.keys(options)[0];
     }
 
-    let id = (typeof window !== "undefined" ? window.crypto : crypto).randomUUID();
+    let id = (typeof window !== "undefined" ? window.crypto : (crypto as any)).randomUUID();
 </script>
 
 <div class="select" tabindex="-1">
