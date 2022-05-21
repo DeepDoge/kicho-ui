@@ -1,3 +1,9 @@
 [submodule "components/responsive/row"]
 	path = components/responsive/row
 	url = https://github.com/DeepDoge/svelte-responsive-row.git
+[submodule "src/lib/kicho-ui/types/util"]
+	path = src/lib/kicho-ui/types/util
+	url = https://github.com/DeepDoge/typescript-util-types.git
+[submodule "types/util"]
+	path = types/util
+	url = https://github.com/DeepDoge/typescript-util-types.git

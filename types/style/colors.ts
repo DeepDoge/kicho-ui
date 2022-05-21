@@ -1,3 +1,5 @@
+import type { LiteralUnion } from "../util"
+
 /* export enum Colors {
     Master = 'master',
     MasterContrast = 'master-contrast',
@@ -20,24 +22,26 @@
     Light = 'light',
     LightContrast = 'light-contrast',
 } */
+export type Colors =
+    LiteralUnion<
+        'master' |
+        'master-contrast' |
 
-export type Colors = 'master' |
-    'master-contrast' |
+        'slave' |
+        'slave-contrast' |
 
-    'slave' |
-    'slave-contrast' |
+        'error' |
+        'error-contrast' |
 
-    'error' |
-    'error-contrast' |
+        'mode' |
+        'mode-contrast' |
 
-    'mode' |
-    'mode-contrast' |
+        'gradient' |
+        'gradient-contrast' |
 
-    'gradient' |
-    'gradient-contrast' |
+        'dark' |
+        'dark-contrast' |
 
-    'dark' |
-    'dark-contrast' |
-
-    'light' |
-    'light-contrast'
+        'light' |
+        'light-contrast'
+    >

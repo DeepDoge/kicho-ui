@@ -5,7 +5,7 @@
 
     interface $$Props extends BoxEffectProps {}
 
-    export let color: $$Props["color"] = "gradient";
+    export let color: $$Props["color"] = "master";
     export let background: $$Props["background"] = true;
     export let glow: $$Props["glow"] = true;
     export let size: $$Props["size"] = "smaller";
