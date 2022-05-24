@@ -95,7 +95,7 @@
         padding: calc(var(--k-padding) * 4);
 
         max-height: inherit;
-        overflow-y: auto;
+        /* overflow-y: auto; */
     }
 
     dialog > *:not(.modal) {
