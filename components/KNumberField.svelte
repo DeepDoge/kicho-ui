@@ -13,8 +13,6 @@
         disabled?: boolean;
     }
 
-    // git test
-
     export let type: $$Props["type"] = "number";
     export let name: $$Props["name"] = null;
     export let value: $$Props["value"] = null;
@@ -25,6 +23,14 @@
     export let color: $$Props["color"] = "mode-contrast";
     export let background: $$Props["background"] = true;
 
+    let valueString: string
+
+    $: onValueChange(value)
+    function onValueChange(value: $$Props['value'])
+    {
+        valueString = value?.toString()
+    }
+
     let el: HTMLInputElement;
     $: el && (el.type = type);
 </script>
@@ -32,7 +38,7 @@
 <KField {...$$props} let:id>
     <div class="text-field" class:empty={!value}>
         <KBoxEffect {background} {color}>
-            <input class="input" bind:this={el} {placeholder} bind:value on:input {required} {disabled} {id} {name} />
+            <input class="input" bind:this={el} {placeholder} bind:value={valueString} on:change={() => value = parseFloat(valueString ?? "0")} on:input {required} {disabled} {id} {name} />
         </KBoxEffect>
     </div>
 </KField>
