@@ -4,7 +4,7 @@
     --root-font-size-mul: 1;
     font-size: calc(max(var(--root-smallest-font-size),
                 calc(min(1vw, 2vh) * var(--root-font-size-relative-to-screen))) * 1.25 * var(--root-font-size-mul));
-    font-family: 'Inter custom', sans-serif;
+    font-family: Inter, Arial;
 }
 
 :root {
@@ -20,6 +20,7 @@
     --k-padding: .25em;
     --k-border-radius: 0.3em;
     --k-border-radius-rounded: 1em;
+    --k-border-radius-fab: 10000000vw;
     --k-border-width: .15em;
     --k-transition: linear .2s;
 }
@@ -73,8 +74,8 @@ body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    letter-spacing: .25ch;
-    line-height: 1.5;
+    letter-spacing: .05ch;
+    line-height: 1.25;
     background: var(--k-color-mode);
     color: var(--k-color-mode-contrast)
 }

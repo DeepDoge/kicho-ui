@@ -25,15 +25,17 @@
 <KField {...$$props} let:id>
     <div class="select" class:active>
         <KButton background on:click={toggle}>
-            <div>{options[value]}</div>
+            <div class="current">{options[value]}</div>
         </KButton>
 
-        <KButton color="master" radius="rounded" on:click={toggle}>
-            <span class="btn-text" />
-        </KButton>
+        <div class="btn">
+            <KButton color="master" radius="normal" on:click={toggle}>
+                <span class="btn-text" />
+            </KButton>
+        </div>
 
-        <div class="options">
-            <KBoxEffect color="mode-contrast" background>
+        <div class="options" on:click={() => active = false}>
+            <KBoxEffect color="mode-contrast" blur background>
                 {#each Object.entries(options) as [key, label] (key)}
                     <div class="option">
                         <input id="{id}-{key}" type="radio" value={key} bind:group={value} />
@@ -57,15 +59,26 @@
     .select {
         display: grid;
         grid-template-columns: 1fr auto;
+        gap: var(--k-padding)
     }
 
-    .btn-text::after {
-        content: "▼";
+    .current {
+        width: 100%;
+    }
+
+    .btn {
+        display: grid;
         aspect-ratio: 1/1;
+    }
+    .btn-text {
         display: grid;
         place-items: center;
         line-height: 0;
         letter-spacing: 0;
+        aspect-ratio: 1/1;
+    }
+    .btn-text::after {
+        content: "▼";
     }
 
     .options {
@@ -86,7 +99,7 @@
         display: block;
     }
 
-    .active .options {
+    .select:not(.active) .options {
         display: none;
     }
 </style>

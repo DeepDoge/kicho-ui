@@ -16,7 +16,7 @@
 
     export let color: Colors = "mode";
     export let size: "xx-smaller" | "x-smaller" | "smaller" | "normal" | "larger" | "x-larger" | "xx-larger" = "normal";
-    export let radius: "rounded" | "tile" | "normal" = "normal";
+    export let radius: "rounded" | "tile" | "normal" | "fab" = "normal";
 
     function getColor(value: typeof color, isContrast: boolean) {
         if (contrast) {
@@ -93,15 +93,6 @@
     Color Settings
     ==================================== 
     */
-    .box.use-background {
-        --background: var(--color);
-        color: var(--color-contrast);
-    }
-    .box.use-border {
-        --border-color: var(--color);
-        --background: var(--k-color-mode);
-        color: var(--k-color-mode-contrast);
-    }
     .box.use-glow:not(.use-custom-glow) {
         --glow-color: var(--color);
     }
@@ -113,6 +104,15 @@
     }
     .box.use-blur {
         color: var(--k-color-mode-contrast);
+    }
+    .box.use-border {
+        --border-color: var(--color);
+        --background: var(--k-color-mode);
+        color: var(--k-color-mode-contrast);
+    }
+    .box.use-background {
+        --background: var(--color);
+        color: var(--color-contrast);
     }
 
     /* 
@@ -134,6 +134,9 @@
     }
     .radius-rounded {
         border-radius: var(--k-border-radius-rounded);
+    }
+    .radius-fab {
+        border-radius: var(--k-border-radius-fab);
     }
     .radius-tile {
         border-radius: 0em;
@@ -190,7 +193,7 @@
         backdrop-filter: blur(0.15rem);
     }
     .use-blur > * > .background.effect {
-        filter: opacity(0.7);
+        filter: opacity(0.85);
     }
     .use-fixed > * > .background.effect {
         background-attachment: fixed;
