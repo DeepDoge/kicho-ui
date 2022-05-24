@@ -3,7 +3,7 @@
     import KField from "./KField.svelte";
 
     type BoxEffectProps = KBoxEffect["$$prop_def"];
-    type FieldProps = KField['$$prop_def']
+    type FieldProps = KField["$$prop_def"];
     interface $$Props extends BoxEffectProps, FieldProps {
         type?: "text" | "password" | "email" | "tel" | "textarea";
         name?: string;

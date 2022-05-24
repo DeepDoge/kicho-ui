@@ -19,7 +19,7 @@
     }
 
     let active = false;
-    const toggle = () => active = !active
+    const toggle = () => (active = !active);
 </script>
 
 <KField {...$$props} let:id>
