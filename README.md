@@ -8,7 +8,7 @@ git submodule add https://github.com/DeepDoge/kicho-ui.git ./src/lib/kicho-ui
 ```
 You can run these post install
 ```bash
-git submodule init ; git submodule update ; git submodule foreach --recursive git submodule init ; git submodule foreach --recursive git submodule update ; git submodule foreach --recursive git checkout master
+git submodule update ; git submodule foreach --recursive "git submodule update"
 ```
 ## Manually
 Just download the thing and throw it in your project.<br/>
