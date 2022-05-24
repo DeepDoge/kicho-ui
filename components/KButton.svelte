@@ -67,6 +67,7 @@
         border: none;
         font: inherit;
         color: inherit;
+        text-align: inherit;
         padding: 0;
     }
 

@@ -3,17 +3,17 @@
     import KField from "./KField.svelte";
 
     type BoxEffectProps = KBoxEffect["$$prop_def"];
-    type FieldProps = KField['$$prop_def']
+    type FieldProps = KField["$$prop_def"];
     interface $$Props extends BoxEffectProps, FieldProps {
-        type?: "text" | "password" | "email" | "tel" | "textarea";
+        type?: "number";
         name?: string;
-        value?: string;
+        value?: number;
         placeholder?: string;
         required?: boolean;
         disabled?: boolean;
     }
 
-    export let type: $$Props["type"] = "text";
+    export let type: $$Props["type"] = "number";
     export let name: $$Props["name"] = null;
     export let value: $$Props["value"] = null;
     export let placeholder: $$Props["placeholder"] = null;
@@ -30,11 +30,7 @@
 <KField {...$$props} let:id>
     <div class="text-field" class:empty={!value}>
         <KBoxEffect {background} {color}>
-            {#if type === "textarea"}
-                <textarea class="input" {placeholder} bind:value on:input {required} {disabled} {id} {name} />
-            {:else}
-                <input class="input" bind:this={el} {placeholder} bind:value on:input {required} {disabled} {id} {name} />
-            {/if}
+            <input class="input" bind:this={el} {placeholder} bind:value on:input {required} {disabled} {id} {name} />
         </KBoxEffect>
     </div>
 </KField>
@@ -55,13 +51,5 @@
     .input:disabled {
         filter: saturate(0) !important;
         cursor: not-allowed !important;
-    }
-
-    textarea.input {
-        resize: vertical;
-        width: 100%;
-        min-height: 7ch;
-        font-size: smaller;
-        padding: var(--k-padding);
     }
 </style>

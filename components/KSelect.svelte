@@ -1,34 +1,49 @@
 <script lang="ts">
-    import crypto from "crypto";
     import KBoxEffect from "./effects/KBoxEffect.svelte";
+    import KButton from "./KButton.svelte";
+    import KField from "./KField.svelte";
     type OptionsType = Record<string, string>;
 
-    export let options: OptionsType;
-    export let value: keyof typeof options = Object.keys(options)[0];
+    type FieldProps = KField["$$prop_def"];
+    interface $$Props extends FieldProps {
+        options: OptionsType;
+        value?: keyof typeof options;
+    }
+
+    export let options: $$Props["options"];
+    export let value: $$Props["value"] = Object.keys(options)[0];
 
     $: options && onOptionsChange();
     function onOptionsChange() {
         value = Object.keys(options)[0];
     }
 
-    let id = (typeof window !== "undefined" ? window.crypto : crypto).randomUUID();
+    let active = false;
+    const toggle = () => active = !active
 </script>
 
-<div class="select" tabindex="-1">
-    <KBoxEffect background border>
-        <span class="current" tabindex="-1">{value}</span>
-    </KBoxEffect>
-    <div class="options">
-        <KBoxEffect border background>
-            {#each Object.entries(options) as [key, label] (key)}
-                <div class="option">
-                    <input id="{id}-{key}" type="radio" value={key} bind:group={value} />
-                    <label for="{id}-{key}">{label}</label>
-                </div>
-            {/each}
-        </KBoxEffect>
+<KField {...$$props} let:id>
+    <div class="select" class:active>
+        <KButton background on:click={toggle}>
+            <div>{options[value]}</div>
+        </KButton>
+
+        <KButton color="master" radius="rounded" on:click={toggle}>
+            <span class="btn-text" />
+        </KButton>
+
+        <div class="options">
+            <KBoxEffect color="mode-contrast" background>
+                {#each Object.entries(options) as [key, label] (key)}
+                    <div class="option">
+                        <input id="{id}-{key}" type="radio" value={key} bind:group={value} />
+                        <label for="{id}-{key}">{label}</label>
+                    </div>
+                {/each}
+            </KBoxEffect>
+        </div>
     </div>
-</div>
+</KField>
 
 <style>
     input {
@@ -40,23 +55,15 @@
     }
 
     .select {
-        display: block;
-    }
-
-    .current {
         display: grid;
         grid-template-columns: 1fr auto;
-        pointer-events: none;
-        padding: calc(var(--k-padding));
     }
 
-    .current::after {
-        content: "v";
-        height: 100%;
+    .btn-text::after {
+        content: "▼";
+        aspect-ratio: 1/1;
         display: grid;
         place-items: center;
-        background-color: var(--k-color-slave);
-        padding: 0 calc(var(--k-padding) * 2);
         line-height: 0;
         letter-spacing: 0;
     }
@@ -72,17 +79,14 @@
     }
 
     .option:hover {
-        background-color: var(--k-color-mode-contrast);
-        color: var(--k-color-mode);
+        background-color: var(--k-color-master);
+        color: var(--k-color-master-contrast);
     }
     label {
         display: block;
     }
 
-    .select:not(:focus) .options {
+    .active .options {
         display: none;
-    }
-    .select:focus .current {
-        pointer-events: all;
     }
 </style>

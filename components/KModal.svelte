@@ -53,7 +53,7 @@
         <div class="background" />
         <div class="background-dim" />
         <div class="modal">
-            <KBoxEffect background border blur glow radius="tile">
+            <KBoxEffect background blur radius="rounded">
                 <div class="content">
                     <slot />
                 </div>
@@ -87,7 +87,7 @@
     .modal {
         display: flex;
         max-height: 100%;
-        overflow: hidden;
+        overflow: visible;
     }
 
     .content {
