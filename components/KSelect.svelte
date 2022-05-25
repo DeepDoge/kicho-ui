@@ -34,7 +34,7 @@
             </KButton>
         </div>
 
-        <div class="options" on:click={() => active = false}>
+        <div class="options" on:click={() => (active = false)}>
             <KBoxEffect color="mode-contrast" blur background>
                 {#each Object.entries(options) as [key, label] (key)}
                     <div class="option">
@@ -59,7 +59,7 @@
     .select {
         display: grid;
         grid-template-columns: 1fr auto;
-        gap: var(--k-padding)
+        gap: var(--k-padding);
     }
 
     .current {

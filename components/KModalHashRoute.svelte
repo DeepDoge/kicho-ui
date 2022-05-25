@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+    import { goto } from "$app/navigation";
+    import { page } from "$app/stores";
     import { writable } from "svelte/store";
     import KModal from "./KModal.svelte";
 
@@ -10,9 +12,6 @@
 </script>
 
 <script lang="ts">
-    import { goto } from "$app/navigation";
-    import { page } from "$app/stores";
-
     type KModalProps = KModal["$$prop_def"];
     interface $$Props extends KModalProps {
         hash: string;

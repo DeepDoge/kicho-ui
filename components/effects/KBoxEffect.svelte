@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { Colors } from "$lib/kicho-ui/types/style/colors";
-
     import KLoadingEffect from "./KLoadingEffect.svelte";
     import KRippleEffect from "./KRippleEffect.svelte";
 

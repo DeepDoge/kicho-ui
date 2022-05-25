@@ -23,12 +23,11 @@
     export let color: $$Props["color"] = "mode-contrast";
     export let background: $$Props["background"] = true;
 
-    let valueString: string
+    let valueString: string;
 
-    $: onValueChange(value)
-    function onValueChange(value: $$Props['value'])
-    {
-        valueString = value?.toString()
+    $: onValueChange(value);
+    function onValueChange(value: $$Props["value"]) {
+        valueString = value?.toString();
     }
 
     let el: HTMLInputElement;
@@ -38,7 +37,18 @@
 <KField {...$$props} let:id>
     <div class="text-field" class:empty={!value}>
         <KBoxEffect {background} {color}>
-            <input class="input" bind:this={el} {placeholder} bind:value={valueString} on:change={() => value = parseFloat(valueString ?? "0")} on:input {required} {disabled} {id} {name} />
+            <input
+                class="input"
+                bind:this={el}
+                {placeholder}
+                bind:value={valueString}
+                on:change={() => (value = parseFloat(valueString ?? "0"))}
+                on:input
+                {required}
+                {disabled}
+                {id}
+                {name}
+            />
         </KBoxEffect>
     </div>
 </KField>
