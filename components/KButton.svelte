@@ -73,6 +73,8 @@
 
     .button {
         cursor: pointer;
+        display: grid;
+        place-content: stretch;
     }
     .button {
         padding: 0.2em 0.5em;

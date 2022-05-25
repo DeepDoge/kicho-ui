@@ -24,12 +24,12 @@
 
 <KField {...$$props} let:id>
     <div class="select" class:active>
-        <KButton background on:click={toggle}>
+        <KButton href="javascript:;" background on:click={toggle}>
             <div class="current">{options[value]}</div>
         </KButton>
 
         <div class="btn">
-            <KButton color="master" radius="normal" on:click={toggle}>
+            <KButton href="javascript:;" color="master" radius="normal" on:click={toggle}>
                 <span class="btn-text" />
             </KButton>
         </div>
