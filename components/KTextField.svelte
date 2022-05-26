@@ -23,7 +23,7 @@
     export let color: $$Props["color"] = "mode-pop";
     export let glow: $$Props["glow"] = false;
     export let background: $$Props["background"] = true;
-    export let blur: $$Props['blur'] = true
+    export let blur: $$Props["blur"] = true;
 
     let el: HTMLInputElement;
     $: el && (el.type = type);

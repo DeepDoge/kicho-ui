@@ -21,7 +21,7 @@
             filter: opacity(0);
         }
         to {
-            filter: opacity(.25);
+            filter: opacity(0.25);
         }
     }
 </style>

@@ -61,7 +61,7 @@
         place-content: stretch;
     }
     .button {
-        padding: .75ch 1.5ch;
+        padding: 0.75ch 1.5ch;
     }
     .button.text {
         padding: 0;
