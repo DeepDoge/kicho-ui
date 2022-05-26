@@ -41,9 +41,9 @@
     --k-color-dark-contrast: #fff;
     --k-color-dark-pop: #252525;
     --k-color-dark-pop-contrast: var(--k-color-dark-contrast);
-    --k-color-light: #f3f3f3;
+    --k-color-light: #ececec;
     --k-color-light-contrast: var(--k-color-dark);
-    --k-color-light-pop: #e5e5e5;
+    --k-color-light-pop: #c1c6ca;
     --k-color-light-pop-contrast: var(--k-color-light-contrast);
     --k-color-mode: var(--k-color-light);
     --k-color-mode-contrast: var(--k-color-light-contrast);

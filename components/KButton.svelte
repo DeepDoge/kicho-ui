@@ -55,13 +55,13 @@
         cursor: pointer;
         display: grid;
         font: inherit;
-        font-size: initial;
+        font-size: 1em;
         color: inherit;
         text-align: inherit;
         place-content: stretch;
     }
     .button {
-        padding: 0.2em 1.5ch;
+        padding: .75ch 1.5ch;
     }
     .button.text {
         padding: 0;
