@@ -11,18 +11,17 @@
         content: "";
         position: absolute;
         inset: 0;
-        background-image: linear-gradient(120deg, transparent, currentColor, transparent);
-        opacity: 0.5;
-        animation: loading infinite 1s linear;
-        filter: blur(0.5rem);
+        background-color: var(--k-color-mode-contrast);
+        animation: loading infinite 1s ease-in-out alternate;
+        backdrop-filter: blur(0.5rem);
     }
 
     @keyframes loading {
         from {
-            transform: translateX(-150%);
+            filter: opacity(0);
         }
         to {
-            transform: translateX(150%);
+            filter: opacity(.25);
         }
     }
 </style>

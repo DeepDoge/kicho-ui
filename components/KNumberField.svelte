@@ -20,7 +20,8 @@
     export let required: $$Props["required"] = false;
     export let disabled: $$Props["disabled"] = false;
 
-    export let color: $$Props["color"] = "mode-contrast";
+    export let color: $$Props["color"] = "mode-pop";
+    export let blur: $$Props["blur"] = true;
     export let background: $$Props["background"] = true;
 
     let valueString: string;
@@ -36,7 +37,7 @@
 
 <KField {...$$props} let:id>
     <div class="text-field" class:empty={!value}>
-        <KBoxEffect {background} {color}>
+        <KBoxEffect {background} {color} {blur}>
             <input
                 class="input"
                 bind:this={el}
@@ -62,6 +63,7 @@
         border: none;
 
         font: inherit;
+        font-size: initial;
         color: inherit;
         padding: calc(var(--k-padding));
     }

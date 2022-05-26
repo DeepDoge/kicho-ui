@@ -53,7 +53,7 @@
         <div class="background" />
         <div class="background-dim" />
         <div class="modal">
-            <KBoxEffect background blur radius="rounded">
+            <KBoxEffect color="mode" background blur radius="rounded">
                 <div class="content">
                     <slot />
                 </div>

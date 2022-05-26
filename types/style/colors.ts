@@ -1,27 +1,5 @@
 import type { LiteralUnion } from "../util"
 
-/* export enum Colors {
-    Master = 'master',
-    MasterContrast = 'master-contrast',
-
-    Slave = 'slave',
-    SlaveContrast = 'slave-contrast',
-
-    Error = 'error',
-    ErrorContrast = 'error-contrast',
-
-    Mode = 'mode',
-    ModeContrast = 'mode-contrast',
-
-    Gradient = 'gradient',
-    GradientContrast = 'gradient-contrast',
-
-    Dark = 'dark',
-    DarkContrast = 'dark-contrast',
-
-    Light = 'light',
-    LightContrast = 'light-contrast',
-} */
 export type Colors =
     LiteralUnion<
         'master' |
@@ -30,18 +8,27 @@ export type Colors =
         'slave' |
         'slave-contrast' |
 
+        'gradient' |
+        'gradient-contrast' |
+
         'error' |
         'error-contrast' |
 
         'mode' |
         'mode-contrast' |
 
-        'gradient' |
-        'gradient-contrast' |
+        'mode-pop' |
+        'mode-pop-contrast' |
 
         'dark' |
         'dark-contrast' |
 
+        'dark-pop' |
+        'dark-pop-contrast' |
+
         'light' |
-        'light-contrast'
+        'light-contrast' |
+
+        'light-pop' |
+        'light-pop-contrast'
     >

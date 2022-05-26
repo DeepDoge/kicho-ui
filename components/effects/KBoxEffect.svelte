@@ -92,6 +92,16 @@
     Color Settings
     ==================================== 
     */
+
+    .box.use-background {
+        --background: var(--color);
+        color: var(--color-contrast);
+    }
+    .box.use-border {
+        --border-color: var(--color);
+        --background: var(--k-color-mode);
+        color: var(--k-color-mode-contrast);
+    }
     .box.use-glow:not(.use-custom-glow) {
         --glow-color: var(--color);
     }
@@ -100,18 +110,6 @@
     }
     .box:not(.use-custom-glow).use-border.use-glow {
         --glow-color: var(--border-color);
-    }
-    .box.use-blur {
-        color: var(--k-color-mode-contrast);
-    }
-    .box.use-border {
-        --border-color: var(--color);
-        --background: var(--k-color-mode);
-        color: var(--k-color-mode-contrast);
-    }
-    .box.use-background {
-        --background: var(--color);
-        color: var(--color-contrast);
     }
 
     /* 
@@ -192,7 +190,7 @@
         backdrop-filter: blur(0.15rem);
     }
     .use-blur > * > .background.effect {
-        filter: opacity(0.85);
+        filter: opacity(0.6);
     }
     .use-fixed > * > .background.effect {
         background-attachment: fixed;

@@ -24,18 +24,18 @@
 
 <KField {...$$props} let:id>
     <div class="select" class:active>
-        <KButton href="javascript:;" background on:click={toggle}>
+        <KButton href="javascript:;" blur color="mode-pop" background on:click={toggle}>
             <div class="current">{options[value]}</div>
         </KButton>
 
         <div class="btn">
-            <KButton href="javascript:;" color="master" radius="normal" on:click={toggle}>
+            <KButton href="javascript:;" blur color="master" radius="normal" on:click={toggle}>
                 <span class="btn-text" />
             </KButton>
         </div>
 
         <div class="options" on:click={() => (active = false)}>
-            <KBoxEffect color="mode-contrast" blur background>
+            <KBoxEffect color="mode-pop" blur background>
                 {#each Object.entries(options) as [key, label] (key)}
                     <div class="option">
                         <input id="{id}-{key}" type="radio" value={key} bind:group={value} />

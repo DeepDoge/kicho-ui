@@ -20,8 +20,10 @@
     export let required: $$Props["required"] = false;
     export let disabled: $$Props["disabled"] = false;
 
-    export let color: $$Props["color"] = "mode-contrast";
+    export let color: $$Props["color"] = "mode-pop";
+    export let glow: $$Props["glow"] = false;
     export let background: $$Props["background"] = true;
+    export let blur: $$Props['blur'] = true
 
     let el: HTMLInputElement;
     $: el && (el.type = type);
@@ -29,7 +31,7 @@
 
 <KField {...$$props} let:id>
     <div class="text-field" class:empty={!value}>
-        <KBoxEffect {background} {color}>
+        <KBoxEffect {...$$props} {background} {color} {blur} {glow}>
             {#if type === "textarea"}
                 <textarea class="input" {placeholder} bind:value on:input {required} {disabled} {id} {name} />
             {:else}
@@ -47,9 +49,13 @@
         background: transparent;
         border: none;
 
+        line-height: inherit;
+        word-spacing: inherit;
+        letter-spacing: inherit;
         font: inherit;
+        font-size: initial;
         color: inherit;
-        padding: calc(var(--k-padding));
+        padding: calc(var(--k-padding) * 2.5) calc(var(--k-padding) * 2);
     }
 
     .input:disabled {
@@ -61,7 +67,6 @@
         resize: vertical;
         width: 100%;
         min-height: 7ch;
-        font-size: smaller;
-        padding: var(--k-padding);
+        padding: calc(var(--k-padding) * 2);
     }
 </style>

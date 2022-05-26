@@ -34,18 +34,29 @@
     --k-color-error-contrast: #fff;
     --k-color-gradient: linear-gradient(to right, var(--k-color-master), var(--k-color-slave));
     --k-color-gradient-contrast: #fff;
-    --k-color-dark: rgb(25, 27, 31);
+}
+
+:root {
+    --k-color-dark: #121212;
     --k-color-dark-contrast: #fff;
-    --k-color-light: #fff;
+    --k-color-dark-pop: #252525;
+    --k-color-dark-pop-contrast: var(--k-color-dark-contrast);
+    --k-color-light: #f3f3f3;
     --k-color-light-contrast: var(--k-color-dark);
+    --k-color-light-pop: #e5e5e5;
+    --k-color-light-pop-contrast: var(--k-color-light-contrast);
     --k-color-mode: var(--k-color-light);
-    --k-color-mode-contrast: var(--k-color-dark);
+    --k-color-mode-contrast: var(--k-color-light-contrast);
+    --k-color-mode-pop: var(--k-color-light-pop);
+    --k-color-mode-pop-contrast: var(--k-color-mode-contrast);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --k-color-mode: var(--k-color-dark);
-        --k-color-mode-contrast: var(--k-color-light);
+        --k-color-mode-contrast: var(--k-color-dark-contrast);
+        --k-color-mode-pop: var(--k-color-dark-pop);
+        --k-color-mode-pop-contrast: var(--k-color-mode-contrast);
     }
 
     ::-webkit-scrollbar {

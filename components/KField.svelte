@@ -1,7 +1,7 @@
 <script lang="ts">
     import crypto from "crypto";
 
-    export let id: string = (typeof window !== "undefined" ? window.crypto : crypto).randomUUID();
+    export let id: string = (typeof window !== "undefined" ? window.crypto : crypto as any).randomUUID();
     export let label: string = null;
 </script>
 

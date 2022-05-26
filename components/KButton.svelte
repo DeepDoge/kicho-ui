@@ -48,19 +48,20 @@
         appearance: unset;
         background: unset;
         border: none;
-        font: inherit;
-        color: inherit;
-        text-align: inherit;
         padding: 0;
     }
 
     .button {
         cursor: pointer;
         display: grid;
+        font: inherit;
+        font-size: initial;
+        color: inherit;
+        text-align: inherit;
         place-content: stretch;
     }
     .button {
-        padding: 0.2em 0.5em;
+        padding: 0.2em 1.5ch;
     }
     .button.text {
         padding: 0;
