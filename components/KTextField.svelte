@@ -24,6 +24,7 @@
     export let glow: $$Props["glow"] = false;
     export let background: $$Props["background"] = true;
     export let blur: $$Props["blur"] = true;
+    export let loading: $$Props["loading"] = false;
 
     let el: HTMLInputElement;
     $: el && (el.type = type);
@@ -33,9 +34,9 @@
     <div class="text-field" class:empty={!value}>
         <KBoxEffect {...$$props} {background} {color} {blur} {glow}>
             {#if type === "textarea"}
-                <textarea class="input" {placeholder} bind:value on:input {required} {disabled} {id} {name} />
+                <textarea class="input" class:loading {placeholder} bind:value on:input {required} disabled={loading || disabled} {id} {name} />
             {:else}
-                <input class="input" bind:this={el} {placeholder} bind:value on:input {required} {disabled} {id} {name} />
+                <input class="input"class:loading bind:this={el} {placeholder} bind:value on:input {required} disabled={loading || disabled} {id} {name} />
             {/if}
         </KBoxEffect>
     </div>
@@ -58,9 +59,9 @@
         padding: calc(var(--k-padding) * 2.5) calc(var(--k-padding) * 2);
     }
 
-    .input:disabled {
-        filter: saturate(0) !important;
-        cursor: not-allowed !important;
+    .input:not(.loading):disabled {
+        filter: opacity(.5);
+        cursor: not-allowed
     }
 
     textarea.input {

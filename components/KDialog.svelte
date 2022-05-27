@@ -70,6 +70,8 @@
     export let dialogManager: DialogManager;
     $: dialogs = dialogManager.dialogs;
     $: currentDialog = Object.values($dialogs)?.[0] ?? null;
+    let dialogCache: typeof currentDialog
+    $: currentDialog && (dialogCache = currentDialog)
 
     let value: string;
     let cancelled: boolean;
@@ -89,15 +91,15 @@
 <KModal align="end" active={!!currentDialog} on:close={() => currentDialog?.resolve(null)}>
     <form method="dialog" on:submit|preventDefault={onSubmit}>
         <div class="fields">
-            <pre class="text-multiline">{currentDialog?.message}</pre>
-            {#if currentDialog?.type === "prompt"}
+            <pre class="text-multiline">{dialogCache?.message}</pre>
+            {#if dialogCache?.type === "prompt"}
                 <KTextField type="text" bind:value />
             {/if}
         </div>
         <div class="actions">
             <!-- This is here to capture, return key -->
             <button style="position:0;opacity:0;pointer-events:none" />
-            {#if currentDialog?.type !== "alert"}
+            {#if dialogCache?.type !== "alert"}
                 <KButton on:click={() => (cancelled = true)}>Cancel</KButton>
             {/if}
             <KButton>{buttonText}</KButton>

@@ -18,7 +18,7 @@
     export let title: $$Props["title"] = null;
     export let text: $$Props["text"] = false;
 
-    export let color: $$Props["color"] = "mode-contrast";
+    export let color: $$Props["color"] = text ? "mode" : "mode-contrast";
     export let radius: $$Props["radius"] = text ? "tile" : "normal";
     export let background: $$Props["background"] = !text;
 </script>
@@ -85,11 +85,7 @@
     }
 
     .button.disabled {
-        filter: saturate(0) !important;
-        cursor: not-allowed !important;
-    }
-
-    .button.loading {
-        cursor: wait;
+        filter: opacity(.5);
+        cursor: not-allowed;
     }
 </style>

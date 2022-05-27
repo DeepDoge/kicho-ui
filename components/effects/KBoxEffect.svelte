@@ -19,9 +19,9 @@
 
     function getColor(value: typeof color, isContrast: boolean) {
         if (contrast) {
-            return `var(--k-color-${isContrast ? value.substring(0, value.length - contrastSuffix.length) : value})`;
+            return `${isContrast ? value.substring(0, value.length - contrastSuffix.length) : value}`;
         } else {
-            return `var(--k-color-${isContrast ? `${value}${contrastSuffix}` : value})`;
+            return `${isContrast ? `${value}${contrastSuffix}` : value}`;
         }
     }
 
@@ -48,8 +48,8 @@
     class:use-contrast={contrast}
     class:use-fixed={fixed}
     style:font-size="var(--k-font-{size})"
-    style:--color-contrast={boxColorContrast}
-    style:--color={boxColor}
+    style:--color-contrast="var(--k-color-{boxColorContrast})"
+    style:--color="var(--k-color-{boxColor})"
     style:--glow-color={glowColor}
 >
     {#if glow}
@@ -80,7 +80,7 @@
             <KRippleEffect element={element?.parentElement} />
         {/if}
         {#if loading}
-            <KLoadingEffect />
+            <KLoadingEffect color={boxColorContrast} />
         {/if}
         <slot name="overlay-effects" />
     </k-->
@@ -267,6 +267,10 @@
     .direction-vertical .content > :global(*) {
         border-left: var(--border);
         border-right: var(--border);
+    }
+
+    .loading.direction-vertical .content > :global(*) {
+        cursor: wait !important;
     }
 
     .direction-vertical .content > :global(*:last-child) {

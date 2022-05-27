@@ -69,7 +69,7 @@
     }
 
     .input:disabled {
-        filter: saturate(0) !important;
-        cursor: not-allowed !important;
+        filter: opacity(.5);
+        cursor: not-allowed;
     }
 </style>
