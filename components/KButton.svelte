@@ -56,6 +56,9 @@
         display: grid;
         font: inherit;
         font-size: 1em;
+        letter-spacing: inherit;
+        line-height: inherit;
+        word-spacing: inherit;
         color: inherit;
         text-align: inherit;
         place-content: stretch;

@@ -54,7 +54,7 @@
         word-spacing: inherit;
         letter-spacing: inherit;
         font: inherit;
-        font-size: initial;
+        font-size: 1em;
         color: inherit;
         padding: calc(var(--k-padding) * 2.5) calc(var(--k-padding) * 2);
     }

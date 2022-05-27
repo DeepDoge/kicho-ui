@@ -63,7 +63,7 @@
         border: none;
 
         font: inherit;
-        font-size: initial;
+        font-size: 1em;;
         color: inherit;
         padding: calc(var(--k-padding));
     }
