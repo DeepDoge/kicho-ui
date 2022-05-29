@@ -29,7 +29,7 @@
         </KButton>
 
         <div class="btn">
-            <KButton href="javascript:;" blur color="master" radius="normal" on:click={toggle}>
+            <KButton href="javascript:;" text background blur color="master" radius="normal" on:click={toggle}>
                 <span class="btn-text" />
             </KButton>
         </div>
@@ -76,6 +76,7 @@
         line-height: 0;
         letter-spacing: 0;
         aspect-ratio: 1/1;
+        padding: calc(var(--k-padding) * 2.25);
     }
     .btn-text::after {
         content: "▼";
@@ -84,8 +85,8 @@
     .options {
         display: grid;
         position: absolute;
-        top: 100%;
-        transform: translateY(calc(-1 * var(--k-border-width)));
+        top: calc(100% + calc(var(--k-padding) * .5));
+        padding: calc(var(--k-padding) * 2);
         left: 0;
         right: 0;
         z-index: 99999999;

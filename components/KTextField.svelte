@@ -56,7 +56,7 @@
         font: inherit;
         font-size: 1em;
         color: inherit;
-        padding: calc(var(--k-padding) * 2.5) calc(var(--k-padding) * 2);
+        padding: calc(var(--k-padding) * 1) calc(var(--k-padding) * 1.5);
     }
 
     .input:not(.loading):disabled {

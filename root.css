@@ -122,16 +122,28 @@ h6 {
     line-height: 1;
 }
 
-h1 {
-    font-size: 2.25rem;
+h6 {
+    font-size: var(--k-font-larger);
 }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-size: 2rem;
+h5 {
+    font-size: var(--k-font-larger);
+}
+
+h4 {
+    font-size: var(--k-font-larger);
+}
+
+h3 {
+    font-size: var(--k-font-x-larger);
+}
+
+h2 {
+    font-size: var(--k-font-x-larger);
+}
+
+h1 {
+    font-size: var(--k-font-xx-larger);
 }
 
 img {
