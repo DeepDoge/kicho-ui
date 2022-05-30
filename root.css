@@ -22,6 +22,7 @@
     --k-border-radius-rounded: 1em;
     --k-border-radius-fab: 10000000vw;
     --k-border-width: .15em;
+    --k-blur: .15rem;
     --k-transition: linear .2s;
 }
 
@@ -49,6 +50,26 @@
     --k-color-mode-contrast: var(--k-color-light-contrast);
     --k-color-mode-pop: var(--k-color-light-pop);
     --k-color-mode-pop-contrast: var(--k-color-mode-contrast);
+}
+
+@property --k-loading-effect-opacity-animated {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: .25;
+}
+
+@keyframes custom-properties-animation {
+    from {
+        --k-loading-effect-opacity-animated: 0;
+    }
+
+    to {
+        --k-loading-effect-opacity-animated: 0.5;
+    }
+}
+
+:root {
+    animation: custom-properties-animation infinite 1s ease-in-out alternate;
 }
 
 @media (prefers-color-scheme: dark) {

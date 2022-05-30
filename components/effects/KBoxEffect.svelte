@@ -64,6 +64,9 @@
         {#if background}
             <k-- class="background effect" />
         {/if}
+        {#if loading}
+            <KLoadingEffect color={boxColorContrast} />
+        {/if}
         <slot name="background-effects" />
     </k-->
 
@@ -78,9 +81,6 @@
     <k-- class="overlay-effects effect">
         {#if ripple}
             <KRippleEffect element={element?.parentElement} />
-        {/if}
-        {#if loading}
-            <KLoadingEffect color={boxColorContrast} />
         {/if}
         <slot name="overlay-effects" />
     </k-->
@@ -187,7 +187,7 @@
     }
 
     .blur.effect {
-        backdrop-filter: blur(0.15rem);
+        backdrop-filter: blur(var(--k-blur));
     }
     .use-blur > * > .background.effect {
         filter: opacity(0.6);
