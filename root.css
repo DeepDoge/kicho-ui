@@ -22,6 +22,7 @@
     --k-border-radius-rounded: 1em;
     --k-border-radius-fab: 10000000vw;
     --k-border-width: .15em;
+    --k-blur: .15rem;
     --k-transition: linear .2s;
 }
 

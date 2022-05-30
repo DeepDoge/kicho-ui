@@ -187,7 +187,7 @@
     }
 
     .blur.effect {
-        backdrop-filter: blur(0.15rem);
+        backdrop-filter: blur(var(--k-blur));
     }
     .use-blur > * > .background.effect {
         filter: opacity(0.6);
