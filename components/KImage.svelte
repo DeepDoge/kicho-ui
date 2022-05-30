@@ -8,5 +8,6 @@
 <style>
     img {
         color: transparent;
+        overflow: hidden;
     }
 </style>

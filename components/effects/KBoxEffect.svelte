@@ -64,6 +64,9 @@
         {#if background}
             <k-- class="background effect" />
         {/if}
+        {#if loading}
+            <KLoadingEffect color={boxColorContrast} />
+        {/if}
         <slot name="background-effects" />
     </k-->
 
@@ -78,9 +81,6 @@
     <k-- class="overlay-effects effect">
         {#if ripple}
             <KRippleEffect element={element?.parentElement} />
-        {/if}
-        {#if loading}
-            <KLoadingEffect color={boxColorContrast} />
         {/if}
         <slot name="overlay-effects" />
     </k-->
