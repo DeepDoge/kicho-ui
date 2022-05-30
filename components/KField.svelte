@@ -16,4 +16,8 @@
     label {
         font-size: var(--k-font-smaller);
     }
+
+    .field {
+        display: grid;
+    }
 </style>
