@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Colors } from "../../types/style/colors";
 
-    export let color: Colors = 'mode-contrast';
+    export let color: Colors = "mode-contrast";
 </script>
 
 <k-- class="loading" style:--color="var(--k-color-{color})" />
@@ -19,16 +19,8 @@
         inset: 0;
         background-color: var(--color);
         background-image: var(--color);
-        animation: loading infinite 1s ease-in-out alternate;
+        filter: opacity(var(--k-loading-effect-opacity-animated));
         backdrop-filter: blur(0.5rem);
     }
 
-    @keyframes loading {
-        from {
-            filter: opacity(0);
-        }
-        to {
-            filter: opacity(0.5);
-        }
-    }
 </style>
