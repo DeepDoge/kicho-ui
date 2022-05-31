@@ -19,8 +19,18 @@
         inset: 0;
         background-color: var(--color);
         background-image: var(--color);
-        filter: opacity(var(--k-loading-effect-opacity-animated));
+
         backdrop-filter: blur(0.5rem);
+        animation: load infinite 1s ease-in-out alternate;
     }
 
+    @keyframes load {
+        from {
+            filter: opacity(0);
+        }
+
+        to {
+            filter: opacity(0.5);
+        }
+    }
 </style>

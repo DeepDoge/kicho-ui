@@ -26,7 +26,7 @@
 {#if href}
     <a {href} {title} aria-label={title} on:click {disabled} class="button" class:text>
         <KBoxEffect {...$$props} {color} {radius} {background} {loading} ripple>
-            <div class="content"><slot /></div>
+            <span class="content"><slot /></span>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
             </svelte:fragment>
@@ -35,7 +35,9 @@
 {:else}
     <button {title} aria-label={title} on:click disabled={disabled || loading} class:disabled class:loading class="button" class:text>
         <KBoxEffect {...$$props} {color} {radius} {background} {loading} ripple>
-            <div class="content"><slot /></div>
+            <div class="content">
+                <slot />
+            </div>
             <svelte:fragment slot="overlay-effects">
                 <div class="hover-glass" />
             </svelte:fragment>
@@ -61,7 +63,6 @@
         word-spacing: inherit;
         color: inherit;
         text-align: inherit;
-        place-content: stretch;
     }
     .button {
         padding: 0.75ch 1.5ch;
@@ -71,6 +72,7 @@
     }
     .button .content {
         display: grid;
+        width: 100%;
         place-items: center;
     }
     .hover-glass {
@@ -88,7 +90,7 @@
     }
 
     .button.disabled {
-        filter: opacity(.5);
+        filter: opacity(0.5);
         cursor: not-allowed;
     }
 </style>

@@ -91,7 +91,7 @@
 <KModal align="end" active={!!currentDialog} on:close={() => currentDialog?.resolve(null)}>
     <form method="dialog" on:submit|preventDefault={onSubmit}>
         <div class="fields">
-            <pre class="text-multiline">{dialogCache?.message}</pre>
+            <pre class="k-text-multiline">{dialogCache?.message}</pre>
             {#if dialogCache?.type === "prompt"}
                 <KTextField type="text" bind:value />
             {/if}

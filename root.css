@@ -15,7 +15,7 @@
     --k-font-larger: 1.25em;
     --k-font-x-larger: 1.5em;
     --k-font-xx-larger: 2em;
-    --k-page-width: min(40em, 100%);
+    --k-page-width: min(50em, 100%);
     --k-page-padding: calc(var(--k-padding) * 4) clamp(.5em, 1vw, 1.5em) 0 clamp(.5em, 1vw, 1.5em);
     --k-padding: .25em;
     --k-border-radius: 0.3em;
@@ -52,7 +52,7 @@
     --k-color-mode-pop-contrast: var(--k-color-mode-contrast);
 }
 
-@property --k-loading-effect-opacity-animated {
+/* @property --k-loading-effect-opacity-animated {
     syntax: "<number>";
     inherits: true;
     initial-value: .25;
@@ -70,7 +70,7 @@
 
 :root {
     animation: custom-properties-animation infinite 1s ease-in-out alternate;
-}
+} */
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -117,6 +117,8 @@ body {
 *::before {
     box-sizing: border-box;
     position: relative;
+    min-width: 0;
+    min-height: 0;
 }
 
 *:focus-visible {
@@ -193,18 +195,21 @@ hr {
     background-clip: content-box;
 }
 
-.text-inline {
+.k-text-singleline {
+    display: inline-flex;
+    align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.text-multiline {
-    word-break: break-word;
+.k-text-multiline {
+    display: block;
+    word-break: break-all;
     hyphens: auto;
 }
 
-.text-background-clip {
+.k-text-background-clip {
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
