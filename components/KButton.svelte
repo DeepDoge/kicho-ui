@@ -55,7 +55,7 @@
 
     .button {
         cursor: pointer;
-        display: inline;
+        display: inline-block;
         font: inherit;
         font-size: 1em;
         letter-spacing: inherit;
@@ -65,15 +65,15 @@
         text-align: inherit;
     }
     .button {
-        padding: 0.75ch 1.5ch;
+        padding: 0.5ch 1.25ch;
     }
     .button.text {
         padding: 0;
     }
     .button .content {
-        display: grid;
+        display: block;
+        text-align: center;
         width: 100%;
-        place-items: center;
     }
     .hover-glass {
         position: absolute;
