@@ -171,7 +171,6 @@
     .background-effects {
         border: solid 0 transparent;
         border-width: calc(var(--border-width) - 0.2px);
-        
     }
 
     .overlay-effects {
@@ -214,7 +213,6 @@
 
     .glow.effect {
         filter: blur(calc(0.25rem * var(--glow-mul)));
-        
     }
     .box.use-background .glow.effect {
         filter: blur(calc(0.25rem * var(--glow-mul))) brightness(1.5) saturate(1.5);

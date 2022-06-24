@@ -106,7 +106,6 @@
         position: absolute;
         inset: 0;
         backdrop-filter: blur(0.025rem);
-        
     }
 
     .background {
@@ -114,7 +113,6 @@
         inset: 0;
         background-image: var(--k-color-gradient);
         opacity: 0.1;
-        
     }
     .background-dim {
         position: absolute;

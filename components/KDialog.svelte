@@ -70,8 +70,8 @@
     export let dialogManager: DialogManager;
     $: dialogs = dialogManager.dialogs;
     $: currentDialog = Object.values($dialogs)?.[0] ?? null;
-    let dialogCache: typeof currentDialog
-    $: currentDialog && (dialogCache = currentDialog)
+    let dialogCache: typeof currentDialog;
+    $: currentDialog && (dialogCache = currentDialog);
 
     let value: string;
     let cancelled: boolean;

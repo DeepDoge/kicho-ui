@@ -11,7 +11,7 @@
         placeholder?: string;
         required?: boolean;
         disabled?: boolean;
-        compact?: boolean
+        compact?: boolean;
     }
 
     export let type: $$Props["type"] = "text";
@@ -26,7 +26,7 @@
     export let background: $$Props["background"] = true;
     export let blur: $$Props["blur"] = false;
     export let loading: $$Props["loading"] = false;
-    export let compact: $$Props['compact'] = false
+    export let compact: $$Props["compact"] = false;
 
     let el: HTMLInputElement;
     $: el && (el.type = type);
@@ -38,7 +38,18 @@
             {#if type === "textarea"}
                 <textarea class="input" class:loading {placeholder} bind:value on:input {required} disabled={loading || disabled} {id} {name} />
             {:else}
-                <input class="input"class:loading bind:this={el} {placeholder} bind:value on:input {required} disabled={loading || disabled} {id} {name} />
+                <input
+                    class="input"
+                    class:loading
+                    bind:this={el}
+                    {placeholder}
+                    bind:value
+                    on:input
+                    {required}
+                    disabled={loading || disabled}
+                    {id}
+                    {name}
+                />
             {/if}
         </KBoxEffect>
     </div>
@@ -62,8 +73,8 @@
     }
 
     .input:not(.loading):disabled {
-        filter: opacity(.5);
-        cursor: not-allowed
+        filter: opacity(0.5);
+        cursor: not-allowed;
     }
 
     textarea.input {

@@ -85,7 +85,7 @@
     .options {
         display: grid;
         position: absolute;
-        top: calc(100% + calc(var(--k-padding) * .5));
+        top: calc(100% + calc(var(--k-padding) * 0.5));
         padding: calc(var(--k-padding) * 2);
         left: 0;
         right: 0;

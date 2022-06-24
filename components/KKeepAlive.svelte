@@ -12,9 +12,9 @@
 
     $: value && onChange();
     function onChange() {
-        if (!value.key) return
+        if (!value.key) return;
         cache = { ...cache, [value.key]: value };
-        console.log(cache)
+        console.log(cache);
     }
 
     $: keys = cache ? Object.keys(cache) : [];

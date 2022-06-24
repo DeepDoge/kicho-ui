@@ -63,13 +63,13 @@
         border: none;
 
         font: inherit;
-        font-size: 1em;;
+        font-size: 1em;
         color: inherit;
         padding: calc(var(--k-padding));
     }
 
     .input:disabled {
-        filter: opacity(.5);
+        filter: opacity(0.5);
         cursor: not-allowed;
     }
 </style>
