@@ -192,7 +192,7 @@
         backdrop-filter: blur(var(--k-blur));
     }
     .use-blur > * > .background.effect {
-        filter: opacity(0.8);
+        filter: opacity(0.95);
     }
     .use-fixed > * > .background.effect {
         background-attachment: fixed;

@@ -18,7 +18,7 @@
     }
 
     export let hash: $$Props["hash"];
-    $: active = hash === $currentHash;
+    $: active = new RegExp(hash).test($currentHash);
 </script>
 
 <KModal
