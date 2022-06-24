@@ -106,7 +106,7 @@
         position: absolute;
         inset: 0;
         backdrop-filter: blur(0.025rem);
-        z-index: -1;
+        
     }
 
     .background {
@@ -114,14 +114,13 @@
         inset: 0;
         background-image: var(--k-color-gradient);
         opacity: 0.1;
-        z-index: -1;
+        
     }
     .background-dim {
         position: absolute;
         inset: 0;
         background-color: var(--k-color-mode);
         opacity: 0.3;
-        z-index: -1;
     }
 
     dialog::backdrop {
