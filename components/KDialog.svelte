@@ -24,7 +24,7 @@
         return {
             dialogs,
             async alert(message: Message) {
-                const id = crypto.randomUUID();
+                const id = Math.random().toString();
                 return await new Promise<void>((resolve) =>
                     add(id, {
                         message,
@@ -37,7 +37,7 @@
                 );
             },
             async prompt(message: Message) {
-                const id = crypto.randomUUID();
+                const id = Math.random().toString();
                 return await new Promise<string | null>((resolve) =>
                     add(id, {
                         message,
@@ -50,7 +50,7 @@
                 );
             },
             async confirm(message: Message) {
-                const id = crypto.randomUUID();
+                const id = Math.random().toString();
                 return await new Promise<boolean>((resolve) =>
                     add(id, {
                         message,

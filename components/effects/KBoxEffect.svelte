@@ -2,7 +2,7 @@
     import type { Colors } from "$lib/kicho-ui/types/style/colors";
     import KLoadingEffect from "./KLoadingEffect.svelte";
     import KRippleEffect from "./KRippleEffect.svelte";
-
+    
     export let glow: Colors | "mode-contrast" | boolean = false;
     export let glowMultiplier: number = 1;
     export let background = false;
