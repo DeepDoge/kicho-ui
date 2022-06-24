@@ -38,14 +38,15 @@
 }
 
 :root {
-    --k-color-dark: #121212;
+    --k-color-dark: #22252b;
     --k-color-dark-contrast: #fff;
-    --k-color-dark-pop: #252525;
+    --k-color-dark-pop: #343841;
     --k-color-dark-pop-contrast: var(--k-color-dark-contrast);
-    --k-color-light: #ececec;
+    --k-color-light: #dee1e3;
     --k-color-light-contrast: var(--k-color-dark);
-    --k-color-light-pop: #c1c6ca;
+    --k-color-light-pop: #c3c4c4;
     --k-color-light-pop-contrast: var(--k-color-light-contrast);
+    --k-color-body: #fff;
     --k-color-mode: var(--k-color-light);
     --k-color-mode-contrast: var(--k-color-light-contrast);
     --k-color-mode-pop: var(--k-color-light-pop);
@@ -74,6 +75,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --k-color-body: #292c34;
         --k-color-mode: var(--k-color-dark);
         --k-color-mode-contrast: var(--k-color-dark-contrast);
         --k-color-mode-pop: var(--k-color-dark-pop);
@@ -108,7 +110,7 @@ body {
     margin: 0;
     letter-spacing: .05ch;
     line-height: 1.25;
-    background: var(--k-color-mode);
+    background: var(--k-color-body);
     color: var(--k-color-mode-contrast)
 }
 
@@ -187,11 +189,10 @@ hr {
     margin: unset;
     border: unset;
 
-    padding: .5em 0;
     height: .01em;
     box-sizing: content-box;
 
-    background-color: currentColor;
+    background-color: var(--k-color-mode-pop);
     background-clip: content-box;
 }
 

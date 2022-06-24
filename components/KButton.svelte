@@ -65,7 +65,7 @@
         text-align: inherit;
     }
     .button {
-        padding: 0.5ch 1.25ch;
+        padding: .75ch 1.25ch;
     }
     .button.text {
         padding: 0;

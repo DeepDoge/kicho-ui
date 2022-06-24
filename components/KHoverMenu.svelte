@@ -4,8 +4,8 @@
     type BoxProps = KBoxEffect["$$prop_def"];
     interface $$Props extends BoxProps {}
 
-    export let color: $$Props["color"] = "mode";
-    export let glow: $$Props["glow"] = true;
+    export let color: $$Props["color"] = "mode-pop";
+    export let glow: $$Props["glow"] = false;
     export let background: $$Props["background"] = true;
 </script>
 
@@ -26,7 +26,7 @@
     .menu {
         position: absolute;
         left: 0;
-        min-width: 100%;
+        max-width: 15em;
         top: 100%;
 
         padding: var(--k-padding);

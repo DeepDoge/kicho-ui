@@ -4,6 +4,7 @@
     import KRippleEffect from "./KRippleEffect.svelte";
 
     export let glow: Colors | "mode-contrast" | boolean = false;
+    export let glowMultiplier: number = 1;
     export let background = false;
     export let blur = false;
     export let border = false;
@@ -51,6 +52,7 @@
     style:--color-contrast="var(--k-color-{boxColorContrast})"
     style:--color="var(--k-color-{boxColor})"
     style:--glow-color={glowColor}
+    style:--glow-mul={glowMultiplier}
 >
     {#if glow}
         <k-- class="glow effect" />
@@ -190,7 +192,7 @@
         backdrop-filter: blur(var(--k-blur));
     }
     .use-blur > * > .background.effect {
-        filter: opacity(0.6);
+        filter: opacity(0.8);
     }
     .use-fixed > * > .background.effect {
         background-attachment: fixed;
@@ -210,7 +212,11 @@
     }
 
     .glow.effect {
-        filter: blur(calc(0.25rem * 1));
+        filter: blur(calc(0.25rem * var(--glow-mul)));
+        z-index: -1;
+    }
+    .box.use-background .glow.effect {
+        filter: blur(calc(0.25rem * var(--glow-mul))) brightness(1.5) saturate(1.5);
     }
     .glow.effect::before {
         content: "";
