@@ -171,6 +171,7 @@
     .background-effects {
         border: solid 0 transparent;
         border-width: calc(var(--border-width) - 0.2px);
+        z-index: -1;
     }
 
     .overlay-effects {
