@@ -26,7 +26,7 @@
     .menu {
         position: absolute;
         left: 0;
-        max-width: 15em;
+        width: min(15em, 100vw);
         top: 100%;
 
         padding: var(--k-padding);

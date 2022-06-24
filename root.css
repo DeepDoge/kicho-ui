@@ -100,6 +100,20 @@
     }
 }
 
+.k-slim-scrollbar::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+}
+
+.k-slim-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.k-slim-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 100px;
+}
+
 html {
     height: unset
 }
@@ -206,7 +220,7 @@ hr {
 
 .k-text-multiline {
     display: block;
-    word-break: break-all;
+    word-break: break-word;
     hyphens: auto;
 }
 
