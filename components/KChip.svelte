@@ -7,7 +7,7 @@
 
     export let color: $$Props["color"] = "master";
     export let background: $$Props["background"] = true;
-    export let glow: $$Props["glow"] = true;
+    export let glow: $$Props["glow"] = false;
     export let size: $$Props["size"] = "smaller";
 </script>
 
