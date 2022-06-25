@@ -7,7 +7,7 @@
     const currentHash = writable("");
     if (typeof window !== "undefined") {
         currentHash.set(location.hash);
-        window.addEventListener("hashchange", () => currentHash.set(location.hash));
+        window.addEventListener("hashchange", () => currentHash.set(location.hash.substring(1)));
     }
 </script>
 
@@ -15,10 +15,12 @@
     type KModalProps = KModal["$$prop_def"];
     interface $$Props extends KModalProps {
         hash: string;
+        hashOverride?: string;
     }
 
     export let hash: $$Props["hash"];
-    $: active = new RegExp(hash).test($currentHash);
+    export let hashOverride: $$Props['hashOverride'] = null
+    $: active = new RegExp(hash).test(hashOverride ?? $currentHash);
 </script>
 
 <KModal
