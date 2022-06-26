@@ -19,7 +19,7 @@
     }
 
     export let hash: $$Props["hash"];
-    export let hashOverride: $$Props['hashOverride'] = null
+    export let hashOverride: $$Props["hashOverride"] = null;
     $: active = new RegExp(hash).test(hashOverride ?? $currentHash);
 </script>
 

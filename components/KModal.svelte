@@ -1,7 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import KBoxEffect from "./effects/KBoxEffect.svelte";
-    
+
     export let active = false;
     let _delayedActiveTimeout = -1;
     let delayedActive = active;

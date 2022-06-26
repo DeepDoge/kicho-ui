@@ -2,7 +2,7 @@
     import type { Colors } from "$lib/kicho-ui/types/style/colors";
     import KLoadingEffect from "./KLoadingEffect.svelte";
     import KRippleEffect from "./KRippleEffect.svelte";
-    
+
     export let glow: Colors | "mode-contrast" | boolean = false;
     export let glowMultiplier: number = 1;
     export let background = false;
@@ -66,9 +66,6 @@
         {#if background}
             <k-- class="background effect" />
         {/if}
-        {#if loading}
-            <KLoadingEffect color={boxColorContrast} />
-        {/if}
         <slot name="background-effects" />
     </k-->
 
@@ -85,6 +82,9 @@
             <KRippleEffect element={element?.parentElement} />
         {/if}
         <slot name="overlay-effects" />
+        {#if loading}
+            <KLoadingEffect color={boxColorContrast} />
+        {/if}
     </k-->
 </k-->
 

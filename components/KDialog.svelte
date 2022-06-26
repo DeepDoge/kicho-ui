@@ -1,11 +1,12 @@
 <script context="module" lang="ts">
     import type { Writable } from "svelte/store";
     import { writable } from "svelte/store";
+    import type { Colors } from "../types/style/colors";
     import KButton from "./KButton.svelte";
     import KModal from "./KModal.svelte";
     import KTextField from "./KTextField.svelte";
     type Message = string;
-    type Dialog = { type: "alert" | "prompt" | "confirm"; message: Message; resolve: (data: string | boolean | null) => void };
+    type Dialog = { type: "alert" | "prompt" | "confirm"; message: Message; resolve: (data: string | boolean | null) => void; color: Colors };
     type DialogManager = ReturnType<typeof createDialogManager>;
 
     export function createDialogManager() {
@@ -23,7 +24,7 @@
 
         return {
             dialogs,
-            async alert(message: Message) {
+            async alert(message: Message, color: Colors = "mode-pop") {
                 const id = Math.random().toString();
                 return await new Promise<void>((resolve) =>
                     add(id, {
@@ -33,10 +34,11 @@
                             resolve();
                             remove(id);
                         },
+                        color,
                     })
                 );
             },
-            async prompt(message: Message) {
+            async prompt(message: Message, color: Colors = "mode-pop") {
                 const id = Math.random().toString();
                 return await new Promise<string | null>((resolve) =>
                     add(id, {
@@ -46,10 +48,11 @@
                             resolve(data?.toString() ?? null);
                             remove(id);
                         },
+                        color,
                     })
                 );
             },
-            async confirm(message: Message) {
+            async confirm(message: Message, color: Colors = "mode-pop") {
                 const id = Math.random().toString();
                 return await new Promise<boolean>((resolve) =>
                     add(id, {
@@ -59,6 +62,7 @@
                             resolve(!!data);
                             remove(id);
                         },
+                        color,
                     })
                 );
             },
@@ -100,9 +104,9 @@
             <!-- This is here to capture, return key -->
             <button style="position:0;opacity:0;pointer-events:none" />
             {#if dialogCache?.type !== "alert"}
-                <KButton on:click={() => (cancelled = true)}>Cancel</KButton>
+                <KButton color={dialogCache?.color} on:click={() => (cancelled = true)}>Cancel</KButton>
             {/if}
-            <KButton>{buttonText}</KButton>
+            <KButton color={dialogCache?.color}>{buttonText}</KButton>
         </div>
     </form>
 </KModal>

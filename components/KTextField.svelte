@@ -1,7 +1,7 @@
 <script lang="ts">
     import KBoxEffect from "./effects/KBoxEffect.svelte";
     import KField from "./KField.svelte";
-    
+
     type BoxEffectProps = KBoxEffect["$$prop_def"];
     type FieldProps = KField["$$prop_def"];
     interface $$Props extends BoxEffectProps, FieldProps {

@@ -2,7 +2,7 @@
     import KBoxEffect from "./effects/KBoxEffect.svelte";
     import KButton from "./KButton.svelte";
     import KField from "./KField.svelte";
-        type OptionsType = Record<string, string>;
+    type OptionsType = Record<string, string>;
 
     type FieldProps = KField["$$prop_def"];
     interface $$Props extends FieldProps {
