@@ -21,6 +21,9 @@
     :global(*:not(:hover)) > .menu:not(:focus):not(:focus-within) {
         opacity: 0;
         pointer-events: none;
+        width: 0;
+        height: 0;
+        overflow: hidden;
     }
 
     .menu {
@@ -28,6 +31,8 @@
         left: 0;
         width: min(15em, 100vw);
         top: 100%;
+
+        font-size: .75rem;
 
         padding: var(--k-padding);
 
