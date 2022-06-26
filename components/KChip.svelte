@@ -25,6 +25,11 @@
     }
 
     .chip-inner {
+        display: grid;
+        align-items: center;
+        grid-auto-flow: column;
+        gap: .5ch;
+
         padding: 0 calc(var(--k-padding) * 2);
         letter-spacing: normal;
         white-space: nowrap;
