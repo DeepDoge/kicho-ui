@@ -29,7 +29,7 @@
 
     .menu {
         position: absolute;
-        width: min(15em, 100vw);
+        width: min(20em, 100vw);
         top: 100%;
 
         font-size: .75rem;
