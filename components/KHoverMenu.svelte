@@ -2,15 +2,16 @@
     import KBoxEffect from "./effects/KBoxEffect.svelte";
 
     type BoxProps = KBoxEffect["$$prop_def"];
-    interface $$Props extends BoxProps {}
+    interface $$Props extends BoxProps {
+        direction?: 'left' | 'right'
+    }
 
     export let color: $$Props["color"] = "mode-pop";
-    export let glow: $$Props["glow"] = false;
-    export let background: $$Props["background"] = true;
+    export let direction: $$Props['direction'] = 'right'
 </script>
 
-<div class="menu">
-    <KBoxEffect {...$$props} {color} {glow} {background}>
+<div class="menu {direction}">
+    <KBoxEffect {...$$props} {color}>
         <div class="content">
             <slot />
         </div>
@@ -28,7 +29,6 @@
 
     .menu {
         position: absolute;
-        left: 0;
         width: min(15em, 100vw);
         top: 100%;
 
@@ -39,5 +39,13 @@
         transition: var(--k-transition);
         transition-property: opacity;
         z-index: 10;
+    }
+
+    .right {
+        left: 0;
+    }
+
+    .left {
+        right: 0;
     }
 </style>
