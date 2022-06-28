@@ -30,7 +30,7 @@
     .menu {
         position: absolute;
         width: min(20em, 100vw);
-        top: 100%;
+        top: calc(100% - 1px);
 
         font-size: .75rem;
 

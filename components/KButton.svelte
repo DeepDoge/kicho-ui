@@ -71,9 +71,9 @@
         padding: 0;
     }
     .button .content {
-        display: block;
-        text-align: center;
+        display: grid;
         width: 100%;
+        place-items: center;
     }
     .hover-glass {
         position: absolute;
