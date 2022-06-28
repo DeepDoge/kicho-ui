@@ -3,11 +3,11 @@
 
     type BoxProps = KBoxEffect["$$prop_def"];
     interface $$Props extends BoxProps {
-        direction?: 'left' | 'right'
+        direction?: "left" | "right";
     }
 
     export let color: $$Props["color"] = "mode-pop";
-    export let direction: $$Props['direction'] = 'right'
+    export let direction: $$Props["direction"] = "right";
 </script>
 
 <div class="menu {direction}">
@@ -32,7 +32,7 @@
         width: min(20em, 100vw);
         top: calc(100% - 1px);
 
-        font-size: .75rem;
+        font-size: 0.75rem;
 
         padding: var(--k-padding);
 

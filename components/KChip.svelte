@@ -28,7 +28,7 @@
         display: grid;
         align-items: center;
         grid-auto-flow: column;
-        gap: .5ch;
+        gap: 0.5ch;
 
         padding: 0 calc(var(--k-padding) * 2);
         letter-spacing: normal;
