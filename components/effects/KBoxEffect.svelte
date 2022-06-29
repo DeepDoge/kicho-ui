@@ -3,11 +3,11 @@
     import KLoadingEffect from "./KLoadingEffect.svelte";
     import KRippleEffect from "./KRippleEffect.svelte";
 
-    export let glow: Colors | "mode-contrast" | boolean = false;
+    export let glow: Colors | boolean = false;
     export let glowMultiplier: number = 1;
     export let background = false;
     export let blur = false;
-    export let border = false;
+    export let border: Colors | boolean = false;
     export let ripple = false;
     export let fixed = false;
     export let loading = false;
@@ -32,6 +32,7 @@
     $: boxColor = getColor(color, false);
     $: boxColorContrast = getColor(color, true);
     $: glowColor = typeof glow === "string" ? `var(--k-color-${glow})` : null;
+    $: borderColor = typeof border === "string" ? `var(--k-color-${border})` : null;
 
     let element: HTMLDivElement = null;
 </script>
@@ -46,6 +47,7 @@
     class:use-background={background}
     class:use-blur={blur}
     class:use-border={border}
+    class:use-custom-border={borderColor}
     class:use-contrast={contrast}
     class:use-fixed={fixed}
     style:font-size="var(--k-font-{size})"
@@ -53,6 +55,7 @@
     style:--color="var(--k-color-{boxColor})"
     style:--glow-color={glowColor}
     style:--glow-mul={glowMultiplier}
+    style:--border-color={borderColor}
 >
     {#if glow}
         <k-- class="glow effect" />
@@ -100,9 +103,11 @@
         color: var(--color-contrast);
     }
     .box.use-border {
-        --border-color: var(--color);
         --background: var(--k-color-mode);
         color: var(--k-color-mode-contrast);
+    }
+    .box.use-border:not(.use-custom-border) {
+        --border-color: var(--color);
     }
     .box.use-glow:not(.use-custom-glow) {
         --glow-color: var(--color);
