@@ -18,7 +18,7 @@
     export let title: $$Props["title"] = null;
     export let text: $$Props["text"] = false;
 
-    export let color: $$Props["color"] = text ? "mode" : "mode-contrast";
+    export let color: $$Props["color"] = text ? "mode" : "mode-pop";
     export let radius: $$Props["radius"] = text ? "tile" : "normal";
     export let background: $$Props["background"] = !text;
 </script>
