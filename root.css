@@ -40,17 +40,16 @@
 :root {
     --k-color-dark: #22252b;
     --k-color-dark-contrast: #fff;
-    --k-color-dark-pop: #343841;
-    --k-color-dark-pop-contrast: var(--k-color-dark-contrast);
-    --k-color-light: #dee1e3;
-    --k-color-light-contrast: var(--k-color-dark);
-    --k-color-light-pop: #c3c4c4;
-    --k-color-light-pop-contrast: var(--k-color-light-contrast);
-    --k-color-body: #fff;
+    --k-color-dark-pop: #383b44;
+    --k-color-dark-body: #292c34;
+    --k-color-light: #fff;
+    --k-color-light-contrast: #606368;
+    --k-color-light-pop: #cacedb;
+    --k-color-light-body: #dee1e3;
     --k-color-mode: var(--k-color-light);
     --k-color-mode-contrast: var(--k-color-light-contrast);
     --k-color-mode-pop: var(--k-color-light-pop);
-    --k-color-mode-pop-contrast: var(--k-color-mode-contrast);
+    --k-color-mode-body: var(--k-color-light-body);
 }
 
 /* @property --k-loading-effect-opacity-animated {
@@ -73,31 +72,28 @@
     animation: custom-properties-animation infinite 1s ease-in-out alternate;
 } */
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --k-color-body: #292c34;
-        --k-color-mode: var(--k-color-dark);
-        --k-color-mode-contrast: var(--k-color-dark-contrast);
-        --k-color-mode-pop: var(--k-color-dark-pop);
-        --k-color-mode-pop-contrast: var(--k-color-mode-contrast);
-    }
+[data-theme="dark"] {
+    --k-color-mode: var(--k-color-dark);
+    --k-color-mode-contrast: var(--k-color-dark-contrast);
+    --k-color-mode-pop: var(--k-color-dark-pop);
+    --k-color-mode-body: var(--k-color-dark-body);
+}
 
-    ::-webkit-scrollbar {
-        display: block
-    }
+[data-theme="dark"]::-webkit-scrollbar {
+    display: block
+}
 
-    ::-webkit-scrollbar-track {
-        background: #000;
-    }
+[data-theme="dark"]::-webkit-scrollbar-track {
+    background: #000;
+}
 
-    ::-webkit-scrollbar-thumb {
-        background: rgb(30, 37, 41);
-    }
+[data-theme="dark"]::-webkit-scrollbar-thumb {
+    background: rgb(30, 37, 41);
+}
 
-    ::-webkit-scrollbar-corner,
-    ::-webkit-scrollbar-thumb:hover {
-        background: rgb(35, 43, 48);
-    }
+[data-theme="dark"]::-webkit-scrollbar-corner,
+[data-theme="dark"]::-webkit-scrollbar-thumb:hover {
+    background: rgb(35, 43, 48);
 }
 
 .k-slim-scrollbar::-webkit-scrollbar {
@@ -124,7 +120,7 @@ body {
     margin: 0;
     letter-spacing: .05ch;
     line-height: 1.25;
-    background: var(--k-color-body);
+    background: var(--k-color-mode-body);
     color: var(--k-color-mode-contrast)
 }
 

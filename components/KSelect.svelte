@@ -11,11 +11,11 @@
     }
 
     export let options: $$Props["options"];
-    export let value: $$Props["value"] = Object.keys(options)[0];
+    export let value: $$Props["value"] = null;
 
     $: options && onOptionsChange();
     function onOptionsChange() {
-        value = Object.keys(options)[0];
+        if (!options[value]) value = Object.keys(options)[0];
     }
 
     let active = false;
@@ -25,7 +25,7 @@
 <KField {...$$props} let:id>
     <div class="select" class:active>
         <KButton href="javascript:;" blur color="mode-pop" background on:click={toggle}>
-            <div class="current">{options[value]}</div>
+            <div class="current">{options[value] ?? '...'}</div>
         </KButton>
 
         <div class="btn">
@@ -35,7 +35,7 @@
         </div>
 
         <div class="options" on:click={() => (active = false)}>
-            <KBoxEffect color="mode-pop" blur background>
+            <KBoxEffect color="mode" blur background>
                 {#each Object.entries(options) as [key, label] (key)}
                     <div class="option">
                         <input id="{id}-{key}" type="radio" value={key} bind:group={value} />

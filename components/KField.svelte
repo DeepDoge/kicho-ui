@@ -17,5 +17,6 @@
 
     .field {
         display: grid;
+        gap: var(--k-padding)
     }
 </style>

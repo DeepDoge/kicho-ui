@@ -220,7 +220,7 @@
         filter: blur(calc(0.25rem * var(--glow-mul)));
     }
     .box.use-background .glow.effect {
-        filter: blur(calc(0.25rem * var(--glow-mul))) brightness(1.5) saturate(1.5);
+        filter: blur(calc(0.25rem * var(--glow-mul))) brightness(1.2) saturate(1.2);
     }
     .glow.effect::before {
         content: "";
