@@ -9,7 +9,21 @@
     type Dialog = { type: "alert" | "prompt" | "confirm"; message: Message; resolve: (data: string | boolean | null) => void; color: Colors };
     type DialogManager = ReturnType<typeof createDialogManager>;
 
-    export function createDialogManager() {
+    export interface DialogLanguage {
+        confirm: string;
+        cancel: string;
+        apply: string;
+        ok: string;
+    }
+
+    export function createDialogManager(
+        language: DialogLanguage = {
+            apply: "Apply",
+            cancel: "Cancel",
+            confirm: "Confirm",
+            ok: "Ok",
+        }
+    ) {
         const dialogs: Writable<Record<string, Dialog>> = writable({});
 
         function add(id: string, alert: Dialog) {
@@ -24,6 +38,7 @@
 
         return {
             dialogs,
+            language,
             async alert(message: Message, color: Colors = "mode-pop") {
                 const id = Math.random().toString();
                 return await new Promise<void>((resolve) =>
@@ -72,6 +87,7 @@
 
 <script lang="ts">
     export let dialogManager: DialogManager;
+
     $: dialogs = dialogManager.dialogs;
     $: currentDialog = Object.values($dialogs)?.[0] ?? null;
     let dialogCache: typeof currentDialog;
@@ -84,7 +100,13 @@
     $: currentDialog && (cancelled = false);
     $: currentDialog &&
         (buttonText =
-            currentDialog.type === "alert" ? "Ok" : currentDialog.type === "confirm" ? "Confirm" : currentDialog.type === "prompt" ? "Apply" : "Ok");
+            currentDialog.type === "alert"
+                ? "Ok"
+                : currentDialog.type === "confirm"
+                ? dialogManager.language.confirm
+                : currentDialog.type === "prompt"
+                ? dialogManager.language.confirm
+                : dialogManager.language.ok);
 
     function onSubmit() {
         if (currentDialog.type === "confirm") currentDialog.resolve(!cancelled);
@@ -102,11 +124,11 @@
         </div>
         <div class="actions">
             <!-- This is here to capture, return key -->
-            <button style="position:0;opacity:0;pointer-events:none" />
+            <button style="position:absolute;opacity:0;pointer-events:none" />
             {#if dialogCache?.type !== "alert"}
-                <KButton color={dialogCache?.color} on:click={() => (cancelled = true)}>Cancel</KButton>
+                <KButton color="mode-pop" on:click={() => (cancelled = true)}>{dialogManager.language.cancel}</KButton>
             {/if}
-            <KButton color={dialogCache?.color}>{buttonText}</KButton>
+            <KButton color={dialogCache?.type === 'confirm' ? 'master' : 'mode-pop'}>{buttonText}</KButton>
         </div>
     </form>
 </KModal>
@@ -120,9 +142,12 @@
     pre {
         white-space: pre-wrap;
     }
+
     .actions {
         display: grid;
-        grid-auto-flow: row;
+        gap: var(--k-padding);
+        grid-auto-flow: column;
+        justify-content: end;
         position: sticky;
         bottom: 0;
     }
