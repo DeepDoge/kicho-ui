@@ -29,7 +29,7 @@
 
     .menu {
         position: absolute;
-        width: min(20em, 100vw);
+        min-width: min(20em, 100vw);
         max-height: 50vh;
         top: calc(100% - 1px);
 
