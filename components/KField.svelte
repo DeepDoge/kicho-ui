@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let id: string = Math.random().toString();;
+    export let id: string = Math.random().toString();
     export let label: string = null;
 </script>
 
@@ -17,6 +17,6 @@
 
     .field {
         display: grid;
-        gap: var(--k-padding)
+        gap: var(--k-padding);
     }
 </style>

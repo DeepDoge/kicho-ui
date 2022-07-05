@@ -25,7 +25,7 @@
 <KField {...$$props} let:id>
     <div class="select" class:active>
         <KButton href="javascript:;" blur color="mode-pop" background on:click={toggle}>
-            <div class="current">{options[value] ?? '...'}</div>
+            <div class="current">{options[value] ?? "..."}</div>
         </KButton>
 
         <div class="btn">

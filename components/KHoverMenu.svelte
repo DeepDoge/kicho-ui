@@ -10,7 +10,7 @@
     export let direction: $$Props["direction"] = "right";
 </script>
 
-<div class="menu {direction}">
+<div class="menu {direction} k-slim-scrollbar">
     <KBoxEffect {...$$props} {color}>
         <div class="content">
             <slot />
@@ -36,6 +36,8 @@
         font-size: 0.75rem;
 
         padding: var(--k-padding);
+
+        overflow: auto;
 
         transition: var(--k-transition);
         transition-property: opacity;

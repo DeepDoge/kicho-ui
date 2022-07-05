@@ -128,7 +128,7 @@
             {#if dialogCache?.type !== "alert"}
                 <KButton color="mode-pop" on:click={() => (cancelled = true)}>{dialogManager.language.cancel}</KButton>
             {/if}
-            <KButton color={dialogCache?.type === 'confirm' ? 'master' : 'mode-pop'}>{buttonText}</KButton>
+            <KButton color={dialogCache?.type === "confirm" ? "master" : "mode-pop"}>{buttonText}</KButton>
         </div>
     </form>
 </KModal>
