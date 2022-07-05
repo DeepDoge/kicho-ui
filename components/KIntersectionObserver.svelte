@@ -14,8 +14,8 @@
 
     let observer: IntersectionObserver = null;
 
-    $: onElement(element);
-    async function onElement(value: typeof element) {
+    $: element, onElementChange();
+    async function onElementChange() {
         if (elementCache) observer?.unobserve(elementCache);
         if (!element) return;
         observer = new IntersectionObserver((entries) => (intersecting = entries[0].isIntersecting) && once && observer.unobserve(element), {
