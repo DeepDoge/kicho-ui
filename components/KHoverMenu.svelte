@@ -7,15 +7,18 @@
     }
 
     export let color: $$Props["color"] = "mode-pop";
+    export let size: $$Props["size"] = "smaller";
     export let direction: $$Props["direction"] = "right";
 </script>
 
 <div class="menu {direction} k-slim-scrollbar">
-    <KBoxEffect {...$$props} {color}>
-        <div class="content">
-            <slot />
-        </div>
-    </KBoxEffect>
+    <div class="inner">
+        <KBoxEffect {...$$props} {color} {size}>
+            <div class="content">
+                <slot />
+            </div>
+        </KBoxEffect>
+    </div>
 </div>
 
 <style>
@@ -32,8 +35,6 @@
         min-width: min(20em, 100vw);
         max-height: 50vh;
         top: calc(100% - 1px);
-
-        font-size: 0.75rem;
 
         padding: var(--k-padding);
 
