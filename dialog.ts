@@ -1,3 +1,3 @@
-import { createDialogManager } from "./components/KDialog.svelte";
+import { createDialogManager } from "./components/KDialog.svelte"
 
-export const globalDialogManager = createDialogManager();
+export const globalDialogManager = createDialogManager()
