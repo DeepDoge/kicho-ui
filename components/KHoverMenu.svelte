@@ -11,7 +11,7 @@
         if (!menuElement) return;
         const bounds = menuElement.getBoundingClientRect();
         if (bounds.right > window.innerWidth || bounds.left < 0)
-            offsetX = (bounds.width + (bounds.left - offsetX) - window.innerWidth + 25 * 0.5) * -1;
+            offsetX = (bounds.width + (bounds.left - offsetX) - window.innerWidth + 35 * 0.5) * -1;
     }
 
     let offsetX = 0;
@@ -43,8 +43,8 @@
 
     .menu {
         position: absolute;
-        min-width: min(20em, calc(100vw - 25px));
-        max-width: calc(100vw - 25px);
+        min-width: min(20em, calc(100vw - 35px));
+        max-width: calc(100vw - 35px);
         max-height: 50vh;
         top: calc(100% - 1px);
         left: 0;
