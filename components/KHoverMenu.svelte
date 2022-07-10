@@ -2,16 +2,26 @@
     import KBoxEffect from "./effects/KBoxEffect.svelte";
 
     type BoxProps = KBoxEffect["$$prop_def"];
-    interface $$Props extends BoxProps {
-        direction?: "left" | "right";
-    }
+    interface $$Props extends BoxProps {}
 
     export let color: $$Props["color"] = "mode-pop";
     export let size: $$Props["size"] = "smaller";
-    export let direction: $$Props["direction"] = "right";
+
+    function recalculateOffset() {
+        if (!menuElement) return;
+        const bounds = menuElement.getBoundingClientRect();
+        if (bounds.right > window.innerWidth || bounds.left < 0)
+            offsetX = (bounds.width + (bounds.left - offsetX) - window.innerWidth + 25 * 0.5) * -1;
+    }
+
+    let offsetX = 0;
+    let menuElement: HTMLDivElement = null;
+    $: menuElement, recalculateOffset();
 </script>
 
-<div class="menu {direction} k-slim-scrollbar">
+<svelte:body on:resize={recalculateOffset} on:scroll={recalculateOffset} />
+
+<div bind:this={menuElement} style:--offset-x={offsetX} class="menu k-slim-scrollbar" on:click={recalculateOffset} on:mousemove={recalculateOffset}>
     <div class="inner">
         <KBoxEffect {...$$props} {color} {size}>
             <div class="content">
@@ -25,16 +35,19 @@
     :global(*:not(:hover)) > .menu:not(:focus):not(:focus-within) {
         opacity: 0;
         pointer-events: none;
-        width: 0;
         height: 0;
+        border: none;
+        min-height: 0;
         overflow: hidden;
     }
 
     .menu {
         position: absolute;
-        min-width: min(20em, 100vw);
+        min-width: min(20em, calc(100vw - 25px));
+        max-width: calc(100vw - 25px);
         max-height: 50vh;
         top: calc(100% - 1px);
+        left: 0;
 
         padding: var(--k-padding);
 
@@ -43,13 +56,7 @@
         transition: var(--k-transition);
         transition-property: opacity;
         z-index: 10;
-    }
 
-    .right {
-        left: 0;
-    }
-
-    .left {
-        right: 0;
+        transform: translateX(calc(var(--offset-x) * 1px));
     }
 </style>
