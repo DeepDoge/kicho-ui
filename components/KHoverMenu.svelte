@@ -48,7 +48,7 @@
         max-width: calc(100vw - 35px);
         max-height: 50vh;
         top: calc(100% - 1px);
-        left: 0;
+        left: 50%;
 
         padding: var(--k-padding);
 
