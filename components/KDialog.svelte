@@ -9,6 +9,7 @@
     type Dialog = { type: "alert" | "prompt" | "confirm"; message: Message; resolve: (data: string | boolean | null) => void; color: Colors };
     type DialogManager = ReturnType<typeof createDialogManager>;
 
+    export const globalDialogManager = createDialogManager();
     export interface DialogLanguage {
         confirm: string;
         cancel: string;

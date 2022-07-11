@@ -213,6 +213,10 @@ hr {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.k-text-singleline * {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
 .k-text-multiline {
     display: block;
