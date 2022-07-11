@@ -9,9 +9,10 @@
 
     function recalculateOffset() {
         if (!menuElement) return;
+        const windowWidth = document.body.clientWidth
         const bounds = menuElement.getBoundingClientRect();
-        if (bounds.right > window.innerWidth || bounds.left < 0)
-            offsetX = (bounds.width + (bounds.left - offsetX) - window.innerWidth + 35 * 0.5) * -1;
+        if (bounds.right > windowWidth || bounds.left < 0)
+            offsetX = (bounds.width + (bounds.left - offsetX) - windowWidth + 35 * 0.5) * -1;
     }
 
     let offsetX = 0;
@@ -19,7 +20,7 @@
     $: menuElement, recalculateOffset();
 </script>
 
-<svelte:body on:resize={recalculateOffset} on:scroll={recalculateOffset} />
+<svelte:window on:resize={recalculateOffset} on:scroll={recalculateOffset} />
 
 <div bind:this={menuElement} style:--offset-x={offsetX} class="menu k-slim-scrollbar" on:click={recalculateOffset} on:mousemove={recalculateOffset}>
     <div class="inner">
@@ -57,6 +58,6 @@
         transition-property: opacity;
         z-index: 10;
 
-        transform: translateX(calc(var(--offset-x) * 1px));
+        transform: translateX(calc(calc(var(--offset-x) * 1px) - 50%));
     }
 </style>
