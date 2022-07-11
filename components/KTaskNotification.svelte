@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
-    import { type Writable, writable } from "svelte/store";
+    import { writable, type Writable } from "svelte/store";
     import KButton from "./KButton.svelte";
     type Message = string;
     type Task = { message: Message; id: string; state: State };
     type TaskNotificationManager = ReturnType<typeof createTaskNotificationManager>;
-    type State = 'loading' | 'done' | 'failed'
+    type State = "loading" | "done" | "failed";
 
     export const globalTaskNotificationManager = createTaskNotificationManager();
 
@@ -35,20 +35,20 @@
             async append<T>(promise: Promise<T>, message: Message) {
                 const id = Math.random().toString();
                 return await new Promise<T>(async (resolve, reject) => {
-                    add({ id, message, state: 'loading' });
+                    add({ id, message, state: "loading" });
                     try {
                         await promise;
                         tasks.update((tasks) => {
-                            tasks[id].state = 'done';
+                            tasks[id].state = "done";
                             return { ...tasks };
                         });
                         resolve(await promise);
                     } catch (error) {
                         tasks.update((tasks) => {
-                            tasks[id].state = 'failed';
+                            tasks[id].state = "failed";
                             return { ...tasks };
                         });
-                        reject(error)
+                        reject(error);
                     }
                     setTimeout(() => remove(id), 1500);
                 });

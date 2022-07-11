@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Colors } from "../types/style/colors";
-    export let color: Colors = 'master';
+    export let color: Colors = "master";
 </script>
 
 <div class="lds-ring" style:color="var(--k-color-{color})">
