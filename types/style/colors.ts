@@ -22,13 +22,16 @@ export type Colors =
 
         'dark' |
         'dark-contrast' |
-
         'dark-pop' |
-        'dark-pop-contrast' |
+        'dark-body' |
 
         'light' |
         'light-contrast' |
-
         'light-pop' |
-        'light-pop-contrast'
+        'light-body' |
+
+        'mode' |
+        'mode-contrast' |
+        'mode-pop' |
+        'mode-body'
     >
