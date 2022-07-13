@@ -29,8 +29,6 @@
             });
         }
 
-        add({ id: '', message:'', state: 'loading' })
-
         return {
             tasks,
             language,
