@@ -71,7 +71,7 @@
 
         transition: var(--k-transition);
         transition-property: opacity;
-        z-index: 1;
+        z-index: var(--k-z-index-overlay);
     }
 
     .dialog:not([open]) {

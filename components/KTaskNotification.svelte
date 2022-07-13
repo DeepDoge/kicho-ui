@@ -102,7 +102,7 @@
         transition-property: transform, filter;
         filter: opacity(1);
 
-        z-index: 1;
+        z-index: var(--k-z-index-overlay);
     }
 
     .empty {

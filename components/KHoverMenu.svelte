@@ -55,7 +55,7 @@
 
         transition: var(--k-transition);
         transition-property: opacity;
-        z-index: 10;
+        z-index: var(--k-z-index-overlay);
 
         transform: translateX(calc(calc(var(--offset-x) * 1px) - 50%));
     }

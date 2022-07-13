@@ -27,6 +27,12 @@
 }
 
 :root {
+    --k-z-index-content: 1;
+    --k-z-index-floating: 2;
+    --k-z-index-overlay: 3; 
+}
+
+:root {
     --k-color-master: slateblue;
     --k-color-master-contrast: #fff;
     --k-color-slave: coral;
