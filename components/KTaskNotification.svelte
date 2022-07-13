@@ -29,6 +29,8 @@
             });
         }
 
+        add({ id: '', message:'', state: 'loading' })
+
         return {
             tasks,
             language,
@@ -101,6 +103,8 @@
         transition: var(--k-transition);
         transition-property: transform, filter;
         filter: opacity(1);
+
+        z-index: 1;
     }
 
     .empty {

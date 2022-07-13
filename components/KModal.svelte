@@ -12,14 +12,7 @@
     export let align: "center" | "end" | "start" | "stretch" = "center";
     export let justify: typeof align = "center";
 
-    interface HTMLDialogElement extends HTMLElement {
-        open: boolean;
-        showModal(): void;
-        close(): void;
-    }
-
-    let _dialogElement: HTMLElement;
-    $: dialogElement = _dialogElement as HTMLDialogElement;
+    let dialogElement: HTMLElement;
 
     $: dialogElement && onActiveChange(active);
     function onActiveChange(value: typeof active) {
@@ -27,8 +20,8 @@
         if (!value) setTimeout(() => (delayedActive = active), 1000);
         else delayedActive = value;
 
-        if (value && !dialogElement.open) dialogElement.showModal();
-        if (!value && dialogElement.open) dialogElement.close();
+        if (value && !dialogElement.hasAttribute('open')) dialogElement.setAttribute('open', '');
+        if (!value && dialogElement.hasAttribute('open')) dialogElement.removeAttribute('open');
         return true;
     }
     function attemptClose(event: Event) {
@@ -38,8 +31,9 @@
     }
 </script>
 
-<dialog
-    bind:this={_dialogElement}
+<div
+    class="dialog"
+    bind:this={dialogElement}
     style:--ideal-size={size}
     style:justify-content={justify}
     style:align-content={align}
@@ -60,10 +54,10 @@
             </KBoxEffect>
         </div>
     {/if}
-</dialog>
+    </div>
 
 <style>
-    dialog {
+    .dialog {
         all: unset;
         position: fixed;
         inset: 0;
@@ -77,9 +71,10 @@
 
         transition: var(--k-transition);
         transition-property: opacity;
+        z-index: 1;
     }
 
-    dialog:not([open]) {
+    .dialog:not([open]) {
         opacity: 0;
         pointer-events: none;
     }
@@ -98,7 +93,7 @@
         overflow-y: auto;
     }
 
-    dialog > *:not(.modal) {
+    .dialog > *:not(.modal) {
         pointer-events: none;
     }
 
@@ -121,7 +116,7 @@
         opacity: 0.75;
     }
 
-    dialog::backdrop {
+/*     dialog::backdrop {
         display: none;
-    }
+    } */
 </style>
