@@ -27,7 +27,7 @@
 }
 
 :root {
-    --k-z-index-content: 1;
+    --k-z-index-sticky: 1;
     --k-z-index-floating: 2;
     --k-z-index-overlay: 3; 
 }
