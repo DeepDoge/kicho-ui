@@ -53,7 +53,7 @@
         <div class="background" />
         <div class="background-dim" />
         <div class="modal">
-            <KBoxEffect color="mode-body" background blur radius="rounded">
+            <KBoxEffect color="mode-body" glow="gradient" background blur radius="rounded">
                 <div class="content">
                     <slot />
                 </div>
@@ -112,13 +112,13 @@
         position: absolute;
         inset: 0;
         background-image: var(--k-color-gradient);
-        opacity: 0.1;
+        opacity: 0.25;
     }
     .background-dim {
         position: absolute;
         inset: 0;
         background-color: var(--k-color-mode);
-        opacity: 0.3;
+        opacity: 0.75;
     }
 
     dialog::backdrop {
