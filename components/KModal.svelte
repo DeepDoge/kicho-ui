@@ -31,7 +31,9 @@
     }
 </script>
 
+<!-- not using dialog tag for now because it fucks up with z-index -->
 <div
+    aria-modal="true"
     class="dialog"
     bind:this={dialogElement}
     style:--ideal-size={size}

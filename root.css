@@ -187,11 +187,6 @@ h1 {
     font-size: var(--k-font-xx-larger);
 }
 
-img {
-    display: block;
-    max-width: 100%;
-}
-
 a {
     color: inherit;
     text-decoration: inherit;
