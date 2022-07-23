@@ -190,6 +190,8 @@ h1 {
 a {
     color: inherit;
     text-decoration: inherit;
+    cursor: auto;
+    user-select: text;
 }
 
 pre {

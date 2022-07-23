@@ -24,7 +24,7 @@
 </script>
 
 {#if href}
-    <a {href} {title} aria-label={title} on:click {disabled} class="button" class:text>
+    <a {href} {title} on:click {disabled} class="button" class:text>
         <KBoxEffect {...$$props} {color} {radius} {background} {loading} ripple>
             <span class="content"><slot /></span>
             <svelte:fragment slot="overlay-effects">
@@ -33,7 +33,7 @@
         </KBoxEffect>
     </a>
 {:else}
-    <button {title} aria-label={title} on:click disabled={disabled || loading} class:disabled class:loading class="button" class:text>
+    <button {title} on:click disabled={disabled || loading} class:disabled class:loading class="button" class:text>
         <KBoxEffect {...$$props} {color} {radius} {background} {loading} ripple>
             <div class="content">
                 <slot />

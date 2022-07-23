@@ -8,12 +8,12 @@
 
     export const globalTaskNotificationManager = createTaskNotificationManager();
 
-    export interface DialogLanguage {
+    export interface TaskNotificationsLanguage {
         pending: string;
     }
 
     export function createTaskNotificationManager(
-        language: DialogLanguage = {
+        language: TaskNotificationsLanguage = {
             pending: "Pending",
         }
     ) {
